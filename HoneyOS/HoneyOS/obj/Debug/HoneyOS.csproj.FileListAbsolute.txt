@@ -1,0 +1,55 @@
+C:\Users\Lenny\OneDrive - University of the Philippines\Documents\UP Files\Acads\3rd Year\2nd Sem\CMSC 125\HoneyOS\HoneyOS\bin\Debug\HoneyOS.exe
+C:\Users\Lenny\OneDrive - University of the Philippines\Documents\UP Files\Acads\3rd Year\2nd Sem\CMSC 125\HoneyOS\HoneyOS\bin\Debug\HoneyOS.exe.config
+C:\Users\Lenny\OneDrive - University of the Philippines\Documents\UP Files\Acads\3rd Year\2nd Sem\CMSC 125\HoneyOS\HoneyOS\obj\Debug\HoneyOS.csproj.AssemblyReference.cache
+C:\Users\Lenny\OneDrive - University of the Philippines\Documents\UP Files\Acads\3rd Year\2nd Sem\CMSC 125\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Form1.resources
+C:\Users\Lenny\OneDrive - University of the Philippines\Documents\UP Files\Acads\3rd Year\2nd Sem\CMSC 125\HoneyOS\HoneyOS\obj\Debug\HoneyOS.WelcomeScreen.resources
+C:\Users\Lenny\OneDrive - University of the Philippines\Documents\UP Files\Acads\3rd Year\2nd Sem\CMSC 125\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Properties.Resources.resources
+C:\Users\Lenny\OneDrive - University of the Philippines\Documents\UP Files\Acads\3rd Year\2nd Sem\CMSC 125\HoneyOS\HoneyOS\obj\Debug\HoneyOS.csproj.GenerateResource.cache
+C:\Users\Lenny\OneDrive - University of the Philippines\Documents\UP Files\Acads\3rd Year\2nd Sem\CMSC 125\HoneyOS\HoneyOS\obj\Debug\HoneyOS.csproj.CoreCompileInputs.cache
+C:\Users\Lenny\OneDrive - University of the Philippines\Documents\UP Files\Acads\3rd Year\2nd Sem\CMSC 125\HoneyOS\HoneyOS\obj\Debug\HoneyOS.exe
+C:\Users\Lenny\OneDrive - University of the Philippines\Documents\UP Files\Acads\3rd Year\2nd Sem\CMSC 125\HoneyOS\HoneyOS\obj\Debug\HoneyOS.pdb
+C:\Users\Lenny\Desktop\HoneyOS\HoneyOS\bin\Debug\HoneyOS.exe.config
+C:\Users\Lenny\Desktop\HoneyOS\HoneyOS\bin\Debug\HoneyOS.exe
+C:\Users\Lenny\Desktop\HoneyOS\HoneyOS\bin\Debug\HoneyOS.pdb
+C:\Users\Lenny\Desktop\HoneyOS\HoneyOS\obj\Debug\HoneyOS.csproj.AssemblyReference.cache
+C:\Users\Lenny\Desktop\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Form1.resources
+C:\Users\Lenny\Desktop\HoneyOS\HoneyOS\obj\Debug\HoneyOS.WelcomeScreen.resources
+C:\Users\Lenny\Desktop\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Properties.Resources.resources
+C:\Users\Lenny\Desktop\HoneyOS\HoneyOS\obj\Debug\HoneyOS.csproj.GenerateResource.cache
+C:\Users\Lenny\Desktop\HoneyOS\HoneyOS\obj\Debug\HoneyOS.csproj.CoreCompileInputs.cache
+C:\Users\Lenny\Desktop\HoneyOS\HoneyOS\obj\Debug\HoneyOS.exe
+C:\Users\Lenny\Desktop\HoneyOS\HoneyOS\obj\Debug\HoneyOS.pdb
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\HoneyOS.exe.config
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\HoneyOS.exe
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\HoneyOS.pdb
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\obj\Debug\HoneyOS.csproj.AssemblyReference.cache
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\obj\Debug\HoneyOS.Form1.resources
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\obj\Debug\HoneyOS.WelcomeScreen.resources
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\obj\Debug\HoneyOS.Properties.Resources.resources
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\obj\Debug\HoneyOS.csproj.GenerateResource.cache
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\obj\Debug\HoneyOS.csproj.CoreCompileInputs.cache
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\obj\Debug\HoneyOS.exe
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\obj\Debug\HoneyOS.pdb
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\obj\Debug\HoneyOS.Desktop.resources
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\obj\Debug\HoneyOS.Form4.resources
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Bunifu_UI_v1.5.3.dll
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\obj\Debug\HoneyOS.csproj.Up2Date
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\FontAwesome.Sharp.dll
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\EasyTabs.dll
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Svg.dll
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Win32Interop.Dwmapi.dll
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Win32Interop.Gdi32.dll
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Win32Interop.Kernel32.dll
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Win32Interop.User32.dll
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Win32Interop.Uxtheme.dll
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\EasyTabs.xml
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Svg.pdb
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Svg.xml
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Win32Interop.Dwmapi.pdb
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Win32Interop.Gdi32.pdb
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Win32Interop.Gdi32.xml
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Win32Interop.Kernel32.pdb
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Win32Interop.User32.pdb
+C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Win32Interop.Uxtheme.pdb
