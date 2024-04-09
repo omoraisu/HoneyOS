@@ -53,3 +53,36 @@ C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Win32Interop.Gdi32.x
 C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Win32Interop.Kernel32.pdb
 C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Win32Interop.User32.pdb
 C:\Users\Lenny\source\repos\HoneyOS_Final\HoneyOS\bin\Debug\Win32Interop.Uxtheme.pdb
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.exe
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.pdb
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\HoneyOS.exe.config
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\HoneyOS.exe
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\HoneyOS.pdb
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\EasyTabs.dll
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\FontAwesome.Sharp.dll
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Microsoft.WindowsAPICodePack.dll
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Svg.dll
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Win32Interop.Dwmapi.dll
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Win32Interop.Gdi32.dll
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Win32Interop.Kernel32.dll
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Win32Interop.User32.dll
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Win32Interop.Uxtheme.dll
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\EasyTabs.xml
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Svg.pdb
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Svg.xml
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Win32Interop.Dwmapi.pdb
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Win32Interop.Gdi32.pdb
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Win32Interop.Gdi32.xml
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Win32Interop.Kernel32.pdb
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Win32Interop.User32.pdb
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\bin\Debug\Win32Interop.Uxtheme.pdb
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.csproj.AssemblyReference.cache
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Form1.resources
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.WelcomeScreen.resources
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Desktop.resources
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Form4.resources
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Properties.Resources.resources
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.csproj.GenerateResource.cache
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.csproj.CoreCompileInputs.cache
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.csproj.CopyComplete
