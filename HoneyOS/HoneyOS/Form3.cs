@@ -132,5 +132,11 @@ namespace HoneyOS
             Form4 form4 = new Form4(this);
             form4.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form5 form5 = new Form5(this);
+            form5.Show();
+        }
     }
 }
