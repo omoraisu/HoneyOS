@@ -8,10 +8,6 @@ namespace HoneyOS
 {
     public partial class Desktop : Form
     {
-        //private Image normalImage = Image.FromFile(@"C:\Users\Lenny\Downloads\StartButton [Default].png"); // Replace 'path\to\normal_image.png' with the path to your normal image
-        //private Image hoverImage = Image.FromFile(@"C:\Users\Lenny\Downloads\StartButton [Hovered].png"); // Replace 'path\to\hover_image.png' with the path to your hover image
-        //private Image clickedImage = Image.FromFile(@"C:\Users\Lenny\Downloads\StartButton [Clicked].png"); // Replace 'path\to\clicked_image.png' with the path to your clicked image
-
         List<string> phrases = new List<string>
         {
             "honey",
@@ -26,25 +22,21 @@ namespace HoneyOS
         public Desktop()
         {
             InitializeComponent();
-            //startToolStripMenuItem.Image = normalImage;
             isListeningForAction = false;
         }
         // Handle the MouseEnter event to change the ToolStripMenuItem's image when hovered over
         private void startToolStripMenuItem_MouseEnter(object sender, EventArgs e)
         {
-            //startToolStripMenuItem.Image = hoverImage;
         }
 
         // Handle the MouseLeave event to change the ToolStripMenuItem's image when the mouse leaves
         private void startToolStripMenuItem_MouseLeave(object sender, EventArgs e)
         {
-            //startToolStripMenuItem.Image = normalImage;
         }
 
         // Handle the Click event to change the ToolStripMenuItem's image when clicked
         private void startToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //startToolStripMenuItem.Image = clickedImage;
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -78,9 +70,9 @@ namespace HoneyOS
         private void notepadToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             notepadToolStripMenuItem1.Visible = true;
-            // Create an instance of Form4
-            Form4 form4 = new Form4(this);
-            form4.Show();
+            // Create an instance of Form7
+            Form7 form7 = new Form7(this);
+            form7.Show();
         }
 
         private void shutdownToolStripMenuItem_Click(object sender, EventArgs e)
@@ -128,9 +120,9 @@ namespace HoneyOS
         private void OpenNotepadFunction()
         {
             notepadToolStripMenuItem.Visible = true;
-            // Create an instance of Form4
-            Form4 form4 = new Form4(this);
-            form4.Show();
+            // Create an instance of Form7
+            Form7 form7 = new Form7(this);
+            form7.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
