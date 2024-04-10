@@ -63,6 +63,26 @@ namespace HoneyOS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Audio {
+            get {
+                object obj = ResourceManager.GetObject("Audio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Charging {
+            get {
+                object obj = ResourceManager.GetObject("Charging", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Close {
             get {
                 object obj = ResourceManager.GetObject("Close", resourceCulture);
@@ -106,6 +126,16 @@ namespace HoneyOS.Properties {
         internal static System.Drawing.Bitmap delete {
             get {
                 object obj = ResourceManager.GetObject("delete", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Empty_Battery {
+            get {
+                object obj = ResourceManager.GetObject("Empty Battery", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -366,6 +396,16 @@ namespace HoneyOS.Properties {
         internal static System.Drawing.Bitmap Welcome_Screen_Static_ {
             get {
                 object obj = ResourceManager.GetObject("Welcome Screen[Static]", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Wi_Fi {
+            get {
+                object obj = ResourceManager.GetObject("Wi-Fi", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -52,6 +52,9 @@ namespace HoneyOS
         private void Desktop_Load(object sender, EventArgs e)
         {
             notepadToolStripMenuItem.Visible = false;
+            BatteryTimer.Start();
+            label1.Text = DateTime.Now.ToShortTimeString();
+            label2.Text = DateTime.Now.ToShortDateString();
 
             //setup grammar
             Choices choices = new Choices(phrases.ToArray());
@@ -129,6 +132,17 @@ namespace HoneyOS
         {
             Form5 form5 = new Form5(this);
             form5.Show();
+        }
+        PowerStatus ps = SystemInformation.PowerStatus;
+
+        private void BatteryTimer_Tick(object sender, EventArgs e)
+        {
+            BatteryLife.Value = (int)(ps.BatteryLifePercent * 100);
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
