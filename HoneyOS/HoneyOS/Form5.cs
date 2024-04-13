@@ -47,7 +47,24 @@ namespace HoneyOS
                     fileNameLabel.Text = fileDetails.Name;
                     fileTypeLabel.Text = fileDetails.Extension;
                     fileAttr = File.GetAttributes(tempFilePath);
-                    Process.Start(tempFilePath);
+
+                    Form7 textEditorForm = new Form7(desktopInstance);
+
+                    // Check if the selected file is a text file
+                    if (Path.GetExtension(tempFilePath).ToLower() == ".txt")
+                    {
+                        // Open Form7 (text editor)
+                        if (textEditorForm != null) // Check if reference is valid
+                        {
+                            textEditorForm.openFile(tempFilePath);
+                            textEditorForm.Show();
+                        }
+
+                        // Close Form5 (file manager)
+                        this.Close();
+                    }
+
+                    // Process.Start(tempFilePath);
                 }
                 else
                 {

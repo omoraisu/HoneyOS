@@ -22,6 +22,7 @@ namespace HoneyOS
             InitializeComponent();
             this.desktopInstance = desktopInstance; // Assign the reference to the instance of Desktop form
         }
+
         //Buttons Hover and Clicked
         private void save_Click(object sender, EventArgs e)
         {
@@ -70,19 +71,9 @@ namespace HoneyOS
         private void open_Click(object sender, EventArgs e)
         {
             open.BackColor = Color.FromArgb(255, 234, 177);
-            //Code for open a txt file 
-            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "TextDocument |* .txt", ValidateNames = true, Multiselect = false })
-            {
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    using (StreamReader sr = new StreamReader(ofd.FileName))
-                    {
-                        filePath = ofd.FileName;
-                        Task<string> text = sr.ReadToEndAsync();
-                        richTextBox1.Text = text.Result;
-                    }
-                }
-            }
+            Form5 fileManager = new Form5(desktopInstance);  
+            fileManager.Show();
+            this.Close();
         }
         private void open_MouseLeave(object sender, EventArgs e)
         {
@@ -167,5 +158,61 @@ namespace HoneyOS
         {
             newWindow.BackColor = Color.White;
         }
+
+        public void openFile(string filePath)
+        {
+            using (StreamReader sr = new StreamReader(filePath))
+            {
+                string fileContent = sr.ReadToEnd();
+                richTextBox1.Text = fileContent;
+            }
+        }
+        /*
+        private void set_FilePath(string filePath)
+        {
+            this.filePath = filePath;
+
+            // Assuming you have a RichTextBox or TextBox control for displaying text
+            if (filePath.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
+            {
+                try
+                {
+                    // Read the text file content
+                    string fileContent = File.ReadAllText(filePath);
+
+                    // Update the text box content with the file content
+                    yourTextBoxControl.Text = fileContent;
+                }
+                catch (Exception ex)
+                {
+                    // Handle exceptions like file not found or permission issues
+                    MessageBox.Show("Error opening file: " + ex.Message);
+                }
+            }
+            else
+            {
+                // Handle non-text files (optional: display message or disable editing)
+                MessageBox.Show("This file type is not supported.");
+            }
+        }
+        private void open_Click(object sender, EventArgs e)
+        {
+    
+            //Code for open a txt file 
+            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "TextDocument |* .txt", ValidateNames = true, Multiselect = false })
+            {
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    using (StreamReader sr = new StreamReader(ofd.FileName))
+                    {
+                filePath = ofd.FileName;
+                Task<string> text = sr.ReadToEndAsync();
+                richTextBox1.Text = text.Result;
+            }
+        }
+    }
+}
+*/
+
     }
 }
