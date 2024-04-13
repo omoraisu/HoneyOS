@@ -30,6 +30,9 @@ namespace HoneyOS
         {
             filePathTextBox.Text = filePath;
             loadFilesAndDirectories();
+
+            //clears file name and type when not selected
+            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
         }
 
         public void loadFilesAndDirectories() //loads file and directories O - O
@@ -47,6 +50,7 @@ namespace HoneyOS
                     fileNameLabel.Text = fileDetails.Name;
                     fileTypeLabel.Text = fileDetails.Extension;
                     fileAttr = File.GetAttributes(tempFilePath);
+                    Process.Start(tempFilePath);
 
                     Form7 textEditorForm = new Form7(desktopInstance);
 
@@ -202,6 +206,7 @@ namespace HoneyOS
 
             FileAttributes fileAttr = File.GetAttributes(filePath + "/" + currentlySelectedItemName);
 
+            //if selected is file or directory: if file then butang siya labels (else statement nako)
             if ((fileAttr & FileAttributes.Directory) == FileAttributes.Directory)
             {
                 isFile = false;
@@ -210,6 +215,19 @@ namespace HoneyOS
             else
             {
                 isFile = true;
+
+                //Update labels (i hope it works with just 1 click)
+                FileInfo fileDetails = new FileInfo(filePath + "/" + currentlySelectedItemName);
+                fileNameLabel.Text = Path.GetFileNameWithoutExtension(fileDetails.Name); // Display file name without extension
+                fileTypeLabel.Text = "." + fileDetails.Extension.TrimStart('.');
+            }
+
+            //clears file name and type if di na i select
+            if (listView1.SelectedItems.Count == 0)
+            {
+                // No item selected, clear the file name and type labels
+                fileNameLabel.Text = "";
+                fileTypeLabel.Text = "";
             }
 
         }
@@ -219,5 +237,9 @@ namespace HoneyOS
             loadButtonAction();
         }
 
+        private void fileNameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

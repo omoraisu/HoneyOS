@@ -152,7 +152,7 @@
             // 
             this.fileTypeLabel.AutoSize = true;
             this.fileTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fileTypeLabel.Location = new System.Drawing.Point(532, 57);
+            this.fileTypeLabel.Location = new System.Drawing.Point(526, 57);
             this.fileTypeLabel.Name = "fileTypeLabel";
             this.fileTypeLabel.Size = new System.Drawing.Size(15, 15);
             this.fileTypeLabel.TabIndex = 16;
@@ -172,11 +172,12 @@
             // 
             this.fileNameLabel.AutoSize = true;
             this.fileNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fileNameLabel.Location = new System.Drawing.Point(541, 36);
+            this.fileNameLabel.Location = new System.Drawing.Point(534, 36);
             this.fileNameLabel.Name = "fileNameLabel";
             this.fileNameLabel.Size = new System.Drawing.Size(15, 15);
             this.fileNameLabel.TabIndex = 14;
             this.fileNameLabel.Text = "--";
+            this.fileNameLabel.Click += new System.EventHandler(this.fileNameLabel_Click);
             // 
             // label1
             // 
