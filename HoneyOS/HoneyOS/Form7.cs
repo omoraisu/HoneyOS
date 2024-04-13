@@ -67,6 +67,7 @@ namespace HoneyOS
         {
             saveAs.BackColor = Color.FromArgb(255, 243, 222);
         }
+        /*
         private void open_Click(object sender, EventArgs e)
         {
             open.BackColor = Color.FromArgb(255, 234, 177);
@@ -83,6 +84,13 @@ namespace HoneyOS
                     }
                 }
             }
+        }
+        */
+
+        private void open_Click(object sender, EventArgs e)
+        {
+            Form5 fileManager = new Form5(desktopInstance);  
+            fileManager.Show();
         }
         private void open_MouseLeave(object sender, EventArgs e)
         {
