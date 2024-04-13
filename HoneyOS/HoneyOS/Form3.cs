@@ -52,6 +52,7 @@ namespace HoneyOS
 
         private void Desktop_Load(object sender, EventArgs e)
         {
+            fileManagerToolStripMenuItem.Visible = false;
             notepadToolStripMenuItem.Visible = false;
             BatteryTimer.Start();
             label1.Text = DateTime.Now.ToShortTimeString();
@@ -139,6 +140,8 @@ namespace HoneyOS
             }
         }
 
+       
+
         private void ShutdownFunction()
         {
             Application.Exit(); // Close the application
@@ -146,6 +149,7 @@ namespace HoneyOS
 
         private void button2_Click(object sender, EventArgs e)
         {
+            fileManagerToolStripMenuItem.Visible = true;
             Form5 form5 = new Form5(this);
             form5.Show();
         }
@@ -159,6 +163,19 @@ namespace HoneyOS
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void fileManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fileManagerToolStripMenuItem.Visible = true;
+            Form5 form5 = new Form5(this);
+            form5.Show();
+
+        }
+
+        private void notepadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenNotepadFunction();
         }
     }
 }

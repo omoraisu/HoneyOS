@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace HoneyOS
 {
-    
+
     public partial class Form5 : Form
     {
         private Desktop desktopInstance;
@@ -66,10 +66,11 @@ namespace HoneyOS
 
                     for (int i = 0; i < files.Length; i++)
                     {
-                        fileExtension = files[i].Extension.ToUpper();
-                        switch (fileExtension)
+                        //fileExtension = files[i].Extension.ToUpper();
+
+                        /*switch (fileExtension)
                         {
-                            case ".MP3":
+                            /*case ".MP3":
                             case ".MP2":
                                 listView1.Items.Add(files[i].Name, 3);
                                 break;
@@ -94,17 +95,25 @@ namespace HoneyOS
                             case ".JPEG":
                                 listView1.Items.Add(files[i].Name, 6);
                                 break;
+                            case ".txt":
+                                listView1.Items.Add(files[i].Name, 8);
+                                break;
 
                             default:
                                 listView1.Items.Add(files[i].Name, 7);
                                 break;
+                        }*/
+
+                        if (files[i].Extension.ToUpper() == ".TXT")
+                        {
+                            listView1.Items.Add(files[i].Name, 8); //display txt file (hopefully)
                         }
 
                     }
 
-                    for (int i = 0; i < dirs.Length; i++)
+                    for (int i = 0; i < dirs.Length; i++) 
                     {
-                        listView1.Items.Add(dirs[i].Name, 2);
+                        listView1.Items.Add(dirs[i].Name, 2); //display the directories
                     }
                 }
                 else
@@ -131,7 +140,7 @@ namespace HoneyOS
         public void removeBackSlash() //for file names, naay ma /programFiles example
         {
             string path = filePathTextBox.Text;
-            if(path.LastIndexOf("/") == path.Length - 1)
+            if (path.LastIndexOf("/") == path.Length - 1)
             {
                 filePathTextBox.Text = path.Substring(0, path.Length - 1);
             }

@@ -35,7 +35,6 @@
             this.goButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.filePathTextBox = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.iconList = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
@@ -43,7 +42,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.fileNameLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
@@ -87,7 +85,7 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(9, 78);
+            this.textBox1.Location = new System.Drawing.Point(63, 10);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(46, 15);
             this.textBox1.TabIndex = 3;
@@ -96,26 +94,18 @@
             // filePathTextBox
             // 
             this.filePathTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filePathTextBox.Location = new System.Drawing.Point(44, 75);
+            this.filePathTextBox.Location = new System.Drawing.Point(95, 7);
             this.filePathTextBox.Name = "filePathTextBox";
-            this.filePathTextBox.Size = new System.Drawing.Size(672, 21);
+            this.filePathTextBox.Size = new System.Drawing.Size(621, 21);
             this.filePathTextBox.TabIndex = 4;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(65, 5);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(651, 24);
-            this.textBox3.TabIndex = 5;
             // 
             // listView1
             // 
             this.listView1.HideSelection = false;
             this.listView1.LargeImageList = this.iconList;
-            this.listView1.Location = new System.Drawing.Point(3, 132);
+            this.listView1.Location = new System.Drawing.Point(3, 98);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(710, 289);
+            this.listView1.Size = new System.Drawing.Size(710, 323);
             this.listView1.SmallImageList = this.iconList;
             this.listView1.TabIndex = 13;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -135,14 +125,13 @@
             this.iconList.Images.SetKeyName(5, "PDF icon.png");
             this.iconList.Images.SetKeyName(6, "PNG icon.png");
             this.iconList.Images.SetKeyName(7, "FILE icon.png");
+            this.iconList.Images.SetKeyName(8, "Voice Indicator (Works).png");
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.fileTypeLabel);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.fileNameLabel);
-            this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.filePathTextBox);
             this.panel1.Controls.Add(this.button5);
@@ -156,14 +145,14 @@
             this.panel1.Controls.Add(this.button8);
             this.panel1.Location = new System.Drawing.Point(-3, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(724, 125);
+            this.panel1.Size = new System.Drawing.Size(724, 92);
             this.panel1.TabIndex = 14;
             // 
             // fileTypeLabel
             // 
             this.fileTypeLabel.AutoSize = true;
             this.fileTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fileTypeLabel.Location = new System.Drawing.Point(540, 102);
+            this.fileTypeLabel.Location = new System.Drawing.Point(532, 57);
             this.fileTypeLabel.Name = "fileTypeLabel";
             this.fileTypeLabel.Size = new System.Drawing.Size(15, 15);
             this.fileTypeLabel.TabIndex = 16;
@@ -173,7 +162,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(466, 102);
+            this.label3.Location = new System.Drawing.Point(467, 57);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 15);
             this.label3.TabIndex = 15;
@@ -183,7 +172,7 @@
             // 
             this.fileNameLabel.AutoSize = true;
             this.fileNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fileNameLabel.Location = new System.Drawing.Point(84, 102);
+            this.fileNameLabel.Location = new System.Drawing.Point(541, 36);
             this.fileNameLabel.Name = "fileNameLabel";
             this.fileNameLabel.Size = new System.Drawing.Size(15, 15);
             this.fileNameLabel.TabIndex = 14;
@@ -193,28 +182,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 102);
+            this.label1.Location = new System.Drawing.Point(467, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 15);
             this.label1.TabIndex = 13;
             this.label1.Text = "File Name:";
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.SystemColors.Window;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button4.Image = global::HoneyOS.Properties.Resources.SEARCH_icon;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(325, 7);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(73, 21);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Search";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.UseVisualStyleBackColor = false;
             // 
             // button5
             // 
@@ -313,8 +285,6 @@
         private System.Windows.Forms.Button goButton;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox filePathTextBox;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;

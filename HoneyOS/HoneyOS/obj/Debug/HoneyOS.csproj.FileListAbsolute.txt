@@ -192,3 +192,4 @@ C:\Users\daeni\Desktop\LOVE\Academics\CMSC 125\HoneyOS\HoneyOS\HoneyOS\obj\Debug
 C:\Users\daeni\Desktop\LOVE\Academics\CMSC 125\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.csproj.Up2Date
 C:\Users\daeni\Desktop\LOVE\Academics\CMSC 125\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.exe
 C:\Users\daeni\Desktop\LOVE\Academics\CMSC 125\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.pdb
+C:\Users\Zayne Peladas\OneDrive\Desktop\HoneyOS\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Form7.resources
