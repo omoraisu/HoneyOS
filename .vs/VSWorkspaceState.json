@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\HoneyOS",
+    "\\HoneyOS\\HoneyOS"
   ],
-  "SelectedNode": "\\HoneyOS.sln",
+  "SelectedNode": "\\HoneyOS\\HoneyOS\\Form3.cs",
   "PreviewInSolutionExplorer": false
 }

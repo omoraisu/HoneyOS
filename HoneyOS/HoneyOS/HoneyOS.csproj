@@ -234,6 +234,8 @@
     <None Include="Resources\delete.png" />
     <None Include="Resources\New Window.png" />
     <None Include="Resources\Empty Battery.png" />
+    <None Include="Resources\SEARCH icon.png" />
+    <None Include="Resources\File Manager Icon.png" />
     <Content Include="Resources\StartButton [Default].png" />
     <None Include="Resources\Transition %288%29.png" />
     <None Include="Resources\StartButton [Hovered].png" />

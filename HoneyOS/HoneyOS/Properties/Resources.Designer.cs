@@ -143,6 +143,16 @@ namespace HoneyOS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap File_Manager_Icon {
+            get {
+                object obj = ResourceManager.GetObject("File Manager Icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Maximize {
             get {
                 object obj = ResourceManager.GetObject("Maximize", resourceCulture);
@@ -256,6 +266,16 @@ namespace HoneyOS.Properties {
         internal static System.Drawing.Bitmap Save_as {
             get {
                 object obj = ResourceManager.GetObject("Save as", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap SEARCH_icon {
+            get {
+                object obj = ResourceManager.GetObject("SEARCH icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
