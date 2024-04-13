@@ -155,4 +155,5 @@ C:\Users\Lenny\source\repos\HoneyOS (New)\HoneyOS\HoneyOS\obj\Debug\HoneyOS.cspr
 C:\Users\Lenny\source\repos\HoneyOS (New)\HoneyOS\HoneyOS\obj\Debug\HoneyOS.csproj.Up2Date
 C:\Users\Lenny\source\repos\HoneyOS (New)\HoneyOS\HoneyOS\obj\Debug\HoneyOS.exe
 C:\Users\Lenny\source\repos\HoneyOS (New)\HoneyOS\HoneyOS\obj\Debug\HoneyOS.pdb
-C:\Users\Zayne Peladas\OneDrive\Desktop\HoneyOS\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Form7.resources
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Form5.resources
+E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Form7.resources

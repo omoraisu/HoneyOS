@@ -18,6 +18,7 @@ namespace HoneyOS
         };
 
         bool isListeningForAction;
+        List<Form7> notepads = new List<Form7>();
 
         public Desktop()
         {
@@ -72,15 +73,12 @@ namespace HoneyOS
 
         private void notepadToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            notepadToolStripMenuItem1.Visible = true;
-            // Create an instance of Form7
-            Form7 form7 = new Form7(this);
-            form7.Show();
+            OpenNotepadFunction();
         }
 
         private void shutdownToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit(); // Close the application
+            ShutdownFunction();
         }
         public void HideNotepadToolStripMenuItem()
         {
@@ -96,7 +94,6 @@ namespace HoneyOS
                 Debug.WriteLine("i heard u honey, what can I do for you?");
                 isListeningForAction = true;
             }
-
             else if (isListeningForAction)
             {
                 isListeningForAction = false;
@@ -109,7 +106,11 @@ namespace HoneyOS
                         break;
                     case "close notepad please":
                         Debug.WriteLine("sure, i'll close it for u");
-                        //CloseNotepadFunction();
+                        CloseNotepadFunction();
+                        break;
+                    case "shut down please":
+                        Debug.WriteLine("sure, goodbye honey");
+                        ShutdownFunction();
                         break;
                     default:
                         //indicate to UI that the command taken was not recognized
@@ -125,7 +126,22 @@ namespace HoneyOS
             notepadToolStripMenuItem.Visible = true;
             // Create an instance of Form7
             Form7 form7 = new Form7(this);
+            notepads.Add(form7);
             form7.Show();
+        }
+
+        private void CloseNotepadFunction()
+        {
+            foreach(Form7 notepad in notepads)
+            {
+                notepad.Hide();
+                notepad.Dispose();
+            }
+        }
+
+        private void ShutdownFunction()
+        {
+            Application.Exit(); // Close the application
         }
 
         private void button2_Click(object sender, EventArgs e)
