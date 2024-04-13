@@ -161,30 +161,10 @@ namespace HoneyOS
 
         public void openFile(string filePath)
         {
-            if (string.IsNullOrEmpty(filePath))
+            using (StreamReader sr = new StreamReader(filePath))
             {
-                // Handle empty filepath (optional: display error message)
-                return;
-            }
-
-            if (!Path.GetExtension(filePath).Equals(".txt", StringComparison.OrdinalIgnoreCase))
-            {
-                // Handle non-text files (optional: display message or disable editing)
-                return;
-            }
-
-            try
-            {
-                using (StreamReader sr = new StreamReader(filePath))
-                {
-                    string fileContent = sr.ReadToEnd();
-                    richTextBox1.Text = fileContent;
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle exceptions like file not found or permission issues
-                MessageBox.Show("Error opening file: " + ex.Message);
+                string fileContent = sr.ReadToEnd();
+                richTextBox1.Text = fileContent;
             }
         }
         /*
