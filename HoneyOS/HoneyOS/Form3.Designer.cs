@@ -89,19 +89,19 @@
             // notepadToolStripMenuItem1
             // 
             this.notepadToolStripMenuItem1.Name = "notepadToolStripMenuItem1";
-            this.notepadToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.notepadToolStripMenuItem1.Size = new System.Drawing.Size(171, 28);
             this.notepadToolStripMenuItem1.Text = "Notepad";
             this.notepadToolStripMenuItem1.Click += new System.EventHandler(this.notepadToolStripMenuItem1_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(168, 6);
             // 
             // shutdownToolStripMenuItem
             // 
             this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(171, 28);
             this.shutdownToolStripMenuItem.Text = "Shutdown";
             this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
@@ -110,7 +110,7 @@
             this.notepadToolStripMenuItem.Image = global::HoneyOS.Properties.Resources.Notepad_Minimize;
             this.notepadToolStripMenuItem.Name = "notepadToolStripMenuItem";
             this.notepadToolStripMenuItem.Padding = new System.Windows.Forms.Padding(30, 0, 4, 0);
-            this.notepadToolStripMenuItem.Size = new System.Drawing.Size(138, 42);
+            this.notepadToolStripMenuItem.Size = new System.Drawing.Size(149, 42);
             this.notepadToolStripMenuItem.Text = "  Notepad";
             // 
             // toolStripComboBox1
@@ -118,26 +118,15 @@
             this.toolStripComboBox1.Name = "toolStripComboBox1";
             this.toolStripComboBox1.Size = new System.Drawing.Size(121, 23);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(112, 15);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(83, 66);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Test";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(228)))), ((int)(((byte)(194)))));
-            this.label1.Font = new System.Drawing.Font("Poppins", 9F);
-            this.label1.Location = new System.Drawing.Point(764, 428);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label1.Location = new System.Drawing.Point(977, 539);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 22);
+            this.label1.Size = new System.Drawing.Size(61, 18);
             this.label1.TabIndex = 4;
             this.label1.Text = "1:41 am";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -147,10 +136,10 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(228)))), ((int)(((byte)(194)))));
-            this.label2.Font = new System.Drawing.Font("Poppins", 9F);
-            this.label2.Location = new System.Drawing.Point(748, 446);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label2.Location = new System.Drawing.Point(1044, 539);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 15);
+            this.label2.Size = new System.Drawing.Size(80, 18);
             this.label2.TabIndex = 5;
             this.label2.Text = "11/04/2024";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -164,7 +153,7 @@
             // 
             this.BatteryLife.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BatteryLife.Location = new System.Drawing.Point(945, 544);
-            this.BatteryLife.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BatteryLife.Margin = new System.Windows.Forms.Padding(4);
             this.BatteryLife.Name = "BatteryLife";
             this.BatteryLife.Size = new System.Drawing.Size(20, 10);
             this.BatteryLife.TabIndex = 9;
@@ -180,7 +169,7 @@
             this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(228)))), ((int)(((byte)(194)))));
             this.pictureBox4.Image = global::HoneyOS.Properties.Resources.Wi_Fi;
             this.pictureBox4.Location = new System.Drawing.Point(879, 539);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(20, 18);
             this.pictureBox4.TabIndex = 8;
@@ -192,7 +181,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(228)))), ((int)(((byte)(194)))));
             this.pictureBox3.Image = global::HoneyOS.Properties.Resources.Audio;
             this.pictureBox3.Location = new System.Drawing.Point(911, 539);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(20, 18);
             this.pictureBox3.TabIndex = 7;
@@ -204,7 +193,7 @@
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(228)))), ((int)(((byte)(194)))));
             this.pictureBox2.Image = global::HoneyOS.Properties.Resources.Empty_Battery;
             this.pictureBox2.Location = new System.Drawing.Point(943, 537);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(27, 25);
             this.pictureBox2.TabIndex = 6;
@@ -217,9 +206,10 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Image = global::HoneyOS.Properties.Resources.File_Manager_Icon;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button2.Location = new System.Drawing.Point(84, 9);
+            this.button2.Location = new System.Drawing.Point(112, 13);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(77, 77);
+            this.button2.Size = new System.Drawing.Size(116, 95);
             this.button2.TabIndex = 3;
             this.button2.Text = "File Manager ";
             this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
