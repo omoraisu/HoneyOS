@@ -899,7 +899,7 @@ namespace HoneyOS
         private void Form5_FormClosed(object sender, FormClosedEventArgs e)
         {
             recognizer.Dispose();
-            //desktopInstance?.HideNotepadToolStripMenuItem(); // Call the method to hide notepadToolStripMenuItem on Desktop form
+            desktopInstance?.HideFileManagerToolStripMenuItem(); // Call the method to hide filemanagerToolStripMenuItem on Desktop form
         }
     }
 }

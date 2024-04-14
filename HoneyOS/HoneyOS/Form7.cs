@@ -434,8 +434,47 @@ namespace HoneyOS
         private void newWindow_Click(object sender, EventArgs e)
         {
             newWindow.BackColor = Color.FromArgb(255, 234, 177);
-            filePath = "";
-            richTextBox1.Text = "";
+            // MessageBox.Show("isModified: " + isModified + "\nOld Text: " + oldText + "\nCurrent Text: " + richTextBox1.Text);
+            if (!isSaved && isModified)
+            {
+                // Display confirmation dialog
+                DialogResult dialogResult = MessageBox.Show(
+                  "The text has been modified. Do you want to save the changes?",
+                  "Unsaved Changes",
+                  MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    // Implement logic to save changes
+                    isModified = false; // Reset flag after saving
+                    string CFilePath = Path.Combine(currentPath, currentFile);
+                    if (CFilePath != "")
+                    {
+                        File.WriteAllText(CFilePath, richTextBox1.Text);
+                    }
+                    else
+                    {
+                        Form5 fileManager = new Form5(desktopInstance);
+
+                        // Subscribe to the SaveCompleted event
+                        fileManager.SaveCompleted += FileManager_SaveCompleted;
+
+                        fileManager.SetFileContent(richTextBox1.Text);
+
+                        fileManager.Show();
+                        fileManager.ShowSaveFilePanel();
+
+                        if (!fileManager.Visible) // Check if it's not visible after showing
+                        {
+                            fileManager.Close();
+                        }
+                    }
+                }
+                else if (dialogResult == DialogResult.No) {
+                    filePath = "";
+                    richTextBox1.Text = "";
+                }
+            }
         }
 
         private void newWindow_MouseEnter(object sender, EventArgs e)

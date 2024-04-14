@@ -37,6 +37,7 @@ namespace HoneyOS
         private void Desktop_Load(object sender, EventArgs e)
         {
             notepadToolStripMenuItem.Visible = false;
+            fileManagerToolStripMenuItem.Visible = false;
             BatteryTimer.Start();
 
             // Start a timer to call the update function periodically
@@ -177,7 +178,7 @@ namespace HoneyOS
         }
         private void OpenFileManagerFunction()
         {
-            notepadToolStripMenuItem.Visible = true;
+            fileManagerToolStripMenuItem.Visible = true;
             // Create an instance of Form5
             Form5 form5 = new Form5(this);
             file_managers.Add(form5);
@@ -252,6 +253,10 @@ namespace HoneyOS
         public void HideNotepadToolStripMenuItem()
         {
             notepadToolStripMenuItem.Visible = false;
+        }
+        public void HideFileManagerToolStripMenuItem()
+        {
+            fileManagerToolStripMenuItem.Visible = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
