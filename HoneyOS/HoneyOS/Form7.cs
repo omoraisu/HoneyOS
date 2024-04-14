@@ -140,11 +140,12 @@ namespace HoneyOS
         }
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
+            MessageBox.Show("isModified: " + isModified + "\nOld Text: " + oldText + "\nCurrent Text: " + richTextBox1.Text);
+
             if (richTextBox1.Text != oldText)
             {
                 isModified = true;
-            }
-
+            } 
             if (richTextBox1.Text.Length > 0)
             {
                 copy.Enabled = cut.Enabled = true;
