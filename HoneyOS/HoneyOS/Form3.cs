@@ -84,7 +84,10 @@ namespace HoneyOS
         {
             notepadToolStripMenuItem.Visible = false;
         }
-
+        public void ShowNotepadToolStripMenuItem()
+        {
+            notepadToolStripMenuItem.Visible = true;
+        }
 
         private void recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
