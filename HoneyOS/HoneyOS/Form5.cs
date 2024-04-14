@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace HoneyOS
 {
@@ -38,7 +39,7 @@ namespace HoneyOS
             loadFilesAndDirectories();
 
             //for saving file appearance
-            saveFilePanel.Visible = false;
+            saveFileName.Visible = false;
             saveFileName.Visible = false;
             saveFileButton.Visible = false;
             cancelFileButton.Visible = false;
@@ -49,15 +50,10 @@ namespace HoneyOS
             listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
 
             // Associate delete button click event with DeleteSelectedItem method
-            deleteButton.Click += button10_Click;
+            deleteButton.Click += deleteButton_Click;
 
             //for rename files
-            renameButton.Click += RenameButton_Click;
-        }
-
-        public void SetFileContent(string content)
-        {
-            fileContent = content;
+            renameButton.Click += renameButton_Click;
         }
 
         public void loadFilesAndDirectories() //loads file and directories O - O
@@ -265,14 +261,14 @@ namespace HoneyOS
 
 
         //this is the delete button function
-        private void button10_Click(object sender, EventArgs e)
+        /*private void button10_Click(object sender, EventArgs e)
         {
             DeleteSelectedItem();
         }
-
+        */
         public void ShowSaveFilePanel()
         {
-            saveFilePanel.Visible = true;
+            saveFileName.Visible = true;
             saveFileName.Visible = true;
             saveFileButton.Visible = true;
             cancelFileButton.Visible = true;
@@ -289,10 +285,7 @@ namespace HoneyOS
 
         }
 
-        private void newFileButton_Click(object sender, EventArgs e)
-        {
-            ShowSaveFilePanel();
-        }
+        
         private void renameButton_Click(object sender, EventArgs e)
         {
 
@@ -340,211 +333,8 @@ namespace HoneyOS
             fileContent = content;
         }
 
-        private void saveFileButton_Click(object sender, EventArgs e)
-        {
-            string fileName = saveFileName.Text.Trim();
 
-            if (string.IsNullOrEmpty(fileName))
-            {
-                MessageBox.Show("Please enter a valid file name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
 
-            string newFilePath = Path.Combine(filePath, fileName + ".txt");
-
-            try
-            {
-                // string fileContent = "breh"; // Add content here or leave it empty for a blank file
-
-                File.WriteAllText(newFilePath, fileContent);
-
-                loadFilesAndDirectories();
-
-                saveFilePanel.Visible = false;
-
-                SaveCompleted?.Invoke(this, EventArgs.Empty); // Notify that save is completed
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred while creating the file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void cancelFileButton_Click(object sender, EventArgs e)
-        {
-            // Hide the save file panel without creating a file
-            saveFilePanel.Visible = false;
-        }
-
-        private void cutButton_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(currentlySelectedItemName))
-            {
-                cutItemPath = Path.Combine(filePath, currentlySelectedItemName);
-                FileAttributes fileAttr = File.GetAttributes(cutItemPath);
-
-                try
-                {
-                    if ((fileAttr & FileAttributes.Directory) == FileAttributes.Directory)
-                    {
-                        // Check if the directory is empty before moving
-                        if (Directory.EnumerateFileSystemEntries(cutItemPath).Any())
-                        {
-                            MessageBox.Show("Cannot cut the directory because it is not empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
-
-                        // Store the full path to the directory
-                        cutItemPath = Path.GetFullPath(cutItemPath);
-
-                        // No need to move directories immediately
-                    }
-                    else
-                    {
-                        // Check if the file is in use before moving
-                        using (FileStream fs = File.Open(cutItemPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
-                        {
-                            // If we reach here, the file is not in use
-                        }
-
-                        // Store the full path to the file
-                        cutItemPath = Path.GetFullPath(cutItemPath);
-
-                        // No need to move files immediately
-                    }
-
-                    // Don't perform the move here, just store the path
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    MessageBox.Show("Access to the file is denied. Make sure the file is not in use.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (IOException)
-                {
-                    MessageBox.Show("An error occurred while moving the file. Make sure the file is not in use.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void copyButton_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(currentlySelectedItemName))
-            {
-                copiedItemPath = Path.Combine(filePath, currentlySelectedItemName);
-            }
-        }
-
-        private void pasteButton_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(copiedItemPath) || !string.IsNullOrEmpty(cutItemPath))
-            {
-                string destinationPath = filePath;
-
-                try
-                {
-                    // If there's a cut item, move it
-                    if (!string.IsNullOrEmpty(cutItemPath))
-                    {
-                        if (File.Exists(cutItemPath))
-                        {
-                            // Check if the file is in use before moving
-                            using (FileStream fs = File.Open(cutItemPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
-                            {
-                                // If we reach here, the file is not in use
-                            }
-
-                            // Move the file
-                            File.Move(cutItemPath, Path.Combine(destinationPath, Path.GetFileName(cutItemPath)));
-                        }
-                        else if (Directory.Exists(cutItemPath))
-                        {
-                            // Check if the directory is empty before moving
-                            if (Directory.EnumerateFileSystemEntries(cutItemPath).Any())
-                            {
-                                MessageBox.Show("Cannot cut the directory because it is not empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
-
-                            // Move the directory
-                            Directory.Move(cutItemPath, Path.Combine(destinationPath, Path.GetFileName(cutItemPath)));
-                        }
-
-                        cutItemPath = ""; // Reset cut item after paste
-                    }
-
-                    // If there's a copied item, copy it
-                    if (!string.IsNullOrEmpty(copiedItemPath))
-                    {
-                        string newFileName = Path.GetFileName(copiedItemPath);
-
-                        // Check if the file already exists in the destination directory
-                        string destinationFilePath = Path.Combine(destinationPath, newFileName);
-                        int count = 1;
-                        string fileNameOnly = Path.GetFileNameWithoutExtension(newFileName);
-                        string extension = Path.GetExtension(newFileName);
-
-                        // Append incrementing numbers until we find a unique name
-                        while (File.Exists(destinationFilePath))
-                        {
-                            string tempFileName = string.Format("{0} ({1})", fileNameOnly, count++);
-                            newFileName = tempFileName + extension;
-                            destinationFilePath = Path.Combine(destinationPath, newFileName);
-                        }
-
-                        if (File.Exists(copiedItemPath))
-                        {
-                            // Check if the file is in use before copying
-                            using (FileStream fs = File.Open(copiedItemPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
-                            {
-                                // If we reach here, the file is not in use
-                            }
-
-                            // Copy the file
-                            File.Copy(copiedItemPath, destinationFilePath);
-                        }
-                        else if (Directory.Exists(copiedItemPath))
-                        {
-                            // Copy the directory
-                            CopyDirectory(copiedItemPath, Path.Combine(destinationPath, Path.GetFileName(copiedItemPath)));
-                        }
-                    }
-
-                    // Refresh the file list
-                    refreshFilesAndDirectories();
-
-                    // Check if the pasted item is a text file
-                    if (Path.GetExtension(copiedItemPath).ToLower() == ".txt")
-                    {
-                        // If it is a text file, do not open Form7
-                        return;
-                    }
-
-                    // Open the pasted item in Form7 if it's not a text file
-                    Form7 textEditorForm = new Form7(desktopInstance);
-                    if (textEditorForm != null)
-                    {
-                        textEditorForm.openFile(Path.Combine(destinationPath, Path.GetFileName(copiedItemPath)));
-                        textEditorForm.Show();
-                    }
-                }
-                catch (UnauthorizedAccessException)
-                {
-                    MessageBox.Show("Access to the file is denied. Make sure the file is not in use.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (IOException)
-                {
-                    MessageBox.Show("An error occurred while pasting the file. Make sure the file is not in use.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
 
         private void CopyDirectory(string sourceDir, string targetDir)
         {
@@ -667,7 +457,232 @@ namespace HoneyOS
             }
         }
 
-        private void RenameButton_Click(object sender, EventArgs e)
+       
+
+        
+        private string GetNewNameFromUser(string currentName)
+        {
+            // Display an input dialog to get the new name from the user
+            string newName = Interaction.InputBox("Enter the new name:", "Rename Item", currentName);
+
+            // You can add validation here if needed
+            // For example, check if the new name is valid, not empty, etc.
+
+            return newName;
+        }
+
+        private void saveFileButton_Click_1(object sender, EventArgs e)
+        {
+            string fileName = saveFileName.Text.Trim();
+
+            if (string.IsNullOrEmpty(fileName))
+            {
+                MessageBox.Show("Please enter a valid file name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string newFilePath = Path.Combine(filePath, fileName + ".txt");
+
+            try
+            {
+                // string fileContent = "breh"; // Add content here or leave it empty for a blank file
+
+                File.WriteAllText(newFilePath, fileContent);
+
+                loadFilesAndDirectories();
+
+                saveFileName.Visible = false;
+
+                SaveCompleted?.Invoke(this, EventArgs.Empty); // Notify that save is completed
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while creating the file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cancelFileButton_Click_1(object sender, EventArgs e)
+        {
+            // Hide the save file panel without creating a file
+            this.Close();
+        }
+
+        private void newFileButton_Click_1(object sender, EventArgs e)
+        {
+            ShowSaveFilePanel();
+        }
+
+        private void cutButton_Click_1(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(currentlySelectedItemName))
+            {
+                cutItemPath = Path.Combine(filePath, currentlySelectedItemName);
+                FileAttributes fileAttr = File.GetAttributes(cutItemPath);
+
+                try
+                {
+                    if ((fileAttr & FileAttributes.Directory) == FileAttributes.Directory)
+                    {
+                        // Check if the directory is empty before moving
+                        if (Directory.EnumerateFileSystemEntries(cutItemPath).Any())
+                        {
+                            MessageBox.Show("Cannot cut the directory because it is not empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+                        // Store the full path to the directory
+                        cutItemPath = Path.GetFullPath(cutItemPath);
+
+                        // No need to move directories immediately
+                    }
+                    else
+                    {
+                        // Check if the file is in use before moving
+                        using (FileStream fs = File.Open(cutItemPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                        {
+                            // If we reach here, the file is not in use
+                        }
+
+                        // Store the full path to the file
+                        cutItemPath = Path.GetFullPath(cutItemPath);
+
+                        // No need to move files immediately
+                    }
+
+                    // Don't perform the move here, just store the path
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    MessageBox.Show("Access to the file is denied. Make sure the file is not in use.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("An error occurred while moving the file. Make sure the file is not in use.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void copyButton_Click_1(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(currentlySelectedItemName))
+            {
+                copiedItemPath = Path.Combine(filePath, currentlySelectedItemName);
+            }
+        }
+
+        private void pasteButton_Click_1(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(copiedItemPath) || !string.IsNullOrEmpty(cutItemPath))
+            {
+                string destinationPath = filePath;
+
+                try
+                {
+                    // If there's a cut item, move it
+                    if (!string.IsNullOrEmpty(cutItemPath))
+                    {
+                        if (File.Exists(cutItemPath))
+                        {
+                            // Check if the file is in use before moving
+                            using (FileStream fs = File.Open(cutItemPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                            {
+                                // If we reach here, the file is not in use
+                            }
+
+                            // Move the file
+                            File.Move(cutItemPath, Path.Combine(destinationPath, Path.GetFileName(cutItemPath)));
+                        }
+                        else if (Directory.Exists(cutItemPath))
+                        {
+                            // Check if the directory is empty before moving
+                            if (Directory.EnumerateFileSystemEntries(cutItemPath).Any())
+                            {
+                                MessageBox.Show("Cannot cut the directory because it is not empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                return;
+                            }
+
+                            // Move the directory
+                            Directory.Move(cutItemPath, Path.Combine(destinationPath, Path.GetFileName(cutItemPath)));
+                        }
+
+                        cutItemPath = ""; // Reset cut item after paste
+                    }
+
+                    // If there's a copied item, copy it
+                    if (!string.IsNullOrEmpty(copiedItemPath))
+                    {
+                        string newFileName = Path.GetFileName(copiedItemPath);
+
+                        // Check if the file already exists in the destination directory
+                        string destinationFilePath = Path.Combine(destinationPath, newFileName);
+                        int count = 1;
+                        string fileNameOnly = Path.GetFileNameWithoutExtension(newFileName);
+                        string extension = Path.GetExtension(newFileName);
+
+                        // Append incrementing numbers until we find a unique name
+                        while (File.Exists(destinationFilePath))
+                        {
+                            string tempFileName = string.Format("{0} ({1})", fileNameOnly, count++);
+                            newFileName = tempFileName + extension;
+                            destinationFilePath = Path.Combine(destinationPath, newFileName);
+                        }
+
+                        if (File.Exists(copiedItemPath))
+                        {
+                            // Check if the file is in use before copying
+                            using (FileStream fs = File.Open(copiedItemPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                            {
+                                // If we reach here, the file is not in use
+                            }
+
+                            // Copy the file
+                            File.Copy(copiedItemPath, destinationFilePath);
+                        }
+                        else if (Directory.Exists(copiedItemPath))
+                        {
+                            // Copy the directory
+                            CopyDirectory(copiedItemPath, Path.Combine(destinationPath, Path.GetFileName(copiedItemPath)));
+                        }
+                    }
+
+                    // Refresh the file list
+                    refreshFilesAndDirectories();
+
+                    // Check if the pasted item is a text file
+                    if (Path.GetExtension(copiedItemPath).ToLower() == ".txt")
+                    {
+                        // If it is a text file, do not open Form7
+                        return;
+                    }
+
+                    // Open the pasted item in Form7 if it's not a text file
+                    Form7 textEditorForm = new Form7(desktopInstance);
+                    if (textEditorForm != null)
+                    {
+                        textEditorForm.openFile(Path.Combine(destinationPath, Path.GetFileName(copiedItemPath)));
+                        textEditorForm.Show();
+                    }
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    MessageBox.Show("Access to the file is denied. Make sure the file is not in use.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (IOException)
+                {
+                    MessageBox.Show("An error occurred while pasting the file. Make sure the file is not in use.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void renameButton_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(currentlySelectedItemName))
             {
@@ -731,19 +746,9 @@ namespace HoneyOS
             }
         }
 
-        private string GetNewNameFromUser(string currentName)
+        private void deleteButton_Click(object sender, EventArgs e)
         {
-            // Display an input dialog to get the new name from the user
-            string newName = Interaction.InputBox("Enter the new name:", "Rename Item", currentName);
-
-            // You can add validation here if needed
-            // For example, check if the new name is valid, not empty, etc.
-
-            return newName;
+            DeleteSelectedItem();
         }
-
-
-
-
     }
 }

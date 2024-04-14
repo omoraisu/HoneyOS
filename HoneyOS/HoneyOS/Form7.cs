@@ -17,6 +17,10 @@ namespace HoneyOS
     {
         string filePath = ""; //used to store file location 
         private Desktop desktopInstance; // Reference to an instance of Desktop form
+        private bool isModified = false; // determines if text was modified
+        private string oldText = "";
+        private object form5;
+
         public Form7(Desktop desktopInstance)
         {
             InitializeComponent();
