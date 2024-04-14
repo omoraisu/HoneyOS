@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,6 +46,12 @@ namespace HoneyOS
 
             //clears file name and type when not selected
             listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
+
+            // Associate delete button click event with DeleteSelectedItem method
+            deleteButton.Click += button10_Click;
+
+            //for rename files
+            renameButton.Click += RenameButton_Click;
         }
 
         public void loadFilesAndDirectories() //loads file and directories O - O
@@ -254,9 +261,11 @@ namespace HoneyOS
 
         }
 
+
+        //this is the delete button function
         private void button10_Click(object sender, EventArgs e)
         {
-
+            DeleteSelectedItem();
         }
 
         public void ShowSaveFilePanel()
@@ -281,6 +290,10 @@ namespace HoneyOS
         private void newFileButton_Click(object sender, EventArgs e)
         {
             ShowSaveFilePanel();
+        }
+        private void renameButton_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void saveFileButton_Click(object sender, EventArgs e)
@@ -425,6 +438,22 @@ namespace HoneyOS
                     // If there's a copied item, copy it
                     if (!string.IsNullOrEmpty(copiedItemPath))
                     {
+                        string newFileName = Path.GetFileName(copiedItemPath);
+
+                        // Check if the file already exists in the destination directory
+                        string destinationFilePath = Path.Combine(destinationPath, newFileName);
+                        int count = 1;
+                        string fileNameOnly = Path.GetFileNameWithoutExtension(newFileName);
+                        string extension = Path.GetExtension(newFileName);
+
+                        // Append incrementing numbers until we find a unique name
+                        while (File.Exists(destinationFilePath))
+                        {
+                            string tempFileName = string.Format("{0} ({1})", fileNameOnly, count++);
+                            newFileName = tempFileName + extension;
+                            destinationFilePath = Path.Combine(destinationPath, newFileName);
+                        }
+
                         if (File.Exists(copiedItemPath))
                         {
                             // Check if the file is in use before copying
@@ -434,7 +463,7 @@ namespace HoneyOS
                             }
 
                             // Copy the file
-                            File.Copy(copiedItemPath, Path.Combine(destinationPath, Path.GetFileName(copiedItemPath)));
+                            File.Copy(copiedItemPath, destinationFilePath);
                         }
                         else if (Directory.Exists(copiedItemPath))
                         {
@@ -444,7 +473,22 @@ namespace HoneyOS
                     }
 
                     // Refresh the file list
-                    loadFilesAndDirectories();
+                    refreshFilesAndDirectories();
+
+                    // Check if the pasted item is a text file
+                    if (Path.GetExtension(copiedItemPath).ToLower() == ".txt")
+                    {
+                        // If it is a text file, do not open Form7
+                        return;
+                    }
+
+                    // Open the pasted item in Form7 if it's not a text file
+                    Form7 textEditorForm = new Form7(desktopInstance);
+                    if (textEditorForm != null)
+                    {
+                        textEditorForm.openFile(Path.Combine(destinationPath, Path.GetFileName(copiedItemPath)));
+                        textEditorForm.Show();
+                    }
                 }
                 catch (UnauthorizedAccessException)
                 {
@@ -484,6 +528,180 @@ namespace HoneyOS
                 CopyDirectory(subDir, destDir);
             }
         }
+
+        //made this to refresh is instead of calling the loadFileAndDirectories() which opens the Notepad;
+        public void refreshFilesAndDirectories()
+        {
+            DirectoryInfo fileList;
+            string tempFilePath = "";
+            FileAttributes fileAttr;
+
+            try
+            {
+                fileAttr = File.GetAttributes(filePath);
+
+                if ((fileAttr & FileAttributes.Directory) == FileAttributes.Directory)
+                {
+                    fileList = new DirectoryInfo(filePath);
+                    FileInfo[] files = fileList.GetFiles(); // get all the files
+                    DirectoryInfo[] dirs = fileList.GetDirectories(); // get all the directories
+                    string fileExtension = "";
+
+                    listView1.Items.Clear();
+
+                    for (int i = 0; i < files.Length; i++)
+                    {
+                        if (files[i].Extension.ToUpper() == ".TXT")
+                        {
+                            listView1.Items.Add(files[i].Name, 8); // display txt file
+                        }
+                    }
+
+                    for (int i = 0; i < dirs.Length; i++)
+                    {
+                        listView1.Items.Add(dirs[i].Name, 2); // display the directories
+                    }
+                }
+                else
+                {
+                    fileNameLabel.Text = this.currentlySelectedItemName;
+                }
+            }
+            catch (Exception e)
+            {
+                // Handle exceptions
+            }
+        }
+
+        private void DeleteSelectedItem()
+        {
+            if (string.IsNullOrEmpty(currentlySelectedItemName))
+            {
+                MessageBox.Show("No item selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string selectedItemPath = Path.Combine(filePath, currentlySelectedItemName);
+
+            try
+            {
+                if (File.Exists(selectedItemPath))
+                {
+                    // Check if the file is in use before deleting
+                    using (FileStream fs = File.Open(selectedItemPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                    {
+                        // If we reach here, the file is not in use
+                    }
+
+                    // Delete the file
+                    File.Delete(selectedItemPath);
+                }
+                else if (Directory.Exists(selectedItemPath))
+                {
+                    // Check if the directory is empty before deleting
+                    if (Directory.EnumerateFileSystemEntries(selectedItemPath).Any())
+                    {
+                        MessageBox.Show("Cannot delete the directory because it is not empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Delete the directory
+                    Directory.Delete(selectedItemPath);
+                }
+
+                // Refresh the file list after deletion
+                refreshFilesAndDirectories();
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("Access to the item is denied. Make sure it is not in use.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("An error occurred while deleting the item. Make sure it is not in use.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RenameButton_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(currentlySelectedItemName))
+            {
+                MessageBox.Show("No item selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string selectedItemPath = Path.Combine(filePath, currentlySelectedItemName);
+
+            try
+            {
+                // Display a dialog to get the new name from the user
+                string newName = GetNewNameFromUser(currentlySelectedItemName);
+                if (string.IsNullOrEmpty(newName))
+                {
+                    // User canceled or entered an empty name
+                    return;
+                }
+
+                // Combine the new name with the file path
+                string newPath = Path.Combine(filePath, newName);
+
+                if (File.Exists(selectedItemPath))
+                {
+                    // Check if the file is in use before renaming
+                    using (FileStream fs = File.Open(selectedItemPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                    {
+                        // If we reach here, the file is not in use
+                    }
+
+                    // Rename the file
+                    File.Move(selectedItemPath, newPath);
+                }
+                else if (Directory.Exists(selectedItemPath))
+                {
+                    // Check if the directory is empty before renaming
+                    if (Directory.EnumerateFileSystemEntries(selectedItemPath).Any())
+                    {
+                        MessageBox.Show("Cannot rename the directory because it is not empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Rename the directory
+                    Directory.Move(selectedItemPath, newPath);
+                }
+
+                // Refresh the file list after renaming
+                refreshFilesAndDirectories();
+            }
+            catch (UnauthorizedAccessException)
+            {
+                MessageBox.Show("Access to the item is denied. Make sure it is not in use.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (IOException)
+            {
+                MessageBox.Show("An error occurred while renaming the item. Make sure it is not in use.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private string GetNewNameFromUser(string currentName)
+        {
+            // Display an input dialog to get the new name from the user
+            string newName = Interaction.InputBox("Enter the new name:", "Rename Item", currentName);
+
+            // You can add validation here if needed
+            // For example, check if the new name is valid, not empty, etc.
+
+            return newName;
+        }
+
+
 
 
     }

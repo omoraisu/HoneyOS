@@ -259,6 +259,7 @@
             this.renameButton.Text = "Rename";
             this.renameButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.renameButton.UseVisualStyleBackColor = true;
+            this.renameButton.Click += new System.EventHandler(this.renameButton_Click);
             // 
             // pasteButton
             // 
