@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +12,7 @@ using System.Windows.Forms;
 
 namespace HoneyOS
 {
-
+    
     public partial class Form5 : Form
     {
         public event EventHandler SaveCompleted;
@@ -45,8 +44,6 @@ namespace HoneyOS
             cancelFileButton.Visible = false;
             saveFileTypeLabel.Visible = false;
             saveFileNameLabel.Visible = false;
-
-
 
             //clears file name and type when not selected
             listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
@@ -142,9 +139,6 @@ namespace HoneyOS
                             case ".JPG":
                             case ".JPEG":
                                 listView1.Items.Add(files[i].Name, 6);
-                                break;
-                            case ".txt":
-                                listView1.Items.Add(files[i].Name, 8);
                                 break;
 
                             default:
@@ -340,6 +334,11 @@ namespace HoneyOS
             }
         }
         */
+
+        public void SetFileContent(string content)
+        {
+            fileContent = content;
+        }
 
         private void saveFileButton_Click(object sender, EventArgs e)
         {

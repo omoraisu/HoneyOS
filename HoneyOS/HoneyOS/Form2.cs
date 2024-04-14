@@ -17,6 +17,7 @@ namespace HoneyOS
     {
 
         SpeechRecognitionEngine recognizer;
+        bool topmost, isListening;
         public WelcomeScreen()
         {
             InitializeComponent();
@@ -32,9 +33,64 @@ namespace HoneyOS
             Grammar grammar = new Grammar(new GrammarBuilder(new Choices("hello honey")));
             recognizer.LoadGrammar(grammar);
             recognizer.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(recognizer_SpeechRecognized);
-            recognizer.RecognizeAsync(RecognizeMode.Multiple);
-        }
 
+            Timer updateTimer = new Timer();
+            updateTimer.Interval = 1000; // 1000 milliseconds = 1 second
+            updateTimer.Tick += (s, ev) => Form2Update(); // Lambda expression to call the Update function
+            updateTimer.Start();
+        }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            Form2Update(); // Call the update function
+        }
+        public void Form2Update()
+        {
+            // Check whether Desktop is focused currently
+            topmost = (Form.ActiveForm == this);
+            if (topmost)
+            {
+                Desktop_GotFocus();
+            }
+            else
+            {
+                Desktop_LostFocus();
+            }
+        }
+        private void Desktop_GotFocus()
+        {
+            // add stuff to do whenever the desktop is currently focused
+            if (!isListening)
+            {
+                try
+                {
+                    isListening = true;
+                    recognizer.RecognizeAsync(RecognizeMode.Multiple);
+                    Debug.WriteLine("currentlyListening");
+                }
+                catch (ObjectDisposedException)
+                {
+                    
+                }
+            }
+        }
+        private void Desktop_LostFocus()
+        {
+            // add stuff to do whenever the desktop has lost focused ie another window is currently focused
+            if (isListening)
+            {
+                try
+                {
+                    isListening = false;
+                    recognizer.RecognizeAsyncStop();
+                    Debug.WriteLine("currentlynotListening");
+                }
+                catch (ObjectDisposedException)
+                {
+
+                }
+
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             OpenDesktop();
@@ -58,7 +114,12 @@ namespace HoneyOS
         {
             if (e.Result.Text == "hello honey")
             {
-                Debug.WriteLine("hello honey, welcome home");    
+                if (e.Result.Confidence < 0.9)
+                {
+                    MessageBox.Show("Who are you?", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                MessageBox.Show("Oh it's you, honey! Welcome home dear!", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 OpenDesktop();
             }
         }

@@ -383,16 +383,6 @@ namespace HoneyOS.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Transition__8_1 {
-            get {
-                object obj = ResourceManager.GetObject("Transition (8)1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Voice_Indicator {
             get {
                 object obj = ResourceManager.GetObject("Voice Indicator", resourceCulture);
