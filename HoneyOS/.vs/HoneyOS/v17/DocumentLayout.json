@@ -7,20 +7,16 @@
       "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form7.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|c:\\users\\zayne peladas\\onedrive\\desktop\\honeyos\\honeyos\\honeyos\\honeyos\\form7.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form7.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Zayne Peladas\\OneDrive\\Desktop\\HoneyOS\\HoneyOS\\HoneyOS\\honeyos\\form7.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form7.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|c:\\users\\zayne peladas\\onedrive\\desktop\\honeyos\\honeyos\\honeyos\\honeyos\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Zayne Peladas\\OneDrive\\Desktop\\HoneyOS\\HoneyOS\\HoneyOS\\honeyos\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|c:\\users\\zayne peladas\\onedrive\\desktop\\honeyos\\honeyos\\honeyos\\honeyos\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Zayne Peladas\\OneDrive\\Desktop\\HoneyOS\\HoneyOS\\HoneyOS\\honeyos\\form7.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form7.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,13 +30,13 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Form5.cs",
               "DocumentMoniker": "C:\\Users\\Zayne Peladas\\OneDrive\\Desktop\\HoneyOS\\HoneyOS\\HoneyOS\\HoneyOS\\Form5.cs",
               "RelativeDocumentMoniker": "HoneyOS\\Form5.cs",
               "ToolTip": "C:\\Users\\Zayne Peladas\\OneDrive\\Desktop\\HoneyOS\\HoneyOS\\HoneyOS\\HoneyOS\\Form5.cs",
               "RelativeToolTip": "HoneyOS\\Form5.cs",
-              "ViewState": "AQIAAJwCAAAAAAAAAAAUwL8CAAAAAAAA",
+              "ViewState": "AQIAAEgBAAAAAAAAAAAuwE4BAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-10T05:49:56.805Z",
               "IsPinned": true,
@@ -54,23 +50,10 @@
               "RelativeDocumentMoniker": "HoneyOS\\Form7.cs",
               "ToolTip": "C:\\Users\\Zayne Peladas\\OneDrive\\Desktop\\HoneyOS\\HoneyOS\\HoneyOS\\HoneyOS\\Form7.cs",
               "RelativeToolTip": "HoneyOS\\Form7.cs",
-              "ViewState": "AQIAAMQAAAAAAAAAAAAAwJIAAAAQAAAA",
+              "ViewState": "AQIAAOAAAAAAAAAAAAAowOwAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-10T16:49:34.539Z",
               "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Form7.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\Zayne Peladas\\OneDrive\\Desktop\\HoneyOS\\HoneyOS\\HoneyOS\\HoneyOS\\Form7.Designer.cs",
-              "RelativeDocumentMoniker": "HoneyOS\\Form7.Designer.cs",
-              "ToolTip": "C:\\Users\\Zayne Peladas\\OneDrive\\Desktop\\HoneyOS\\HoneyOS\\HoneyOS\\HoneyOS\\Form7.Designer.cs",
-              "RelativeToolTip": "HoneyOS\\Form7.Designer.cs",
-              "ViewState": "AQIAACsBAAAAAAAAAAAwwD4BAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-14T06:59:58.232Z",
               "EditorCaption": ""
             },
             {
@@ -82,12 +65,8 @@
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Form5.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Zayne Peladas\\OneDrive\\Desktop\\HoneyOS\\HoneyOS\\HoneyOS\\HoneyOS\\Form5.cs",
               "RelativeDocumentMoniker": "HoneyOS\\Form5.cs",
@@ -99,7 +78,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Form7.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Zayne Peladas\\OneDrive\\Desktop\\HoneyOS\\HoneyOS\\HoneyOS\\HoneyOS\\Form7.cs",
               "RelativeDocumentMoniker": "HoneyOS\\Form7.cs",

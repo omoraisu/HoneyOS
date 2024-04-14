@@ -16,9 +16,11 @@ namespace HoneyOS
 
     public partial class Form5 : Form
     {
+        public event EventHandler SaveCompleted;
         private Desktop desktopInstance;
         private string filePath = "C:\\";
         private bool isFile = false;
+        public bool isSaved = false; 
         private string currentlySelectedItemName = "";
 
         private string cutItemPath = "";     // To remember the item being cut
@@ -69,7 +71,6 @@ namespace HoneyOS
                     fileNameLabel.Text = fileDetails.Name;
                     fileTypeLabel.Text = fileDetails.Extension;
                     fileAttr = File.GetAttributes(tempFilePath);
-                    Process.Start(tempFilePath);
 
                     Form7 textEditorForm = new Form7(desktopInstance);
 
@@ -296,6 +297,7 @@ namespace HoneyOS
 
         }
 
+        /*
         private void saveFileButton_Click(object sender, EventArgs e)
         {
             string fileName = saveFileName.Text.Trim(); // Get the entered file name
@@ -322,6 +324,39 @@ namespace HoneyOS
 
                 // Hide the save file panel after creating the file
                 saveFilePanel.Visible = false;
+
+                // triggers that file has been saved 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while creating the file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        */
+
+        private void saveFileButton_Click(object sender, EventArgs e)
+        {
+            string fileName = saveFileName.Text.Trim();
+
+            if (string.IsNullOrEmpty(fileName))
+            {
+                MessageBox.Show("Please enter a valid file name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string newFilePath = Path.Combine(filePath, fileName + ".txt");
+
+            try
+            {
+                string fileContent = ""; // Add content here or leave it empty for a blank file
+
+                File.WriteAllText(newFilePath, fileContent);
+
+                loadFilesAndDirectories();
+
+                saveFilePanel.Visible = false;
+
+                SaveCompleted?.Invoke(this, EventArgs.Empty); // Notify that save is completed
             }
             catch (Exception ex)
             {
