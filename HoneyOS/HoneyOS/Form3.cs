@@ -223,27 +223,15 @@ namespace HoneyOS
         {
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-        private void notepadToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            OpenNotepadFunction();
-        }
-
-        private void shutdownToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ShutdownFunction();
-        }
-        public void HideNotepadToolStripMenuItem()
+        private void ShutdownFunction()
         {
             notepadToolStripMenuItem.Visible = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            OpenFileManagerFunction();
+            Form5 form5 = new Form5(this);
+            form5.Show();
         }
         private void BatteryTimer_Tick(object sender, EventArgs e)
         {
@@ -253,6 +241,19 @@ namespace HoneyOS
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void fileManagerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fileManagerToolStripMenuItem.Visible = true;
+            Form5 form5 = new Form5(this);
+            form5.Show();
+
+        }
+
+        private void notepadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenNotepadFunction();
         }
     }
 }

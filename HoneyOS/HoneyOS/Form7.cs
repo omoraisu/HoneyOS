@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text;
+using Win32Interop.Structs;
 
 
 namespace HoneyOS
@@ -17,6 +18,10 @@ namespace HoneyOS
     {
         string filePath = ""; //used to store file location 
         private Desktop desktopInstance; // Reference to an instance of Desktop form
+        private bool isModified = false; // determines if text was modified
+        private string oldText = "";
+        private object form5;
+
         public Form7(Desktop desktopInstance)
         {
             InitializeComponent();
@@ -26,6 +31,8 @@ namespace HoneyOS
         //Buttons Hover and Clicked
         private void save_Click(object sender, EventArgs e)
         {
+
+
             save.BackColor = Color.FromArgb(255, 234, 177);
             if (string.IsNullOrEmpty(filePath))
             {
@@ -47,7 +54,10 @@ namespace HoneyOS
                     sw.WriteLineAsync(richTextBox1.Text);
                 }
             }
+
         }
+
+        
         private void save_MouseLeave(object sender, EventArgs e)
         {
             save.BackColor = Color.White;
@@ -125,22 +135,27 @@ namespace HoneyOS
         }
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
+            if (richTextBox1.Text != oldText)
+            {
+                isModified = true;
+            }
+
             if (richTextBox1.Text.Length > 0)
             {
-                copy.Enabled = true;
-                cut.Enabled = true;
+                copy.Enabled = cut.Enabled = true;
             }
             else
             {
-                copy.Enabled = false;
-                cut.Enabled = false;
+                copy.Enabled = cut.Enabled = false;
             }
         }
 
+        /*
         private void Form7_FormClosed(object sender, FormClosedEventArgs e)
         {
             desktopInstance?.HideNotepadToolStripMenuItem(); // Call the method to hide notepadToolStripMenuItem on Desktop form
         }
+        */
 
         private void newWindow_Click(object sender, EventArgs e)
         {
@@ -165,8 +180,43 @@ namespace HoneyOS
             {
                 string fileContent = sr.ReadToEnd();
                 richTextBox1.Text = fileContent;
+                oldText = richTextBox1.Text;
+                isModified = false;
             }
         }
+
+        private void Form7_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            MessageBox.Show("isModified: " + isModified + "\nOld Text: " + oldText + "\nCurrent Text: " + richTextBox1.Text);
+
+            if (isModified)
+            {
+                // Display confirmation dialog
+                DialogResult dialogResult = MessageBox.Show(
+                  "The text has been modified. Do you want to save the changes?",
+                  "Unsaved Changes",
+                  MessageBoxButtons.YesNo);
+
+                if (dialogResult == DialogResult.Yes)
+                {
+                    // Implement logic to save changes
+                    isModified = false; // Reset flag after saving
+                    e.Cancel = true;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    // Restore text to its last state
+                    richTextBox1.Text = oldText;
+                    isModified = false; // Reset flag after discarding changes
+                }
+            }
+
+            // Call the method to hide notepadToolStripMenuItem on Desktop form
+            desktopInstance?.HideNotepadToolStripMenuItem();
+        }
+
+
         /*
         private void set_FilePath(string filePath)
         {

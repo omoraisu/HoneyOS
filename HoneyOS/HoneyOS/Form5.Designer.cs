@@ -35,7 +35,6 @@
             this.goButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.filePathTextBox = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.iconList = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
@@ -43,14 +42,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.fileNameLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.newFileButton = new System.Windows.Forms.Button();
+            this.cutButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.copyButton = new System.Windows.Forms.Button();
+            this.renameButton = new System.Windows.Forms.Button();
+            this.pasteButton = new System.Windows.Forms.Button();
+            this.saveFilePanel = new System.Windows.Forms.Panel();
+            this.cancelFileButton = new System.Windows.Forms.Button();
+            this.saveFileButton = new System.Windows.Forms.Button();
+            this.saveFileName = new System.Windows.Forms.TextBox();
+            this.saveFileTypeLabel = new System.Windows.Forms.Label();
+            this.saveFileNameLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.saveFilePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // backButton
@@ -87,7 +92,7 @@
             this.textBox1.BackColor = System.Drawing.SystemColors.Control;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(9, 78);
+            this.textBox1.Location = new System.Drawing.Point(63, 10);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(46, 15);
             this.textBox1.TabIndex = 3;
@@ -96,26 +101,18 @@
             // filePathTextBox
             // 
             this.filePathTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.filePathTextBox.Location = new System.Drawing.Point(44, 75);
+            this.filePathTextBox.Location = new System.Drawing.Point(95, 7);
             this.filePathTextBox.Name = "filePathTextBox";
-            this.filePathTextBox.Size = new System.Drawing.Size(672, 21);
+            this.filePathTextBox.Size = new System.Drawing.Size(621, 21);
             this.filePathTextBox.TabIndex = 4;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(65, 5);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(651, 24);
-            this.textBox3.TabIndex = 5;
             // 
             // listView1
             // 
             this.listView1.HideSelection = false;
             this.listView1.LargeImageList = this.iconList;
-            this.listView1.Location = new System.Drawing.Point(3, 132);
+            this.listView1.Location = new System.Drawing.Point(3, 98);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(710, 289);
+            this.listView1.Size = new System.Drawing.Size(710, 254);
             this.listView1.SmallImageList = this.iconList;
             this.listView1.TabIndex = 13;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -135,35 +132,34 @@
             this.iconList.Images.SetKeyName(5, "PDF icon.png");
             this.iconList.Images.SetKeyName(6, "PNG icon.png");
             this.iconList.Images.SetKeyName(7, "FILE icon.png");
+            this.iconList.Images.SetKeyName(8, "Voice Indicator (Works).png");
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.fileTypeLabel);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.fileNameLabel);
-            this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.filePathTextBox);
-            this.panel1.Controls.Add(this.button5);
+            this.panel1.Controls.Add(this.newFileButton);
             this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.button6);
+            this.panel1.Controls.Add(this.cutButton);
             this.panel1.Controls.Add(this.goButton);
-            this.panel1.Controls.Add(this.button10);
-            this.panel1.Controls.Add(this.button7);
+            this.panel1.Controls.Add(this.deleteButton);
+            this.panel1.Controls.Add(this.copyButton);
             this.panel1.Controls.Add(this.backButton);
-            this.panel1.Controls.Add(this.button9);
-            this.panel1.Controls.Add(this.button8);
+            this.panel1.Controls.Add(this.renameButton);
+            this.panel1.Controls.Add(this.pasteButton);
             this.panel1.Location = new System.Drawing.Point(-3, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(724, 125);
+            this.panel1.Size = new System.Drawing.Size(724, 92);
             this.panel1.TabIndex = 14;
             // 
             // fileTypeLabel
             // 
             this.fileTypeLabel.AutoSize = true;
             this.fileTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fileTypeLabel.Location = new System.Drawing.Point(540, 102);
+            this.fileTypeLabel.Location = new System.Drawing.Point(526, 57);
             this.fileTypeLabel.Name = "fileTypeLabel";
             this.fileTypeLabel.Size = new System.Drawing.Size(15, 15);
             this.fileTypeLabel.TabIndex = 16;
@@ -173,7 +169,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(466, 102);
+            this.label3.Location = new System.Drawing.Point(467, 57);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 15);
             this.label3.TabIndex = 15;
@@ -183,116 +179,165 @@
             // 
             this.fileNameLabel.AutoSize = true;
             this.fileNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fileNameLabel.Location = new System.Drawing.Point(84, 102);
+            this.fileNameLabel.Location = new System.Drawing.Point(534, 36);
             this.fileNameLabel.Name = "fileNameLabel";
             this.fileNameLabel.Size = new System.Drawing.Size(15, 15);
             this.fileNameLabel.TabIndex = 14;
             this.fileNameLabel.Text = "--";
+            this.fileNameLabel.Click += new System.EventHandler(this.fileNameLabel_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(6, 102);
+            this.label1.Location = new System.Drawing.Point(467, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 15);
             this.label1.TabIndex = 13;
             this.label1.Text = "File Name:";
             // 
-            // button4
+            // newFileButton
             // 
-            this.button4.BackColor = System.Drawing.SystemColors.Window;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button4.Image = global::HoneyOS.Properties.Resources.SEARCH_icon;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(325, 7);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(73, 21);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Search";
-            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.UseVisualStyleBackColor = false;
+            this.newFileButton.Image = global::HoneyOS.Properties.Resources.New_Copy;
+            this.newFileButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.newFileButton.Location = new System.Drawing.Point(6, 36);
+            this.newFileButton.Name = "newFileButton";
+            this.newFileButton.Size = new System.Drawing.Size(84, 36);
+            this.newFileButton.TabIndex = 7;
+            this.newFileButton.Text = "New File";
+            this.newFileButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.newFileButton.UseVisualStyleBackColor = true;
+            this.newFileButton.Click += new System.EventHandler(this.newFileButton_Click);
             // 
-            // button5
+            // cutButton
             // 
-            this.button5.Image = global::HoneyOS.Properties.Resources.New_Copy;
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(6, 36);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(84, 36);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "New File";
-            this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button5.UseVisualStyleBackColor = true;
+            this.cutButton.Image = global::HoneyOS.Properties.Resources.Cut;
+            this.cutButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cutButton.Location = new System.Drawing.Point(91, 36);
+            this.cutButton.Name = "cutButton";
+            this.cutButton.Size = new System.Drawing.Size(62, 36);
+            this.cutButton.TabIndex = 8;
+            this.cutButton.Text = "Cut";
+            this.cutButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cutButton.UseVisualStyleBackColor = true;
+            this.cutButton.Click += new System.EventHandler(this.cutButton_Click);
             // 
-            // button6
+            // deleteButton
             // 
-            this.button6.Image = global::HoneyOS.Properties.Resources.Cut;
-            this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(91, 36);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(62, 36);
-            this.button6.TabIndex = 8;
-            this.button6.Text = "Cut";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button6.UseVisualStyleBackColor = true;
+            this.deleteButton.Image = global::HoneyOS.Properties.Resources.delete;
+            this.deleteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.deleteButton.Location = new System.Drawing.Point(379, 36);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(71, 36);
+            this.deleteButton.TabIndex = 12;
+            this.deleteButton.Text = "Delete";
+            this.deleteButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.button10_Click);
             // 
-            // button10
+            // copyButton
             // 
-            this.button10.Image = global::HoneyOS.Properties.Resources.delete;
-            this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.Location = new System.Drawing.Point(379, 36);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(71, 36);
-            this.button10.TabIndex = 12;
-            this.button10.Text = "Delete";
-            this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button10.UseVisualStyleBackColor = true;
+            this.copyButton.Image = global::HoneyOS.Properties.Resources.Copy;
+            this.copyButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.copyButton.Location = new System.Drawing.Point(154, 36);
+            this.copyButton.Name = "copyButton";
+            this.copyButton.Size = new System.Drawing.Size(68, 36);
+            this.copyButton.TabIndex = 9;
+            this.copyButton.Text = "Copy";
+            this.copyButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.copyButton.UseVisualStyleBackColor = true;
+            this.copyButton.Click += new System.EventHandler(this.copyButton_Click);
             // 
-            // button7
+            // renameButton
             // 
-            this.button7.Image = global::HoneyOS.Properties.Resources.Copy;
-            this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(154, 36);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(68, 36);
-            this.button7.TabIndex = 9;
-            this.button7.Text = "Copy";
-            this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button7.UseVisualStyleBackColor = true;
+            this.renameButton.Image = global::HoneyOS.Properties.Resources.rename_icon;
+            this.renameButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.renameButton.Location = new System.Drawing.Point(294, 36);
+            this.renameButton.Name = "renameButton";
+            this.renameButton.Size = new System.Drawing.Size(84, 36);
+            this.renameButton.TabIndex = 11;
+            this.renameButton.Text = "Rename";
+            this.renameButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.renameButton.UseVisualStyleBackColor = true;
+            this.renameButton.Click += new System.EventHandler(this.renameButton_Click);
             // 
-            // button9
+            // pasteButton
             // 
-            this.button9.Image = global::HoneyOS.Properties.Resources.rename_icon;
-            this.button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.Location = new System.Drawing.Point(294, 36);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(84, 36);
-            this.button9.TabIndex = 11;
-            this.button9.Text = "Rename";
-            this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button9.UseVisualStyleBackColor = true;
+            this.pasteButton.Image = global::HoneyOS.Properties.Resources.Paste;
+            this.pasteButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.pasteButton.Location = new System.Drawing.Point(223, 36);
+            this.pasteButton.Name = "pasteButton";
+            this.pasteButton.Size = new System.Drawing.Size(69, 36);
+            this.pasteButton.TabIndex = 10;
+            this.pasteButton.Text = "Paste";
+            this.pasteButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.pasteButton.UseVisualStyleBackColor = true;
+            this.pasteButton.Click += new System.EventHandler(this.pasteButton_Click);
             // 
-            // button8
+            // saveFilePanel
             // 
-            this.button8.Image = global::HoneyOS.Properties.Resources.Paste;
-            this.button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.Location = new System.Drawing.Point(223, 36);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(69, 36);
-            this.button8.TabIndex = 10;
-            this.button8.Text = "Paste";
-            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button8.UseVisualStyleBackColor = true;
+            this.saveFilePanel.Controls.Add(this.cancelFileButton);
+            this.saveFilePanel.Controls.Add(this.saveFileButton);
+            this.saveFilePanel.Controls.Add(this.saveFileName);
+            this.saveFilePanel.Controls.Add(this.saveFileTypeLabel);
+            this.saveFilePanel.Controls.Add(this.saveFileNameLabel);
+            this.saveFilePanel.Location = new System.Drawing.Point(3, 360);
+            this.saveFilePanel.Name = "saveFilePanel";
+            this.saveFilePanel.Size = new System.Drawing.Size(709, 63);
+            this.saveFilePanel.TabIndex = 15;
+            this.saveFilePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.saveFilePanel_Paint);
+            // 
+            // cancelFileButton
+            // 
+            this.cancelFileButton.Location = new System.Drawing.Point(501, 34);
+            this.cancelFileButton.Name = "cancelFileButton";
+            this.cancelFileButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelFileButton.TabIndex = 5;
+            this.cancelFileButton.Text = "Cancel";
+            this.cancelFileButton.UseVisualStyleBackColor = true;
+            this.cancelFileButton.Click += new System.EventHandler(this.cancelFileButton_Click);
+            // 
+            // saveFileButton
+            // 
+            this.saveFileButton.Location = new System.Drawing.Point(501, 6);
+            this.saveFileButton.Name = "saveFileButton";
+            this.saveFileButton.Size = new System.Drawing.Size(75, 23);
+            this.saveFileButton.TabIndex = 4;
+            this.saveFileButton.Text = "Save";
+            this.saveFileButton.UseVisualStyleBackColor = true;
+            this.saveFileButton.Click += new System.EventHandler(this.saveFileButton_Click);
+            // 
+            // saveFileName
+            // 
+            this.saveFileName.Location = new System.Drawing.Point(174, 8);
+            this.saveFileName.Name = "saveFileName";
+            this.saveFileName.Size = new System.Drawing.Size(321, 20);
+            this.saveFileName.TabIndex = 2;
+            // 
+            // saveFileTypeLabel
+            // 
+            this.saveFileTypeLabel.AutoSize = true;
+            this.saveFileTypeLabel.Location = new System.Drawing.Point(120, 40);
+            this.saveFileTypeLabel.Name = "saveFileTypeLabel";
+            this.saveFileTypeLabel.Size = new System.Drawing.Size(53, 13);
+            this.saveFileTypeLabel.TabIndex = 1;
+            this.saveFileTypeLabel.Text = "File Type:";
+            // 
+            // saveFileNameLabel
+            // 
+            this.saveFileNameLabel.AutoSize = true;
+            this.saveFileNameLabel.Location = new System.Drawing.Point(120, 14);
+            this.saveFileNameLabel.Name = "saveFileNameLabel";
+            this.saveFileNameLabel.Size = new System.Drawing.Size(57, 13);
+            this.saveFileNameLabel.TabIndex = 0;
+            this.saveFileNameLabel.Text = "File Name:";
             // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(717, 429);
+            this.Controls.Add(this.saveFilePanel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.button2);
@@ -302,6 +347,8 @@
             this.Load += new System.EventHandler(this.Form5_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.saveFilePanel.ResumeLayout(false);
+            this.saveFilePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -313,14 +360,12 @@
         private System.Windows.Forms.Button goButton;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox filePathTextBox;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button newFileButton;
+        private System.Windows.Forms.Button cutButton;
+        private System.Windows.Forms.Button copyButton;
+        private System.Windows.Forms.Button pasteButton;
+        private System.Windows.Forms.Button renameButton;
+        private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ImageList iconList;
         private System.Windows.Forms.Panel panel1;
@@ -328,5 +373,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label fileNameLabel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel saveFilePanel;
+        private System.Windows.Forms.TextBox saveFileName;
+        private System.Windows.Forms.Label saveFileTypeLabel;
+        private System.Windows.Forms.Label saveFileNameLabel;
+        private System.Windows.Forms.Button cancelFileButton;
+        private System.Windows.Forms.Button saveFileButton;
     }
 }
