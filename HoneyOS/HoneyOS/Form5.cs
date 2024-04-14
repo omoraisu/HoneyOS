@@ -25,7 +25,7 @@ namespace HoneyOS
 
         private string cutItemPath = "";     // To remember the item being cut
         private string copiedItemPath = "";  // To remember the item being copied
-
+        private string fileContent;
 
         public Form5(Desktop desktopInstance)
         {
@@ -46,6 +46,8 @@ namespace HoneyOS
             saveFileTypeLabel.Visible = false;
             saveFileNameLabel.Visible = false;
 
+
+
             //clears file name and type when not selected
             listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
 
@@ -54,6 +56,11 @@ namespace HoneyOS
 
             //for rename files
             renameButton.Click += RenameButton_Click;
+        }
+
+        public void SetFileContent(string content)
+        {
+            fileContent = content;
         }
 
         public void loadFilesAndDirectories() //loads file and directories O - O
@@ -348,7 +355,7 @@ namespace HoneyOS
 
             try
             {
-                string fileContent = ""; // Add content here or leave it empty for a blank file
+                // string fileContent = "breh"; // Add content here or leave it empty for a blank file
 
                 File.WriteAllText(newFilePath, fileContent);
 
