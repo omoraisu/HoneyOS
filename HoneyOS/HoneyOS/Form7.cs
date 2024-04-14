@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text;
-using Win32Interop.Structs;
 
 
 namespace HoneyOS
@@ -18,10 +17,6 @@ namespace HoneyOS
     {
         string filePath = ""; //used to store file location 
         private Desktop desktopInstance; // Reference to an instance of Desktop form
-        private bool isModified = false; // determines if text was modified
-        private string oldText = "";
-        private object form5;
-
         public Form7(Desktop desktopInstance)
         {
             InitializeComponent();
@@ -73,6 +68,7 @@ namespace HoneyOS
         }
         */
 
+
         private void save_Click(object sender, EventArgs e)
         {
             save.BackColor = Color.FromArgb(255, 234, 177);
@@ -104,9 +100,6 @@ namespace HoneyOS
                 fileManager.Visible = false;
             }
         }
-
-
-
         private void save_MouseLeave(object sender, EventArgs e)
         {
             save.BackColor = Color.White;
@@ -191,20 +184,20 @@ namespace HoneyOS
 
             if (richTextBox1.Text.Length > 0)
             {
-                copy.Enabled = cut.Enabled = true;
+                copy.Enabled = true;
+                cut.Enabled = true;
             }
             else
             {
-                copy.Enabled = cut.Enabled = false;
+                copy.Enabled = false;
+                cut.Enabled = false;
             }
         }
 
-        /*
         private void Form7_FormClosed(object sender, FormClosedEventArgs e)
         {
             desktopInstance?.HideNotepadToolStripMenuItem(); // Call the method to hide notepadToolStripMenuItem on Desktop form
         }
-        */
 
         private void newWindow_Click(object sender, EventArgs e)
         {
@@ -260,12 +253,7 @@ namespace HoneyOS
                     isModified = false; // Reset flag after discarding changes
                 }
             }
-
-            // Call the method to hide notepadToolStripMenuItem on Desktop form
-            desktopInstance?.HideNotepadToolStripMenuItem();
         }
-
-
         /*
         private void set_FilePath(string filePath)
         {

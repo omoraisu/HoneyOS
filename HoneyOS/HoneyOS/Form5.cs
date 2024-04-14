@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +12,7 @@ using System.Windows.Forms;
 
 namespace HoneyOS
 {
-
+    
     public partial class Form5 : Form
     {
         public event EventHandler SaveCompleted;
@@ -23,10 +22,13 @@ namespace HoneyOS
         public bool isSaved = false; 
         private string currentlySelectedItemName = "";
         private string fileContent;
+<<<<<<< HEAD
 
         private string cutItemPath = "";     // To remember the item being cut
         private string copiedItemPath = "";  // To remember the item being copied
 
+=======
+>>>>>>> 23ec1d800369b0b0db9a4fec0485940958d75dd9
 
         public Form5(Desktop desktopInstance)
         {
@@ -38,23 +40,6 @@ namespace HoneyOS
         {
             filePathTextBox.Text = filePath;
             loadFilesAndDirectories();
-
-            //for saving file appearance
-            saveFilePanel.Visible = false;
-            saveFileName.Visible = false;
-            saveFileButton.Visible = false;
-            cancelFileButton.Visible = false;
-            saveFileTypeLabel.Visible = false;
-            saveFileNameLabel.Visible = false;
-
-            //clears file name and type when not selected
-            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
-
-            // Associate delete button click event with DeleteSelectedItem method
-            deleteButton.Click += button10_Click;
-
-            //for rename files
-            renameButton.Click += RenameButton_Click;
         }
 
         public void loadFilesAndDirectories() //loads file and directories O - O
@@ -108,11 +93,16 @@ namespace HoneyOS
 
                     for (int i = 0; i < files.Length; i++)
                     {
-                        //fileExtension = files[i].Extension.ToUpper();
+<<<<<<< HEAD
 
-                        /*switch (fileExtension)
+                        if (files[i].Extension.ToUpper() == ".TXT")
                         {
-                            /*case ".MP3":
+                            listView1.Items.Add(files[i].Name, 8); //display txt file (hopefully)
+=======
+                        fileExtension = files[i].Extension.ToUpper();
+                        switch (fileExtension)
+                        {
+                            case ".MP3":
                             case ".MP2":
                                 listView1.Items.Add(files[i].Name, 3);
                                 break;
@@ -137,25 +127,18 @@ namespace HoneyOS
                             case ".JPEG":
                                 listView1.Items.Add(files[i].Name, 6);
                                 break;
-                            case ".txt":
-                                listView1.Items.Add(files[i].Name, 8);
-                                break;
 
                             default:
                                 listView1.Items.Add(files[i].Name, 7);
                                 break;
-                        }*/
-
-                        if (files[i].Extension.ToUpper() == ".TXT")
-                        {
-                            listView1.Items.Add(files[i].Name, 8); //display txt file (hopefully)
+>>>>>>> 61fde17510b22f1cab5d830264350f5fb645f029
                         }
 
                     }
 
-                    for (int i = 0; i < dirs.Length; i++) 
+                    for (int i = 0; i < dirs.Length; i++)
                     {
-                        listView1.Items.Add(dirs[i].Name, 2); //display the directories
+                        listView1.Items.Add(dirs[i].Name, 2);
                     }
                 }
                 else
@@ -182,7 +165,7 @@ namespace HoneyOS
         public void removeBackSlash() //for file names, naay ma /programFiles example
         {
             string path = filePathTextBox.Text;
-            if (path.LastIndexOf("/") == path.Length - 1)
+            if(path.LastIndexOf("/") == path.Length - 1)
             {
                 filePathTextBox.Text = path.Substring(0, path.Length - 1);
             }
@@ -227,7 +210,6 @@ namespace HoneyOS
 
             FileAttributes fileAttr = File.GetAttributes(filePath + "/" + currentlySelectedItemName);
 
-            //if selected is file or directory: if file then butang siya labels (else statement nako)
             if ((fileAttr & FileAttributes.Directory) == FileAttributes.Directory)
             {
                 isFile = false;
@@ -236,19 +218,6 @@ namespace HoneyOS
             else
             {
                 isFile = true;
-
-                //Update labels (i hope it works with just 1 click)
-                FileInfo fileDetails = new FileInfo(filePath + "/" + currentlySelectedItemName);
-                fileNameLabel.Text = Path.GetFileNameWithoutExtension(fileDetails.Name); // Display file name without extension
-                fileTypeLabel.Text = "." + fileDetails.Extension.TrimStart('.');
-            }
-
-            //clears file name and type if di na i select
-            if (listView1.SelectedItems.Count == 0)
-            {
-                // No item selected, clear the file name and type labels
-                fileNameLabel.Text = "";
-                fileTypeLabel.Text = "";
             }
 
         }
@@ -258,6 +227,7 @@ namespace HoneyOS
             loadButtonAction();
         }
 
+<<<<<<< HEAD
         private void fileNameLabel_Click(object sender, EventArgs e)
         {
 
@@ -362,7 +332,7 @@ namespace HoneyOS
 
                 saveFilePanel.Visible = false;
 
-                SaveCompleted?.Invoke(this, EventArgs.Empty); // Notify that save is completed
+               SaveCompleted?.Invoke(this, EventArgs.Empty); // Notify that save is completed
             }
             catch (Exception ex)
             {
@@ -745,5 +715,7 @@ namespace HoneyOS
 
 
 
+=======
+>>>>>>> 61fde17510b22f1cab5d830264350f5fb645f029
     }
 }
