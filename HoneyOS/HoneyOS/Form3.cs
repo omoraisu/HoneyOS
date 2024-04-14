@@ -17,7 +17,7 @@ namespace HoneyOS
             "open file manager please",     // create instance of file manager window
             "close notepad please",         // close all existing instance of notepad window
             "close file manager please",    // close all existing instance of file manager window
-            "time to sleep",                // close application
+            "goodbye",                // close the notepad
         };
 
         bool isListeningForAction, topmost, isListening;
@@ -78,7 +78,6 @@ namespace HoneyOS
                 {
                     isListening = true;
                     recognizer.RecognizeAsync(RecognizeMode.Multiple);
-                    Debug.WriteLine("currentlyListening");
                 }
                 catch (ObjectDisposedException)
                 {
@@ -95,7 +94,6 @@ namespace HoneyOS
                 {
                     isListening = false;
                     recognizer.RecognizeAsyncStop();
-                    Debug.WriteLine("currentlynotListening");
                 }
                 catch (ObjectDisposedException)
                 {
@@ -157,8 +155,8 @@ namespace HoneyOS
                         CloseFileManagerFunction();
                         isListeningForAction = false;
                         break;
-                    case "time to sleep":
-                        MessageBox.Show("Sure, sweet dreams honey", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    case "goodbye":
+                        MessageBox.Show("Goodbye, honey", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ShutdownFunction();
                         isListeningForAction = false;
                         break;

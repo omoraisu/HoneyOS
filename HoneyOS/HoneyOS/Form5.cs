@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Speech.Recognition;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,10 +28,29 @@ namespace HoneyOS
         private string copiedItemPath = "";  // To remember the item being copied
         private string fileContent;
 
+
+        List<string> phrases = new List<string>
+        {
+            /* command initializer */
+            "honey",
+            /* full commands */
+            "create new file please",           // create new text file
+            "cut this file please",             // cut the selected file
+            "copy this file please",            // copy the selected file
+            "paste the file please",            // paste the cut/copied file into current directory
+            "rename this file please",          // rename the selected file
+            "close this please",                // close the file manager
+        };
+
+        bool isListeningForAction, topmost, isListening;
+        SpeechRecognitionEngine recognizer;
+
         public Form5(Desktop desktopInstance)
         {
             InitializeComponent();
             this.desktopInstance = desktopInstance;
+            isListeningForAction = false;
+            isListening = false;
         }
 
         private void Form5_Load(object sender, EventArgs e)
@@ -54,7 +74,132 @@ namespace HoneyOS
 
             //for rename files
             renameButton.Click += renameButton_Click;
+
+            Timer updateTimer = new Timer();
+            updateTimer.Interval = 1000; // 1000 milliseconds = 1 second
+            updateTimer.Tick += (s, ev) => Form5Update(); // Lambda expression to call the Update function
+            updateTimer.Start();
+
+            SpeechRecognition_Load();
         }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            Form5Update(); // Call the update function
+        }
+        public void Form5Update()
+        {
+            // Check whether Desktop is focused currently
+            topmost = (Form.ActiveForm == this);
+            if (topmost)
+            {FileManager_GotFocus();}
+            else
+            {FileManager_LostFocus();}
+        }
+        private void FileManager_GotFocus()
+        {
+            // add stuff to do whenever the form is currently focused
+            if (!isListening)
+            {
+                try
+                {
+                    isListening = true;
+                    recognizer.RecognizeAsync(RecognizeMode.Multiple);
+                }
+                catch (ObjectDisposedException)
+                {
+
+                }
+            }
+        }
+        private void FileManager_LostFocus()
+        {
+            // add stuff to do whenever the form has lost focused ie another window is currently focused
+            if (isListening)
+            {
+                try
+                {
+                    isListening = false;
+                    recognizer.RecognizeAsyncStop();
+                }
+                catch (ObjectDisposedException)
+                {
+
+                }
+
+            }
+        }
+        private void SpeechRecognition_Load()
+        {
+            //setup grammar
+            Choices choices = new Choices(phrases.ToArray());
+            GrammarBuilder builder = new GrammarBuilder(choices);
+            Grammar grammar = new Grammar(builder);
+
+            // initializing Speech Recognition
+            recognizer = new SpeechRecognitionEngine();
+            recognizer.SetInputToDefaultAudioDevice();
+            recognizer.LoadGrammar(grammar);
+            recognizer.SpeechRecognized += new EventHandler<SpeechRecognizedEventArgs>(recognizer_SpeechRecognized);
+        }
+
+        /* Speech Commands Functions */
+        private void recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
+        {
+            if (e.Result.Confidence < 0.7)
+            {
+                MessageBox.Show("I'm sorry honey, I'm not sure I heard you clearly", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (e.Result.Text.ToLower() == "honey" && !isListeningForAction)
+            {
+                //indicate to UI that Beebot is listening
+                MessageBox.Show("Hello dear, what can I do for you?", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                isListeningForAction = true;
+            }
+            else if (isListeningForAction)
+                switch (e.Result.Text.ToLower()) // for each case, create a corresponding function
+                {
+                    case "create new file please":
+                        MessageBox.Show("Sure, i'll create one for you dear", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        EventArgs args = new EventArgs();
+                        newFileButton_Click_1(sender, args);
+                        isListeningForAction = false;
+                        break;
+                    case "cut this file please":
+                        MessageBox.Show("Sure, i'll cut this for you dear", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        EventArgs args2 = new EventArgs();
+                        cutButton_Click_1(sender, args2);
+                        isListeningForAction = false;
+                        break;
+                    case "copy this file please":
+                        MessageBox.Show("Sure, i'll copy this for you dear", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        EventArgs args3 = new EventArgs();
+                        copyButton_Click_1(sender, args3);
+                        isListeningForAction = false;
+                        break;
+                    case "paste the file please":
+                        MessageBox.Show("Sure, i'll paste it for you dear", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        EventArgs args4 = new EventArgs();
+                        pasteButton_Click_1(sender, args4);
+                        isListeningForAction = false;
+                        break;
+                    case "rename this file please":
+                        MessageBox.Show("Sure, i'll rename this for you dear", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        EventArgs args5 = new EventArgs();
+                        renameButton_Click_1(sender, args5);
+                        isListeningForAction = false;
+                        break;
+                    case "close this please":
+                        MessageBox.Show("Sure, i'll close this for you dear", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                        isListeningForAction = false;
+                        break;
+                    default:
+                        //indicate to UI that the command taken was not recognized
+                        break;
+                }
+        }
+
 
         public void loadFilesAndDirectories() //loads file and directories O - O
         {
@@ -749,6 +894,12 @@ namespace HoneyOS
         private void deleteButton_Click(object sender, EventArgs e)
         {
             DeleteSelectedItem();
+        }
+
+        private void Form5_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            recognizer.Dispose();
+            //desktopInstance?.HideNotepadToolStripMenuItem(); // Call the method to hide notepadToolStripMenuItem on Desktop form
         }
     }
 }

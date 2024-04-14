@@ -114,7 +114,7 @@ namespace HoneyOS
         {
             if (e.Result.Text == "hello honey")
             {
-                if (e.Result.Confidence < 0.9)
+                if (e.Result.Confidence < 0.8)
                 {
                     MessageBox.Show("Who are you?", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
