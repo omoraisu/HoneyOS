@@ -22,6 +22,7 @@ namespace HoneyOS
         private bool isFile = false;
         public bool isSaved = false; 
         private string currentlySelectedItemName = "";
+        private string fileContent;
 
         private string cutItemPath = "";     // To remember the item being cut
         private string copiedItemPath = "";  // To remember the item being copied
@@ -107,43 +108,6 @@ namespace HoneyOS
 
                     for (int i = 0; i < files.Length; i++)
                     {
-                        //fileExtension = files[i].Extension.ToUpper();
-
-                        /*switch (fileExtension)
-                        {
-                            /*case ".MP3":
-                            case ".MP2":
-                                listView1.Items.Add(files[i].Name, 3);
-                                break;
-                            case ".EXE":
-                            case ".COM":
-                                listView1.Items.Add(files[i].Name, 1);
-                                break;
-                            case "MP4":
-                            case ".AVI":
-                            case ".MKV":
-                                listView1.Items.Add(files[i].Name, 4);
-                                break;
-                            case ".PDF":
-                                listView1.Items.Add(files[i].Name, 5);
-                                break;
-                            case ".DOC":
-                            case ".DOCX":
-                                listView1.Items.Add(files[i].Name, 0);
-                                break;
-                            case ".PNG":
-                            case ".JPG":
-                            case ".JPEG":
-                                listView1.Items.Add(files[i].Name, 6);
-                                break;
-                            case ".txt":
-                                listView1.Items.Add(files[i].Name, 8);
-                                break;
-
-                            default:
-                                listView1.Items.Add(files[i].Name, 7);
-                                break;
-                        }*/
 
                         if (files[i].Extension.ToUpper() == ".TXT")
                         {
@@ -334,6 +298,11 @@ namespace HoneyOS
         }
         */
 
+        public void SetFileContent(string content)
+        {
+            fileContent = content;
+        }
+
         private void saveFileButton_Click(object sender, EventArgs e)
         {
             string fileName = saveFileName.Text.Trim();
@@ -348,7 +317,7 @@ namespace HoneyOS
 
             try
             {
-                string fileContent = ""; // Add content here or leave it empty for a blank file
+                // string fileContent = "breh"; // Add content here or leave it empty for a blank file
 
                 File.WriteAllText(newFilePath, fileContent);
 
@@ -356,7 +325,7 @@ namespace HoneyOS
 
                 saveFilePanel.Visible = false;
 
-                SaveCompleted?.Invoke(this, EventArgs.Empty); // Notify that save is completed
+               SaveCompleted?.Invoke(this, EventArgs.Empty); // Notify that save is completed
             }
             catch (Exception ex)
             {
