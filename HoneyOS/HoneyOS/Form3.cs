@@ -74,9 +74,16 @@ namespace HoneyOS
             // add stuff to do whenever the desktop is currently focused
             if (!isListening)
             {
-                recognizer.RecognizeAsync(RecognizeMode.Multiple);
-                Debug.WriteLine("currentlyListening");
-                isListening = true; 
+                try
+                {
+                    isListening = true;
+                    recognizer.RecognizeAsync(RecognizeMode.Multiple);
+                    Debug.WriteLine("currentlyListening");
+                }
+                catch (ObjectDisposedException)
+                {
+
+                }
             }
         }
         private void Desktop_LostFocus()
@@ -84,9 +91,17 @@ namespace HoneyOS
             // add stuff to do whenever the desktop has lost focused ie another window is currently focused
             if (isListening)
             {
-                recognizer.RecognizeAsyncStop();
-                Debug.WriteLine("currentlynotListening");
-                isListening = false;
+                try
+                {
+                    isListening = false;
+                    recognizer.RecognizeAsyncStop();
+                    Debug.WriteLine("currentlynotListening");
+                }
+                catch (ObjectDisposedException)
+                {
+
+                }
+
             }
         }
 
