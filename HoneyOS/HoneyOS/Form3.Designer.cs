@@ -89,19 +89,19 @@
             // notepadToolStripMenuItem1
             // 
             this.notepadToolStripMenuItem1.Name = "notepadToolStripMenuItem1";
-            this.notepadToolStripMenuItem1.Size = new System.Drawing.Size(171, 28);
+            this.notepadToolStripMenuItem1.Size = new System.Drawing.Size(158, 26);
             this.notepadToolStripMenuItem1.Text = "Notepad";
             this.notepadToolStripMenuItem1.Click += new System.EventHandler(this.notepadToolStripMenuItem1_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(168, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(155, 6);
             // 
             // shutdownToolStripMenuItem
             // 
             this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(171, 28);
+            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
             this.shutdownToolStripMenuItem.Text = "Shutdown";
             this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
@@ -110,7 +110,7 @@
             this.notepadToolStripMenuItem.Image = global::HoneyOS.Properties.Resources.Notepad_Minimize;
             this.notepadToolStripMenuItem.Name = "notepadToolStripMenuItem";
             this.notepadToolStripMenuItem.Padding = new System.Windows.Forms.Padding(30, 0, 4, 0);
-            this.notepadToolStripMenuItem.Size = new System.Drawing.Size(149, 42);
+            this.notepadToolStripMenuItem.Size = new System.Drawing.Size(138, 42);
             this.notepadToolStripMenuItem.Text = "  Notepad";
             // 
             // toolStripComboBox1

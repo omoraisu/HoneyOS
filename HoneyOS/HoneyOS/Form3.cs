@@ -20,50 +20,73 @@ namespace HoneyOS
             "time to sleep",                // close application
         };
 
-        bool isListeningForAction;
+        bool isListeningForAction, topmost, isListening;
         SpeechRecognitionEngine recognizer;
 
         List<Form7> notepads = new List<Form7>();
         List<Form5> file_managers = new List<Form5>();
 
+        PowerStatus ps = SystemInformation.PowerStatus;
+
         public Desktop()
         {
             InitializeComponent();
             isListeningForAction = false;
-
-            this.GotFocus += Desktop_GotFocus;
-            this.LostFocus += Desktop_LostFocus;
+            isListening = false;
         }
         private void Desktop_Load(object sender, EventArgs e)
         {
             notepadToolStripMenuItem.Visible = false;
             BatteryTimer.Start();
-            label1.Text = DateTime.Now.ToShortTimeString();
-            label2.Text = DateTime.Now.ToShortDateString();
+
+            // Start a timer to call the update function periodically
+            Timer updateTimer = new Timer();
+            updateTimer.Interval = 1000; // 1000 milliseconds = 1 second
+            updateTimer.Tick += (s, ev) => DesktopUpdate(); // Lambda expression to call the Update function
+            updateTimer.Start();
 
             SpeechRecognition_Load();
         }
 
-        private void Desktop_GotFocus(object sender, EventArgs e)
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            DesktopUpdate(); // Call the update function
+        }
+        public void DesktopUpdate()
+        {
+            // Update the current time displayed on the form
+            label1.Text = DateTime.Now.ToShortTimeString();
+            label2.Text = DateTime.Now.ToShortDateString();
+
+            // Check whether Desktop is focused currently
+            topmost = (Form.ActiveForm == this);
+            if (topmost)
+            {
+                Desktop_GotFocus();
+            }
+            else
+            {
+                Desktop_LostFocus();
+            }
+        }
+        private void Desktop_GotFocus()
         {
             // add stuff to do whenever the desktop is currently focused
-            Debug.WriteLine("desktop is currently focused");
-            if (recognizer == null)
+            if (!isListening)
             {
-                SpeechRecognition_Load();
+                recognizer.RecognizeAsync(RecognizeMode.Multiple);
+                Debug.WriteLine("currentlyListening");
+                isListening = true; 
             }
-
-            recognizer.RecognizeAsync(RecognizeMode.Multiple);
-            Debug.WriteLine("speech is continued");
         }
-        private void Desktop_LostFocus(object sender, EventArgs e)
+        private void Desktop_LostFocus()
         {
             // add stuff to do whenever the desktop has lost focused ie another window is currently focused
-            Debug.WriteLine("desktop has lost focus");
-            if (recognizer != null)
+            if (isListening)
             {
                 recognizer.RecognizeAsyncStop();
-                Debug.WriteLine("speech is paused");
+                Debug.WriteLine("currentlynotListening");
+                isListening = false;
             }
         }
 
@@ -84,42 +107,48 @@ namespace HoneyOS
         /* Speech Commands Functions */
         private void recognizer_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
+            if (e.Result.Confidence < 0.7)
+            {
+                MessageBox.Show("I'm sorry honey, I'm not sure I heard you clearly", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             if (e.Result.Text.ToLower() == "honey" && !isListeningForAction)
             {
                 //indicate to UI that Beebot is listening
-                Debug.WriteLine("i heard u honey, what can I do for you?");
+                MessageBox.Show("Hello dear, what can I do for you?", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 isListeningForAction = true;
             }
             else if (isListeningForAction)
             {
-                isListeningForAction = false;
-
                 switch (e.Result.Text.ToLower()) // for each case, create a corresponding function
                 {
                     case "open notepad please":
-                        Debug.WriteLine("sure, i'll open it for u");
+                        MessageBox.Show("Sure, i'll open it for you dear", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         OpenNotepadFunction();
+                        isListeningForAction = false;
                         break;
                     case "open file manager please":
-                        Debug.WriteLine("sure, i'll open it for u");
+                        MessageBox.Show("Sure, i'll open it for you dear", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         OpenFileManagerFunction();
+                        isListeningForAction = false;
                         break;
                     case "close notepad please":
-                        Debug.WriteLine("sure, i'll close it for u");
+                        MessageBox.Show("Sure, i'll close it for you dear", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CloseNotepadFunction();
+                        isListeningForAction = false;
                         break;
                     case "close file manager please":
-                        Debug.WriteLine("sure, i'll close it for u");
+                        MessageBox.Show("Sure, i'll close it for you dear", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CloseFileManagerFunction();
+                        isListeningForAction = false;
                         break;
                     case "time to sleep":
-                        Debug.WriteLine("sure, sweet dreams honey");
+                        MessageBox.Show("Sure, sweet dreams honey", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ShutdownFunction();
+                        isListeningForAction = false;
                         break;
                     default:
                         //indicate to UI that the command taken was not recognized
-                        Debug.WriteLine("I'm sorry honey, I'm not sure I heard you clearly");
-                        isListeningForAction = true;
                         break;
                 }
             }
@@ -131,7 +160,7 @@ namespace HoneyOS
             // Create an instance of Form7
             Form7 form7 = new Form7(this);
             notepads.Add(form7);
-            form7.Show(this);
+            form7.Show();
         }
         private void OpenFileManagerFunction()
         {
@@ -139,7 +168,7 @@ namespace HoneyOS
             // Create an instance of Form5
             Form5 form5 = new Form5(this);
             file_managers.Add(form5);
-            form5.Show(this);
+            form5.Show();
         }
         private void CloseNotepadFunction()
         {
@@ -216,9 +245,6 @@ namespace HoneyOS
         {
             OpenFileManagerFunction();
         }
-
-        PowerStatus ps = SystemInformation.PowerStatus;
-
         private void BatteryTimer_Tick(object sender, EventArgs e)
         {
             BatteryLife.Value = (int)(ps.BatteryLifePercent * 100);
