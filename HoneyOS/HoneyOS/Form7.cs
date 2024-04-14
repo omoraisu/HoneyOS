@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text;
 
 
 namespace HoneyOS
@@ -20,7 +20,9 @@ namespace HoneyOS
         private bool isModified = false; // determines if text was modified
         private string oldText = "";
         private object form5;
-
+        public string currentFile = "";
+        public string currentPath = "";
+        public bool isSaved = false;
         public Form7(Desktop desktopInstance)
         {
             InitializeComponent();
@@ -76,21 +78,30 @@ namespace HoneyOS
         private void save_Click(object sender, EventArgs e)
         {
             save.BackColor = Color.FromArgb(255, 234, 177);
-            Form5 fileManager = new Form5(desktopInstance);
-
-            // Subscribe to the SaveCompleted event
-            fileManager.SaveCompleted += FileManager_SaveCompleted;
-
-            fileManager.SetFileContent(richTextBox1.Text);
-
-            fileManager.Show();
-            fileManager.ShowSaveFilePanel();
-
-            if (!fileManager.Visible) // Check if it's not visible after showing
+            string CFilePath = Path.Combine(currentPath, currentFile);
+            if (CFilePath != "")
             {
-                fileManager.Close();
+                File.WriteAllText(CFilePath, richTextBox1.Text);
             }
+            else
+            {
+                Form5 fileManager = new Form5(desktopInstance);
 
+                // Subscribe to the SaveCompleted event
+                fileManager.SaveCompleted += FileManager_SaveCompleted;
+
+                fileManager.SetFileContent(richTextBox1.Text);
+
+                fileManager.Show();
+                fileManager.ShowSaveFilePanel();
+
+                if (!fileManager.Visible) // Check if it's not visible after showing
+                {
+                    fileManager.Close();
+                }
+            }
+            save.Enabled = false;
+            isSaved = true;
         }
 
         private void FileManager_SaveCompleted(object sender, EventArgs e)
@@ -115,6 +126,22 @@ namespace HoneyOS
         private void saveAs_Click(object sender, EventArgs e)
         {
             saveAs.BackColor = Color.FromArgb(255, 234, 177);
+            Form5 fileManager = new Form5(desktopInstance);
+
+            // Subscribe to the SaveCompleted event
+            fileManager.SaveCompleted += FileManager_SaveCompleted;
+
+            fileManager.SetFileContent(richTextBox1.Text);
+
+            fileManager.Show();
+            fileManager.ShowSaveFilePanel();
+
+            if (!fileManager.Visible) // Check if it's not visible after showing
+            {
+                fileManager.Close();
+            }
+            save.Enabled = false;
+            isSaved = true;
         }
         private void saveAs_MouseLeave(object sender, EventArgs e)
         {
@@ -190,11 +217,13 @@ namespace HoneyOS
             {
                 copy.Enabled = true;
                 cut.Enabled = true;
+                save.Enabled = true;
             }
             else
             {
                 copy.Enabled = false;
                 cut.Enabled = false;
+                save.Enabled = false;
             }
         }
 
@@ -229,14 +258,15 @@ namespace HoneyOS
                 oldText = richTextBox1.Text;
                 isModified = false;
             }
+            save.Enabled = false;
         }
 
         private void Form7_FormClosing(object sender, FormClosingEventArgs e)
         {
 
             // MessageBox.Show("isModified: " + isModified + "\nOld Text: " + oldText + "\nCurrent Text: " + richTextBox1.Text);
-
-            if (isModified)
+            Debug.WriteLine("closing time broski");
+            if (!isSaved)
             {
                 // Display confirmation dialog
                 DialogResult dialogResult = MessageBox.Show(
@@ -248,13 +278,33 @@ namespace HoneyOS
                 {
                     // Implement logic to save changes
                     isModified = false; // Reset flag after saving
-                    e.Cancel = true;
+                    string CFilePath = Path.Combine(currentPath, currentFile);
+                    if (CFilePath != "")
+                    {
+                        File.WriteAllText(CFilePath, richTextBox1.Text);
+                    }
+                    else
+                    {
+                        Form5 fileManager = new Form5(desktopInstance);
+
+                        // Subscribe to the SaveCompleted event
+                        fileManager.SaveCompleted += FileManager_SaveCompleted;
+
+                        fileManager.SetFileContent(richTextBox1.Text);
+
+                        fileManager.Show();
+                        fileManager.ShowSaveFilePanel();
+
+                        if (!fileManager.Visible) // Check if it's not visible after showing
+                        {
+                            fileManager.Close();
+                        }
+                    }
                 }
-                else if (dialogResult == DialogResult.No)
+                else if (dialogResult == DialogResult.No){}
+                else
                 {
-                    // Restore text to its last state
-                    richTextBox1.Text = oldText;
-                    isModified = false; // Reset flag after discarding changes
+                    e.Cancel = true;
                 }
             }
         }

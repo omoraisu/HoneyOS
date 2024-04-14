@@ -81,6 +81,8 @@ namespace HoneyOS
                         if (textEditorForm != null) // Check if reference is valid
                         {
                             textEditorForm.openFile(tempFilePath);
+                            textEditorForm.currentPath = filePath;
+                            textEditorForm.currentFile = currentlySelectedItemName;
                             textEditorForm.Show();
                         }
 
@@ -499,6 +501,7 @@ namespace HoneyOS
             {
                 MessageBox.Show("An error occurred while creating the file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            //Needs to tell Form7 if the user actually pressed saved or cancelled since currently it assumes that it saves
         }
 
         private void cancelFileButton_Click_1(object sender, EventArgs e)
