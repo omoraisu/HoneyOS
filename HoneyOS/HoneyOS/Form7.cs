@@ -17,6 +17,8 @@ namespace HoneyOS
     {
         string filePath = ""; //used to store file location 
         private Desktop desktopInstance; // Reference to an instance of Desktop form
+        private object form5;
+
         public Form7(Desktop desktopInstance)
         {
             InitializeComponent();
@@ -26,6 +28,8 @@ namespace HoneyOS
         //Buttons Hover and Clicked
         private void save_Click(object sender, EventArgs e)
         {
+
+
             save.BackColor = Color.FromArgb(255, 234, 177);
             if (string.IsNullOrEmpty(filePath))
             {
@@ -47,7 +51,12 @@ namespace HoneyOS
                     sw.WriteLineAsync(richTextBox1.Text);
                 }
             }
+
         }
+      
+            
+        
+        
         private void save_MouseLeave(object sender, EventArgs e)
         {
             save.BackColor = Color.White;
