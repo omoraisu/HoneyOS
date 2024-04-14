@@ -81,6 +81,8 @@ namespace HoneyOS
             // Subscribe to the SaveCompleted event
             fileManager.SaveCompleted += FileManager_SaveCompleted;
 
+            fileManager.SetFileContent(richTextBox1.Text);
+
             fileManager.Show();
             fileManager.ShowSaveFilePanel();
 
@@ -88,6 +90,7 @@ namespace HoneyOS
             {
                 fileManager.Close();
             }
+
         }
 
         private void FileManager_SaveCompleted(object sender, EventArgs e)

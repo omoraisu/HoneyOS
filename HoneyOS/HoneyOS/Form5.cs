@@ -22,6 +22,7 @@ namespace HoneyOS
         private bool isFile = false;
         public bool isSaved = false; 
         private string currentlySelectedItemName = "";
+        private string fileContent;
 
         private string cutItemPath = "";     // To remember the item being cut
         private string copiedItemPath = "";  // To remember the item being copied
@@ -334,6 +335,11 @@ namespace HoneyOS
         }
         */
 
+        public void SetFileContent(string content)
+        {
+            fileContent = content;
+        }
+
         private void saveFileButton_Click(object sender, EventArgs e)
         {
             string fileName = saveFileName.Text.Trim();
@@ -348,7 +354,7 @@ namespace HoneyOS
 
             try
             {
-                string fileContent = ""; // Add content here or leave it empty for a blank file
+                // string fileContent = "breh"; // Add content here or leave it empty for a blank file
 
                 File.WriteAllText(newFilePath, fileContent);
 
