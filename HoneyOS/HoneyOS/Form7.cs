@@ -186,20 +186,7 @@ namespace HoneyOS
             }
             else
             {
-                Form5 fileManager = new Form5(desktopInstance);
-
-                // Subscribe to the SaveCompleted event
-                fileManager.SaveCompleted += FileManager_SaveCompleted;
-
-                fileManager.SetFileContent(richTextBox1.Text);
-
-                fileManager.Show();
-                fileManager.ShowSaveFilePanel();
-
-                if (!fileManager.Visible) // Check if it's not visible after showing
-                {
-                    fileManager.Close();
-                }
+                SaveFileAsFunction();
             }
             save.Enabled = false;
             isSaved = true;
@@ -236,30 +223,7 @@ namespace HoneyOS
 
                 if (dialogResult == DialogResult.Yes)
                 {
-                    // Implement logic to save changes
-                    isModified = false; // Reset flag after saving
-                    string CFilePath = Path.Combine(currentPath, currentFile);
-                    if (CFilePath != "")
-                    {
-                        File.WriteAllText(CFilePath, richTextBox1.Text);
-                    }
-                    else
-                    {
-                        Form5 fileManager = new Form5(desktopInstance);
-
-                        // Subscribe to the SaveCompleted event
-                        fileManager.SaveCompleted += FileManager_SaveCompleted;
-
-                        fileManager.SetFileContent(richTextBox1.Text);
-
-                        fileManager.Show();
-                        fileManager.ShowSaveFilePanel();
-
-                        if (!fileManager.Visible) // Check if it's not visible after showing
-                        {
-                            fileManager.Close();
-                        }
-                    }
+                    SaveFileFunction();
                 }
                 else if (dialogResult == DialogResult.No) { }
                 else
