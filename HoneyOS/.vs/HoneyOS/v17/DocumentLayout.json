@@ -68,7 +68,11 @@
               "RelativeDocumentMoniker": "HoneyOS\\Form5.cs",
               "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form5.cs",
               "RelativeToolTip": "HoneyOS\\Form5.cs",
+<<<<<<< HEAD
               "ViewState": "AQIAABQAAAAAAAAAAAAAwJQCAAAYAAAA",
+=======
+              "ViewState": "AQIAAAwAAAAAAAAAAAAYwBoAAAAaAAAA",
+>>>>>>> 911ed167da41013be3487f2c6596023d0ca1debd
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-10T05:49:56.805Z",
               "IsPinned": true,
@@ -117,9 +121,15 @@
               "Title": "Form7.cs",
               "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form7.cs",
               "RelativeDocumentMoniker": "HoneyOS\\Form7.cs",
+<<<<<<< HEAD
               "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form7.cs*",
               "RelativeToolTip": "HoneyOS\\Form7.cs*",
               "ViewState": "AQIAABcAAAAAAAAAAAAAwCMAAAAZAAAA",
+=======
+              "ToolTip": "C:\\Users\\Nitro-5\\OneDrive\\Documents\\Acads\\3Y2S\\HoneyOS\\HoneyOS\\HoneyOS\\Form7.cs",
+              "RelativeToolTip": "HoneyOS\\Form7.cs",
+              "ViewState": "AQIAAJUBAAAAAAAAAAAiwKEBAAAkAAAA",
+>>>>>>> 911ed167da41013be3487f2c6596023d0ca1debd
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-10T16:49:34.539Z",
               "EditorCaption": ""
