@@ -417,6 +417,8 @@ namespace HoneyOS
             {
                 copy.Enabled = true;
                 cut.Enabled = true;
+                saveAs.Enabled = true;
+                save.Enabled = true;
             }
             else
             {

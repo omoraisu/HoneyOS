@@ -31,11 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Desktop));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.notepadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.shutdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.notepadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,6 +43,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notepadToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.shutdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notepadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -75,53 +75,11 @@
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
-            // startToolStripMenuItem
-            // 
-            this.startToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.notepadToolStripMenuItem1,
-            this.toolStripSeparator1,
-            this.shutdownToolStripMenuItem});
-            this.startToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("startToolStripMenuItem.Image")));
-            this.startToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(100, 42);
-            this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
-            this.startToolStripMenuItem.MouseEnter += new System.EventHandler(this.startToolStripMenuItem_MouseEnter);
-            this.startToolStripMenuItem.MouseLeave += new System.EventHandler(this.startToolStripMenuItem_MouseLeave);
-            // 
-            // notepadToolStripMenuItem1
-            // 
-            this.notepadToolStripMenuItem1.Name = "notepadToolStripMenuItem1";
-            this.notepadToolStripMenuItem1.Size = new System.Drawing.Size(195, 34);
-            this.notepadToolStripMenuItem1.Text = "Notepad";
-            this.notepadToolStripMenuItem1.Click += new System.EventHandler(this.notepadToolStripMenuItem1_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(192, 6);
-            // 
-            // shutdownToolStripMenuItem
-            // 
-            this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(195, 34);
-            this.shutdownToolStripMenuItem.Text = "Shutdown";
-            this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
-            // 
-            // notepadToolStripMenuItem
-            // 
-            this.notepadToolStripMenuItem.Font = new System.Drawing.Font("Poppins", 9F);
-            this.notepadToolStripMenuItem.Image = global::HoneyOS.Properties.Resources.Notepad_Minimize;
-            this.notepadToolStripMenuItem.Name = "notepadToolStripMenuItem";
-            this.notepadToolStripMenuItem.Padding = new System.Windows.Forms.Padding(30, 0, 4, 0);
-            this.notepadToolStripMenuItem.Size = new System.Drawing.Size(165, 42);
-            this.notepadToolStripMenuItem.Text = "  Notepad";
-            // 
             // toolStripComboBox1
             // 
             this.toolStripComboBox1.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 23);
+            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 33);
             // 
             // label1
             // 
@@ -210,7 +168,7 @@
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Poppins", 8F);
-            this.button2.Image = global::HoneyOS.Properties.Resources.File_Manager_Icon;
+            this.button2.Image = global::HoneyOS.Properties.Resources.Folder;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button2.Location = new System.Drawing.Point(126, 16);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -253,10 +211,52 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
+            // startToolStripMenuItem
+            // 
+            this.startToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.notepadToolStripMenuItem1,
+            this.toolStripSeparator1,
+            this.shutdownToolStripMenuItem});
+            this.startToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("startToolStripMenuItem.Image")));
+            this.startToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.startToolStripMenuItem.Name = "startToolStripMenuItem";
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(100, 42);
+            this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
+            this.startToolStripMenuItem.MouseEnter += new System.EventHandler(this.startToolStripMenuItem_MouseEnter);
+            this.startToolStripMenuItem.MouseLeave += new System.EventHandler(this.startToolStripMenuItem_MouseLeave);
+            // 
+            // notepadToolStripMenuItem1
+            // 
+            this.notepadToolStripMenuItem1.Name = "notepadToolStripMenuItem1";
+            this.notepadToolStripMenuItem1.Size = new System.Drawing.Size(195, 34);
+            this.notepadToolStripMenuItem1.Text = "Notepad";
+            this.notepadToolStripMenuItem1.Click += new System.EventHandler(this.notepadToolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(192, 6);
+            // 
+            // shutdownToolStripMenuItem
+            // 
+            this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
+            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(195, 34);
+            this.shutdownToolStripMenuItem.Text = "Shutdown";
+            this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
+            // 
+            // notepadToolStripMenuItem
+            // 
+            this.notepadToolStripMenuItem.Font = new System.Drawing.Font("Poppins", 9F);
+            this.notepadToolStripMenuItem.Image = global::HoneyOS.Properties.Resources.Notepad_Minimize;
+            this.notepadToolStripMenuItem.Name = "notepadToolStripMenuItem";
+            this.notepadToolStripMenuItem.Padding = new System.Windows.Forms.Padding(30, 0, 4, 0);
+            this.notepadToolStripMenuItem.Size = new System.Drawing.Size(165, 42);
+            this.notepadToolStripMenuItem.Text = "  Notepad";
+            // 
             // fileManagerToolStripMenuItem
             // 
             this.fileManagerToolStripMenuItem.Font = new System.Drawing.Font("Poppins", 9F);
-            this.fileManagerToolStripMenuItem.Image = global::HoneyOS.Properties.Resources.File_Manager_Icon;
+            this.fileManagerToolStripMenuItem.Image = global::HoneyOS.Properties.Resources.Folder__1_;
             this.fileManagerToolStripMenuItem.Name = "fileManagerToolStripMenuItem";
             this.fileManagerToolStripMenuItem.Size = new System.Drawing.Size(174, 42);
             this.fileManagerToolStripMenuItem.Text = " File Manager";

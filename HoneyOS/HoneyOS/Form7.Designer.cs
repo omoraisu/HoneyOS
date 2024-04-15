@@ -99,7 +99,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Poppins", 15F);
-            this.label1.Location = new System.Drawing.Point(76, 48);
+            this.label1.Location = new System.Drawing.Point(88, 60);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(153, 53);
@@ -122,6 +122,7 @@
             // 
             this.save.BackColor = System.Drawing.Color.White;
             this.save.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.save.Enabled = false;
             this.save.FlatAppearance.BorderSize = 0;
             this.save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.save.Font = new System.Drawing.Font("Poppins", 9F);
@@ -144,6 +145,7 @@
             // 
             this.saveAs.BackColor = System.Drawing.Color.White;
             this.saveAs.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.saveAs.Enabled = false;
             this.saveAs.FlatAppearance.BorderSize = 0;
             this.saveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveAs.Font = new System.Drawing.Font("Poppins", 9F);

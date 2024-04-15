@@ -273,6 +273,8 @@
     <None Include="Resources\Empty Battery.png" />
     <None Include="Resources\SEARCH icon.png" />
     <None Include="Resources\File Manager Icon.png" />
+    <None Include="Resources\Folder.png" />
+    <None Include="Resources\Folder %281%29.png" />
     <Content Include="Resources\StartButton [Default].png" />
     <None Include="Resources\Transition %288%29.png" />
     <None Include="Resources\StartButton [Hovered].png" />
