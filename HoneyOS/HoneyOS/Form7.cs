@@ -424,6 +424,8 @@ namespace HoneyOS
             {
                 copy.Enabled = false;
                 cut.Enabled = false;
+                saveAs.Enabled = false;
+                save.Enabled = false;
             }
         }
 
