@@ -226,6 +226,8 @@ namespace HoneyOS
                         if (textEditorForm != null) // Check if reference is valid
                         {
                             textEditorForm.openFile(tempFilePath);
+                            textEditorForm.currentFile = currentlySelectedItemName;
+                            textEditorForm.currentPath = filePath;
                             textEditorForm.Show();
                         }
 
@@ -644,12 +646,14 @@ namespace HoneyOS
             {
                 MessageBox.Show("An error occurred while creating the file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            //Send some form of information to currentinstance of form7's isSaved boolean 
         }
 
         private void cancelFileButton_Click_1(object sender, EventArgs e)
         {
             // Hide the save file panel without creating a file
             this.Close();
+            //Send some form of information to currentinstance of form7's isSaved boolean 
         }
 
         private void newFileButton_Click_1(object sender, EventArgs e)
