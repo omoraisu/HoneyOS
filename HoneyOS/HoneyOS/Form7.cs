@@ -33,7 +33,7 @@ namespace HoneyOS
             /* full commands */
             "open new file please",         // open a text file
             "save this please",             // save the current text file
-            "save this new please",         // save text file to another text file
+            "save as file please",         // save text file to another text file
             "close this please",            // close current notepad
             // additional commands (not yet implemented)
             "cut this please",              // cut text
@@ -154,7 +154,7 @@ namespace HoneyOS
                         SaveFileFunction();
                         isListeningForAction = false;
                         break;
-                    case "save this new please":
+                    case "save as file please":
                         MessageBox.Show("Sure, i'll save one for you dear", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         SaveFileAsFunction();
                         isListeningForAction = false;
