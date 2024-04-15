@@ -173,14 +173,12 @@ namespace HoneyOS
         }
         private void OpenFileFunction()
         {
-            open.BackColor = Color.FromArgb(255, 234, 177);
             Form5 fileManager = new Form5(desktopInstance);
             fileManager.Show();
             this.Close();
         }
         private void SaveFileFunction()
         {
-            save.BackColor = Color.FromArgb(255, 234, 177);
             string CFilePath = Path.Combine(currentPath, currentFile);
             if (CFilePath != "")
             {
@@ -208,7 +206,6 @@ namespace HoneyOS
         }
         private void SaveFileAsFunction()
         {
-            saveAs.BackColor = Color.FromArgb(255, 234, 177);
             Form5 fileManager = new Form5(desktopInstance);
 
             // Subscribe to the SaveCompleted event
@@ -320,6 +317,7 @@ namespace HoneyOS
 
         private void save_Click(object sender, EventArgs e)
         {
+            save.BackColor = Color.FromArgb(255, 234, 177);
             SaveFileFunction();
         }
 
@@ -344,6 +342,7 @@ namespace HoneyOS
         }
         private void saveAs_Click(object sender, EventArgs e)
         {
+            saveAs.BackColor = Color.FromArgb(255, 234, 177);
             SaveFileAsFunction();
         }
         private void saveAs_MouseLeave(object sender, EventArgs e)
@@ -356,6 +355,7 @@ namespace HoneyOS
         }
         private void open_Click(object sender, EventArgs e)
         {
+            open.BackColor = Color.FromArgb(255, 234, 177);
             OpenFileFunction();
         }
         private void open_MouseLeave(object sender, EventArgs e)
