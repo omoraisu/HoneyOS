@@ -8,7 +8,7 @@ namespace HoneyOS
 {
     public class Scheduler
     {
-        private List<ProcessControlBlock> pcb_list;
+        protected List<ProcessControlBlock> pcb_list;
         // add variable for current time 
 
         // constructor to initialize list of pcbs
@@ -48,6 +48,20 @@ namespace HoneyOS
 
     public class RRR : Scheduler
     {
-        // add logic here
+        private int timeSlice;
+
+        // constructor for round robin
+        public RRR(int timeSlice) : base() // calls superclass constructor
+        {
+            this.timeSlice = timeSlice;
+        }
+
+        public void Run()
+        {
+            foreach (var pcb in pcb_list)
+            {
+                Console.WriteLine($"pID: {pcb.pID}");
+            }
+        }
     }
 }
