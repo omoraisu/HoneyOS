@@ -61,8 +61,8 @@ namespace HoneyOS
             while (pcb_list.Count > 0)
             {
                 ProcessControlBlock current_pcb = pcb_list[0];
-                current_pcb.state = status.RUNNING;
                 pcb_list.RemoveAt(0);
+                current_pcb.state = status.RUNNING;
 
                 if (current_pcb.burstTime > timeSlice)
                 {
