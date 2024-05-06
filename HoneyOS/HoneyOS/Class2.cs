@@ -51,16 +51,32 @@ namespace HoneyOS
         private int timeSlice;
 
         // constructor for round robin
-        public RRR(int timeSlice) : base() // calls superclass constructor
+        public RRR(int timeSlice) : base() // Calls superclass constructor
         {
             this.timeSlice = timeSlice;
         }
 
         public void Run()
         {
-            foreach (var pcb in pcb_list)
+            while (pcb_list.Count > 0)
             {
-                Console.WriteLine($"pID: {pcb.pID}");
+                ProcessControlBlock current_pcb = pcb_list[0];
+                current_pcb.state = status.RUNNING;
+                pcb_list.RemoveAt(0);
+
+                if (current_pcb.burstTime > timeSlice)
+                {
+                    current_pcb.burstTime -= timeSlice;
+                    pcb_list.Add(current_pcb);
+                    current_pcb.state = status.WAITING;
+                }
+                else
+                {
+                    current_pcb.burstTime = 0;
+                    current_pcb.state = status.TERMINATED;
+                }
+
+                // send process to task manager 
             }
         }
     }
