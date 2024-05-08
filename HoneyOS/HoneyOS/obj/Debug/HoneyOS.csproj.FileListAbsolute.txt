@@ -324,3 +324,5 @@ C:\Users\Nitro-5\OneDrive\Documents\Acads\3Y2S\HoneyOS\HoneyOS\HoneyOS\obj\Debug
 C:\Users\Nitro-5\OneDrive\Documents\Acads\3Y2S\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.csproj.Up2Date
 C:\Users\Nitro-5\OneDrive\Documents\Acads\3Y2S\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.exe
 C:\Users\Nitro-5\OneDrive\Documents\Acads\3Y2S\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.pdb
+C:\Users\Lenny\source\repos\HoneyOS (New)\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Form6.resources
+C:\Users\Lenny\source\repos\HoneyOS (New)\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Form8.resources

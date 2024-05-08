@@ -136,6 +136,9 @@
   <data name="Welcome Screen[Static]" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Welcome Screen[Static].png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="StartButton [Default]" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StartButton [Default].png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="File Manager Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\File Manager Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -169,6 +172,9 @@
   <data name="New Window" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\New Window.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Voice Indicator (Works)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Voice Indicator (Works).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -181,8 +187,8 @@
   <data name="Welcome Screen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Welcome Screen.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="StartButton [Default]2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\StartButton [Default]1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Play Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Play Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Note App" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Note App.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,14 +205,23 @@
   <data name="Close (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Close (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Folder (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Folder (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Save as" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save as.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="StartButton [Default]" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\StartButton [Default].png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Next" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Next.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StartButton [Default]2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\StartButton [Default]1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Audio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Audio.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,13 +241,16 @@
   <data name="Charging" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Charging.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Background (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Background (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="StartButton [Default]1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\StartButton [Default].png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Side Bar Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Side Bar Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Folder (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Folder (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Drop Down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Drop Down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

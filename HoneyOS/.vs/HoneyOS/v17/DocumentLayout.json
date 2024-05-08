@@ -3,52 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\honeyos\\form6.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form6.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|c:\\users\\lenny\\source\\repos\\honeyos (new)\\honeyos\\honeyos\\form8.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form8.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\honeyos\\form8.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form8.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\honeyos\\form6.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form6.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\honeyos\\form7.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form7.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|c:\\users\\lenny\\source\\repos\\honeyos (new)\\honeyos\\honeyos\\form7.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\honeyos\\form7.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form7.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\honeyos\\form3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:HoneyOS\\Form3.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\honeyos\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|c:\\users\\lenny\\source\\repos\\honeyos (new)\\honeyos\\honeyos\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:HoneyOS\\Form5.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:HoneyOS\\Form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\honeyos\\form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\honeyos\\form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:honeyos\\form4.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:HoneyOS\\Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F8167E82-AD72-4667-B9F0-10C4156584A4}|HoneyOS\\HoneyOS.csproj|solutionrelative:HoneyOS\\Form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,26 +38,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Form5.cs",
-              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form5.cs",
-              "RelativeDocumentMoniker": "HoneyOS\\Form5.cs",
-              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form5.cs",
-              "RelativeToolTip": "HoneyOS\\Form5.cs",
-<<<<<<< HEAD
-              "ViewState": "AQIAABQAAAAAAAAAAAAAwJQCAAAYAAAA",
-=======
-              "ViewState": "AQIAAAwAAAAAAAAAAAAYwBoAAAAaAAAA",
->>>>>>> 911ed167da41013be3487f2c6596023d0ca1debd
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-10T05:49:56.805Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
@@ -87,146 +49,88 @@
               "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Form2.cs",
-              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form2.cs",
-              "RelativeDocumentMoniker": "HoneyOS\\Form2.cs",
-              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form2.cs",
-              "RelativeToolTip": "HoneyOS\\Form2.cs",
-              "ViewState": "AQIAAGoAAAAAAAAAAADwvykAAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-14T22:55:20.092Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Form5.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form5.cs",
-              "RelativeDocumentMoniker": "HoneyOS\\Form5.cs",
-              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form5.cs [Design]",
-              "RelativeToolTip": "HoneyOS\\Form5.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-10T05:48:02.103Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form7.cs",
-              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form7.cs",
-              "RelativeDocumentMoniker": "HoneyOS\\Form7.cs",
-<<<<<<< HEAD
-              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form7.cs*",
-              "RelativeToolTip": "HoneyOS\\Form7.cs*",
-              "ViewState": "AQIAABcAAAAAAAAAAAAAwCMAAAAZAAAA",
-=======
-              "ToolTip": "C:\\Users\\Nitro-5\\OneDrive\\Documents\\Acads\\3Y2S\\HoneyOS\\HoneyOS\\HoneyOS\\Form7.cs",
-              "RelativeToolTip": "HoneyOS\\Form7.cs",
-              "ViewState": "AQIAAJUBAAAAAAAAAAAiwKEBAAAkAAAA",
->>>>>>> 911ed167da41013be3487f2c6596023d0ca1debd
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-10T16:49:34.539Z",
-              "EditorCaption": ""
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Form7.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form7.cs",
-              "RelativeDocumentMoniker": "HoneyOS\\Form7.cs",
-              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form7.cs [Design]*",
-              "RelativeToolTip": "HoneyOS\\Form7.cs [Design]*",
+              "Title": "Form8.cs",
+              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form8.cs",
+              "RelativeDocumentMoniker": "HoneyOS\\Form8.cs",
+              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form8.cs",
+              "RelativeToolTip": "HoneyOS\\Form8.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-10T16:48:14.272Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Form3.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form3.cs",
-              "RelativeDocumentMoniker": "HoneyOS\\Form3.cs",
-              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form3.cs [Design]",
-              "RelativeToolTip": "HoneyOS\\Form3.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-20T07:21:14.865Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2024-05-06T09:27:36.914Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "Form8.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form8.cs",
+              "RelativeDocumentMoniker": "HoneyOS\\Form8.cs",
+              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form8.cs [Design]",
+              "RelativeToolTip": "HoneyOS\\Form8.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-06T09:18:57.957Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form6.cs",
+              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form6.cs",
+              "RelativeDocumentMoniker": "HoneyOS\\Form6.cs",
+              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form6.cs",
+              "RelativeToolTip": "HoneyOS\\Form6.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAMwBIAAABrAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-06T06:21:56.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Form6.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form6.cs",
+              "RelativeDocumentMoniker": "HoneyOS\\Form6.cs",
+              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form6.cs [Design]",
+              "RelativeToolTip": "HoneyOS\\Form6.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-06T06:06:26.273Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Form7.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form7.cs",
+              "RelativeDocumentMoniker": "HoneyOS\\Form7.cs",
+              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form7.cs [Design]",
+              "RelativeToolTip": "HoneyOS\\Form7.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-06T06:05:39.707Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Form3.cs",
               "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form3.cs",
               "RelativeDocumentMoniker": "HoneyOS\\Form3.cs",
               "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form3.cs",
               "RelativeToolTip": "HoneyOS\\Form3.cs",
-              "ViewState": "AQIAAKMAAAAAAAAAAADwv3sAAAAqAAAA",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAkwB0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-20T14:58:47.862Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-03-20T14:58:47.862Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Form4.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form4.cs",
-              "RelativeDocumentMoniker": "HoneyOS\\Form4.cs",
-              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form4.cs [Design]",
-              "RelativeToolTip": "HoneyOS\\Form4.cs [Design]",
+              "DocumentIndex": 4,
+              "Title": "Form7.cs",
+              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form7.cs",
+              "RelativeDocumentMoniker": "HoneyOS\\Form7.cs",
+              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form7.cs",
+              "RelativeToolTip": "HoneyOS\\Form7.cs",
+              "ViewState": "AQIAAKcAAAAAAAAAAIAwwLUAAABGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-26T05:16:36.461Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Form2.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form2.cs",
-              "RelativeDocumentMoniker": "HoneyOS\\Form2.cs",
-              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form2.cs [Design]",
-              "RelativeToolTip": "HoneyOS\\Form2.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-20T06:45:34.771Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Form4.cs",
-              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form4.cs",
-              "RelativeDocumentMoniker": "HoneyOS\\Form4.cs",
-              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form4.cs",
-              "RelativeToolTip": "HoneyOS\\Form4.cs",
-              "ViewState": "AQIAACkAAAAAAAAAAAAEwDoAAAA7AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-21T06:28:34.363Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form1.cs",
-              "RelativeDocumentMoniker": "HoneyOS\\Form1.cs",
-              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form1.cs",
-              "RelativeToolTip": "HoneyOS\\Form1.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-20T06:02:17.757Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form1.cs",
-              "RelativeDocumentMoniker": "HoneyOS\\Form1.cs",
-              "ToolTip": "C:\\Users\\Lenny\\source\\repos\\HoneyOS (New)\\HoneyOS\\HoneyOS\\Form1.cs [Design]",
-              "RelativeToolTip": "HoneyOS\\Form1.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-20T06:01:57.39Z"
+              "WhenOpened": "2024-05-06T06:29:50.457Z"
             }
           ]
         }
