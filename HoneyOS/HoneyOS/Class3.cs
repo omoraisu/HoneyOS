@@ -8,10 +8,39 @@ namespace HoneyOS
 {
     public class TaskManager
     {
-        public TaskManager() { }
+        private static int nextPID = 0; // keeps track of the next available pID 
+        public List<ProcessControlBlock> processes; 
+        public TaskManager() { 
+            processes = new List<ProcessControlBlock>();
+        }
+
+        public void GenerateProcesses(int numProcesses)
+        {
+            Random random = new Random();
+            for (int i = 0; i < numProcesses; i++)
+            {
+                processes.Add(CreateProcess(nextPID++, random));
+            }
+        }
+
+        private ProcessControlBlock CreateProcess(int pID, Random random)
+        {
+            return new ProcessControlBlock(
+                pID,
+                random.Next(0, 60), // Arrival Time
+                random.Next(1, 60), // Burst Time
+                random.Next(0, 60), // Priority Level
+                status.READY // Set initial state to Ready
+            );
+        }
+
         // this is still bootleg version for testing purposes 
         public void Execute()
         {
+
+
+
+            /*
             // insert main logic here
             ProcessControlBlock pcb1 = new ProcessControlBlock(0, 3, 0, 1, status.READY);
             ProcessControlBlock pcb2 = new ProcessControlBlock(1, 5, 3, 4, status.READY);
@@ -64,6 +93,7 @@ namespace HoneyOS
             pcb8.PrintPCB();
 
             fifo.Run();
+            */
         }
     }
 }
