@@ -1,0 +1,41 @@
+Process		Arrival		CPU Burst Time		Priority
+1		       0		     19			       0
+2		       1		     14			       0
+3		       2		     10			       1
+4		       3		     8			       1
+5		       4		     11			       2
+6		       4		     9			       3
+7		       5		     12			       2
+8		       5		     14			       4
+9		       6		     15			       3
+10		       7		     19			       2
+11		       8		     25			       0
+12		       9		     21			       1
+13		       9		     8			       2
+14		       10		     3			       5
+15		       10		     4			       5
+16		       11		     14			       4
+17		       11		     12			       4
+18		       12		     10			       2
+19		       13		     10		     	   3
+20		       13		     9			       2
+
+1. Initialize an empty ready queue and a variable called current_time = 0
+2. While there are processes in the ready queue or waiting to arrive:
+     a. Check if there are any processes that have arrived at or before current_time
+     b. If there are, add them to the ready queue
+     c. Sort the ready queue by remaining_time (burst_time - time_executed) in ascending order
+     d. Select the process at the front of the ready queue
+     e. Execute the process for one time unit
+     f. Update the current_time by one unit
+     g. Update the remaining_time of the currently executing process
+     h. If the remaining_time of the currently executing process is 0:
+          i. Remove the process from the ready queue
+          ii. Record the turnaround_time and waiting_time of the process
+     i. If a new process arrives with a shorter remaining_time than the currently executing process:
+          i. Preempt the currently executing process
+          ii. Add it to the ready queue
+          iii. Sort the ready queue by remaining_time again
+          iv. Select the process at the front of the ready queue and execute it
+
+3. Calculate and print the average waiting_time and turnaround_time for all processes

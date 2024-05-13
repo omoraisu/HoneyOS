@@ -1,0 +1,30 @@
+1. FCFS
+- Not good for short processes especially if there are longer processes prior
+- Better if randomized arrival time if there are both long and short processes
+2. SJF 
+- Works best for shorter processes 
+- Longer processes will starve 
+3. SRPT
+- Improves waiting time for longer processes since it can pre empt the shorter ones first 
+- Gives access on process depending on the burst time 
+- Not really fixated on one process
+- More flexible
+- Will shine best if processes are arranged 
+4. Priority
+- Best if randomized ang processes 
+5. Round Robin
+- Best for when there is perfect balance in time slice and the processes  
+- time slice should short enough to ensure that shorter processes complete execution quickly, reduce the waiting time of longer processes
+
+Notes: 
+- Variety
+- Arrangement 
+
+Ranking
+Shortest Remaining Possible Time (SRPT)
+Shortest Job First (SJF)
+Round Robin (RR)
+Priority Scheduling
+First Come First Serve (FCFS)
+
+Case to case basis 

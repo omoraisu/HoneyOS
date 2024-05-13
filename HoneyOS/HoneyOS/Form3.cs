@@ -25,6 +25,8 @@ namespace HoneyOS
 
         List<Form7> notepads = new List<Form7>();
         List<Form5> file_managers = new List<Form5>();
+        List<Form6> task_manager = new List<Form6>();
+        List<Form8> menu = new List<Form8>();       //delete this after
 
         PowerStatus ps = SystemInformation.PowerStatus;
 
@@ -263,6 +265,21 @@ namespace HoneyOS
         {
             OpenFileManagerFunction();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form6 form6 = new Form6(this);
+            task_manager.Add(form6);
+            form6.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Form8 form8 = new Form8(this);
+            menu.Add(form8);
+            form8.Show();
+        }
+
         private void BatteryTimer_Tick(object sender, EventArgs e)
         {
             BatteryLife.Value = (int)(ps.BatteryLifePercent * 100);
