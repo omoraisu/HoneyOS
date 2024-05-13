@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Animation;
 
 namespace HoneyOS
 {
@@ -33,17 +34,98 @@ namespace HoneyOS
     // child classes for scheduling algorithms 
     public class FIFO : Scheduler
     {
-        // add logic here
+        public FIFO() : base() // Calls superclass constructor
+        {
+
+        }
+        public void Run()
+        {
+
+            List<ProcessControlBlock> sortedProcess = pcb_list.OrderBy(prcs => prcs.arrivalTime)
+                                                              .ThenBy(prcs => prcs.pID)
+                                                              .ToList();
+
+            foreach(ProcessControlBlock process in sortedProcess)
+            {
+                pcb_list.RemoveAt(pcb_list.IndexOf(process));
+            }
+        }
     }
 
     public class SJF : Scheduler
     {
-        // add logic here
+        public SJF() : base() // Calls superclass constructor
+        {
+
+        }
+        public void Run()
+        {
+            int interval = 1; // this is according to the usual examples
+            int currentTime = 0;
+
+            while (pcb_list.Count > 0)
+            {
+                ProcessControlBlock min_pcb = pcb_list[0];
+                foreach(ProcessControlBlock process in pcb_list)
+                {
+                    if(process.arrivalTime <= currentTime && min_pcb.burstTime > process.burstTime)
+                    {
+                        min_pcb = process;
+                    }
+                }
+
+                min_pcb.state = status.RUNNING;
+                min_pcb.burstTime -= interval;
+
+                if (min_pcb.burstTime <= 0)
+                {
+                    min_pcb.burstTime = 0;
+                    pcb_list.RemoveAt(pcb_list.IndexOf(min_pcb));
+                    min_pcb.state = status.TERMINATED;
+                }
+
+                currentTime++;
+                // send process to task manager 
+            }
+        }
     }
 
     public class PRIO : Scheduler
     {
-        // add logic here
+        public PRIO() : base() // Calls superclass constructor
+        {
+
+        }
+        public void Run()
+        {
+            int interval = 1; // this is according to the usual examples
+            int currentTime = 0;
+
+            while (pcb_list.Count > 0)
+            {
+                ProcessControlBlock highprio_pcb = pcb_list[0];
+                foreach (ProcessControlBlock process in pcb_list)
+                {
+                    if (process.arrivalTime <= currentTime && highprio_pcb.priority > process.priority)
+                    {
+                        highprio_pcb = process;
+                    }
+                }
+
+                highprio_pcb.state = status.RUNNING;
+                highprio_pcb.burstTime -= interval;
+
+                if (highprio_pcb.burstTime <= 0)
+                {
+                    highprio_pcb.burstTime = 0;
+                    pcb_list.RemoveAt(pcb_list.IndexOf(highprio_pcb));
+                    highprio_pcb.state = status.TERMINATED;
+                }
+
+                currentTime++;
+                // send process to task manager 
+            }
+        }
     }
 
     public class RRR : Scheduler
