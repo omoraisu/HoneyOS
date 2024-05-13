@@ -15,6 +15,7 @@ namespace HoneyOS
         private Desktop desktopInstance; // Reference to an instance of Desktop form
         public bool button2_Clicked;
         public bool button1_Clicked;
+        public algo chosenAlgo; 
 
         public Form8(Desktop desktopInstance)
         {
@@ -29,6 +30,7 @@ namespace HoneyOS
         private void OpenFileFunction()
         {
             Form6 taskManager = new Form6(desktopInstance);
+            taskManager.UpdateSchedulingAlgo(chosenAlgo);
             taskManager.Show();
             this.Close();
         }
@@ -36,6 +38,7 @@ namespace HoneyOS
         private void button1_Click(object sender, EventArgs e)
         {
             button1.BackColor = Color.FromArgb(255, 234, 177);
+            chosenAlgo = algo.FIFO;
             OpenFileFunction();
             
         }
@@ -53,6 +56,7 @@ namespace HoneyOS
         private void button2_Click(object sender, EventArgs e)
         {
             button2.BackColor = Color.FromArgb(255, 234, 177);
+            chosenAlgo = algo.SJF;
             OpenFileFunction();
         }
 
@@ -78,6 +82,7 @@ namespace HoneyOS
         private void button3_Click(object sender, EventArgs e)
         {
             button3.BackColor = Color.FromArgb(255, 234, 177);
+            chosenAlgo = algo.PRIO;
             OpenFileFunction();
         }
         // Round Robin
@@ -93,6 +98,7 @@ namespace HoneyOS
         private void button4_Click(object sender, EventArgs e)
         {
             button4.BackColor = Color.FromArgb(255, 234, 177);
+            chosenAlgo = algo.RRR;
             OpenFileFunction();
         }
 /*        private void button5_MouseEnter(object sender, EventArgs e)

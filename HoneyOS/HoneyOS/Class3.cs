@@ -37,9 +37,6 @@ namespace HoneyOS
         // this is still bootleg version for testing purposes 
         public void Execute()
         {
-
-
-
             /*
             // insert main logic here
             ProcessControlBlock pcb1 = new ProcessControlBlock(0, 3, 0, 1, status.READY);
@@ -95,5 +92,12 @@ namespace HoneyOS
             fifo.Run();
             */
         }
+    }
+    public enum algo
+    {
+        FIFO,
+        SJF,
+        PRIO,
+        RRR
     }
 }

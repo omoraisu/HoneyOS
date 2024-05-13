@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Schema;
 using Win32Interop.Enums;
 
 namespace HoneyOS
@@ -15,6 +16,7 @@ namespace HoneyOS
     {
         private Desktop desktopInstance; // Reference to an instance of Desktop form
         private TaskManager taskManager;
+        private algo schedulingAlgo; 
 
         // Constructor
         public Form6(Desktop desktopInstance)
@@ -27,6 +29,11 @@ namespace HoneyOS
         private void InitializeTaskManager()
         {
             taskManager = new TaskManager();
+        }
+
+        public void UpdateSchedulingAlgo(algo al)
+        {
+            schedulingAlgo = al; 
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -121,6 +128,11 @@ namespace HoneyOS
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
         {
 
         }
