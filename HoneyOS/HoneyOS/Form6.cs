@@ -7,16 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Win32Interop.Enums;
 
 namespace HoneyOS
 {
     public partial class Form6 : Form
     {
         private Desktop desktopInstance; // Reference to an instance of Desktop form
+        private TaskManager taskManager;
+
+        // Constructor
         public Form6(Desktop desktopInstance)
         {
             InitializeComponent();
-            this.desktopInstance = desktopInstance; // Assign the reference to the instance of Desktop form
+            InitializeTaskManager();
+        }
+
+        // Initializes new task manager to be used for this instance 
+        private void InitializeTaskManager()
+        {
+            taskManager = new TaskManager();
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -34,18 +44,38 @@ namespace HoneyOS
 
         }
 
+        // When play is clicked 
         private void button1_Click(object sender, EventArgs e)
         {
-            //this is a sample on how to add a single item on the list.
-            ListViewItem listitem = new ListViewItem("Process 1");
-            listitem.SubItems.Add("00:00:00");
-            listitem.SubItems.Add("00:00:00");
-            listitem.SubItems.Add("memory");
-            listitem.SubItems.Add("Ready");
-
-            listView1.Items.Add(listitem);
-
+            // Check if a TaskManager instance is available
+            if (taskManager != null)
+            {
+                // Update the process list based on the TaskManager instance
+                Random random = new Random();
+                int numProcesses = random.Next(1, 61);
+                taskManager.GenerateProcesses(numProcesses);
+                UpdateProcessList();
+            }
+            else
+            {
+                // Handle the case where TaskManager is not available
+                MessageBox.Show("Task Manager instance not found!", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
+        // Updates the list based on the current list in task manager 
+        private void UpdateProcessList()
+        {
+            listView1.Items.Clear(); // Clear existing items
+
+            foreach (ProcessControlBlock process in taskManager.processes)
+            {
+                string[] processInfo = { process.pID.ToString(), process.arrivalTime.ToString(), process.burstTime.ToString(), process.priority.ToString(), process.state.ToString() };
+                ListViewItem newItem = new ListViewItem(processInfo);
+                listView1.Items.Add(newItem);
+            }
+        }
+
 
         private void button1_MouseEnter(object sender, EventArgs e)
         {
