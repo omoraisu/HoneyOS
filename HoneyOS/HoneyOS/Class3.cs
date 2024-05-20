@@ -9,7 +9,10 @@ namespace HoneyOS
     public class TaskManager
     {
         private static int nextPID = 0; // keeps track of the next available pID 
-        public List<ProcessControlBlock> processes; 
+        public List<ProcessControlBlock> processes;
+        private taskStatus taskStatus;
+        public int currentTime; 
+
         public TaskManager() { 
             processes = new List<ProcessControlBlock>();
         }
@@ -27,9 +30,9 @@ namespace HoneyOS
         {
             return new ProcessControlBlock(
                 pID,
-                random.Next(0, 60), // Arrival Time
-                random.Next(1, 60), // Burst Time
-                random.Next(0, 60), // Priority Level
+                random.Next(0, 10), // Arrival Time
+                random.Next(1, 10), // Burst Time
+                random.Next(0, 10), // Priority Level
                 status.READY // Set initial state to Ready
             );
         }
@@ -93,11 +96,11 @@ namespace HoneyOS
             */
         }
     }
-    public enum algo
+
+    public enum taskStatus
     {
-        FIFO,
-        SJF,
-        PRIO,
-        RRR
+        PLAY, 
+        PAUSE, 
+        STOP
     }
 }
