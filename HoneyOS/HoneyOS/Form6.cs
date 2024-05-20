@@ -15,13 +15,43 @@ namespace HoneyOS
     {
         private Desktop desktopInstance; // Reference to an instance of Desktop form
         private TaskManager taskManager;
-        public algo schedulingAlgo; 
+        public algo schedulingAlgo;
+
+        // Public properties to hold the boolean values
+        public bool FIFO { get; set; }
+        public bool PRIO { get; set; }
+        public bool RRR { get; set; }
+        public bool SJF { get; set; }
 
         // Constructor
         public Form6(Desktop desktopInstance)
         {
             InitializeComponent();
             InitializeTaskManager();
+        }
+        private void Form6_Load(object sender, EventArgs e)
+        {
+            // Access boolean properties and update label4
+            if (FIFO)
+            {
+                label4.Text = "First Come First Serve";
+                FIFO = false;
+            }
+            else if (PRIO)
+            {
+                label4.Text = "Priority";
+                PRIO = false;
+            }
+            else if (RRR)
+            {
+                label4.Text = "Round Robin";
+                RRR = false;
+            }
+            else if (SJF)
+            {
+                label4.Text = "Shortest Job First";
+                SJF = false;
+            }
         }
 
         // Initializes new task manager to be used for this instance 
@@ -104,11 +134,6 @@ namespace HoneyOS
         }
 
         private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form6_Load(object sender, EventArgs e)
         {
 
         }

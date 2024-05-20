@@ -15,8 +15,11 @@ namespace HoneyOS
         private Desktop desktopInstance; // Reference to an instance of Desktop form
         public bool button2_Clicked;
         public bool button1_Clicked;
-        public algo chosenAlgo; 
-
+        public algo chosenAlgo;
+        public bool FIFO { get; set; }
+        public bool PRIO { get; set; }
+        public bool RRR { get; set; }
+        public bool SJF { get; set; }
         public Form8(Desktop desktopInstance)
         {
             InitializeComponent();
@@ -31,6 +34,13 @@ namespace HoneyOS
         {
             Form6 taskManager = new Form6(desktopInstance);
             taskManager.UpdateSchedulingAlgo(chosenAlgo);
+
+            // Set the boolean properties
+            taskManager.FIFO = this.FIFO;
+            taskManager.PRIO = this.PRIO;
+            taskManager.RRR = this.RRR;
+            taskManager.SJF = this.SJF;
+
             taskManager.Show();
             this.Close();
         }
@@ -39,6 +49,7 @@ namespace HoneyOS
         {
             button1.BackColor = Color.FromArgb(255, 234, 177);
             chosenAlgo = algo.FIFO;
+            FIFO = true;   
             OpenFileFunction();
             
         }
@@ -57,6 +68,7 @@ namespace HoneyOS
         {
             button2.BackColor = Color.FromArgb(255, 234, 177);
             chosenAlgo = algo.SJF;
+            SJF = true;
             OpenFileFunction();
         }
 
@@ -83,6 +95,7 @@ namespace HoneyOS
         {
             button3.BackColor = Color.FromArgb(255, 234, 177);
             chosenAlgo = algo.PRIO;
+            PRIO = true;
             OpenFileFunction();
         }
         // Round Robin
@@ -99,6 +112,7 @@ namespace HoneyOS
         {
             button4.BackColor = Color.FromArgb(255, 234, 177);
             chosenAlgo = algo.RRR;
+            RRR = true;
             OpenFileFunction();
         }
 /*        private void button5_MouseEnter(object sender, EventArgs e)
