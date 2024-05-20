@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace HoneyOS
 {
@@ -10,11 +11,13 @@ namespace HoneyOS
     {
         private static int nextPID = 0; // keeps track of the next available pID 
         public List<ProcessControlBlock> processes;
-        private taskStatus taskStatus;
+        public taskStatus taskStatus;
+        public algo schedulingAlgorithm;
         public int currentTime; 
 
         public TaskManager() { 
             processes = new List<ProcessControlBlock>();
+            currentTime = 0;
         }
 
         public void GenerateProcesses(int numProcesses)
@@ -40,60 +43,29 @@ namespace HoneyOS
         // this is still bootleg version for testing purposes 
         public void Execute()
         {
-            /*
-            // insert main logic here
-            ProcessControlBlock pcb1 = new ProcessControlBlock(0, 3, 0, 1, status.READY);
-            ProcessControlBlock pcb2 = new ProcessControlBlock(1, 5, 3, 4, status.READY);
+            switch (schedulingAlgorithm)
+            {
+                case algo.FIFO: 
+                    FIFO fifo = new FIFO();
+                    if (processes.Count > 0)
+                    {
+                        SimulateTimePassage();
+                        // ProcessControlBlock current_pcb = processes[0];
+                        processes[0] = fifo.Run(processes[0]);
 
-            RRR rr = new RRR(4);
-
-            rr.AddPCB(pcb1);
-            rr.AddPCB(pcb2);
-
-            pcb1.PrintPCB();
-            pcb2.PrintPCB();
-
-            rr.Run();
-
-            ProcessControlBlock pcb3 = new ProcessControlBlock(0, 3, 0, 1, status.READY);
-            ProcessControlBlock pcb4 = new ProcessControlBlock(1, 5, 3, 4, status.READY);
-
-            SJF sjf = new SJF();
-
-            sjf.AddPCB(pcb3);
-            sjf.AddPCB(pcb4);
-
-            pcb3.PrintPCB();
-            pcb4.PrintPCB();
-
-            sjf.Run();
-
-            ProcessControlBlock pcb5 = new ProcessControlBlock(0, 3, 0, 1, status.READY);
-            ProcessControlBlock pcb6 = new ProcessControlBlock(1, 5, 3, 4, status.READY);
-
-            PRIO prio = new PRIO(); 
-
-            prio.AddPCB(pcb5);
-            prio.AddPCB(pcb6);
-
-            pcb5.PrintPCB();
-            pcb6.PrintPCB();
-
-            prio.Run();
-
-            ProcessControlBlock pcb7 = new ProcessControlBlock(0, 3, 0, 1, status.READY);
-            ProcessControlBlock pcb8 = new ProcessControlBlock(1, 5, 3, 4, status.READY);
-
-            FIFO fifo = new FIFO();
-
-            fifo.AddPCB(pcb7);
-            fifo.AddPCB(pcb8);
-
-            pcb7.PrintPCB();
-            pcb8.PrintPCB();
-
-            fifo.Run();
-            */
+                        if (processes[0].state == status.TERMINATED & processes.Count > 0)
+                        {
+                            processes.RemoveAt(0);
+                        }
+                    }
+                    break;
+            }
+        }
+        public void SimulateTimePassage()
+        {
+            currentTime += 1; // Simulate 5-second delay
+            Thread.Sleep(2000);
+            // scheduler.Run(currentTime); // Run the scheduler with current time
         }
     }
 
