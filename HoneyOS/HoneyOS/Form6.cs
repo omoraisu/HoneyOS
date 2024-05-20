@@ -29,37 +29,13 @@ namespace HoneyOS
         private void InitializeTaskManager()
         {
             taskManager = new TaskManager();
-        }
 
-        public void UpdateSchedulingAlgo(algo al)
-        {
-            schedulingAlgo = al; 
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form6_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        // When play is clicked 
-        private void button1_Click(object sender, EventArgs e)
-        {
             // Check if a TaskManager instance is available
             if (taskManager != null)
             {
                 // Update the process list based on the TaskManager instance
                 Random random = new Random();
-                int numProcesses = random.Next(1, 61);
+                int numProcesses = random.Next(1, 10);
                 taskManager.GenerateProcesses(numProcesses);
                 UpdateProcessList();
             }
@@ -83,6 +59,50 @@ namespace HoneyOS
             }
         }
 
+        public void UpdateSchedulingAlgo(algo al)
+        {
+            schedulingAlgo = al;
+        }
+
+        // When play is clicked 
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // When pause is clicked
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        // When stop is clicked
+        private void button3_Click(object sender, EventArgs e)
+        {
+            taskManager.currentTime = 0;
+            listView1.Items.Clear();
+        }
+
+        // When next is clicked 
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form6_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void button1_MouseEnter(object sender, EventArgs e)
         {
