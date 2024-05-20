@@ -36,6 +36,7 @@
             this.memory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,7 +46,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -79,7 +79,7 @@
             this.memory,
             this.status});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.Font = new System.Drawing.Font("Poppins", 8F);
+            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.listView1.GridLines = true;
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.listView1.HideSelection = false;
@@ -140,15 +140,28 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(604, 20);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label4.Location = new System.Drawing.Point(108, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 20);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Round Robin";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
             // label3
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Poppins", 7F);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.label3.Location = new System.Drawing.Point(3, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(95, 20);
+            this.label3.Size = new System.Drawing.Size(92, 20);
             this.label3.TabIndex = 1;
             this.label3.Text = "Scheduling Policy:";
             // 
@@ -157,10 +170,10 @@
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Poppins", 7F);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.label6.Location = new System.Drawing.Point(553, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 20);
+            this.label6.Size = new System.Drawing.Size(43, 20);
             this.label6.TabIndex = 4;
             this.label6.Text = "00:00:00";
             // 
@@ -169,10 +182,10 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Poppins", 7F);
-            this.label2.Location = new System.Drawing.Point(497, 0);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.label2.Location = new System.Drawing.Point(499, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 20);
+            this.label2.Size = new System.Drawing.Size(48, 20);
             this.label2.TabIndex = 5;
             this.label2.Text = "Runtime:";
             // 
@@ -202,17 +215,17 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Poppins", 20F);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 42);
+            this.label1.Size = new System.Drawing.Size(142, 31);
             this.label1.TabIndex = 0;
             this.label1.Text = "Processes";
             // 
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button1.Font = new System.Drawing.Font("Poppins", 5F);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F);
             this.button1.Image = global::HoneyOS.Properties.Resources.Play_Icon;
             this.button1.Location = new System.Drawing.Point(445, 1);
             this.button1.Margin = new System.Windows.Forms.Padding(1);
@@ -229,7 +242,7 @@
             // button2
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button2.Font = new System.Drawing.Font("Poppins", 5F);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F);
             this.button2.Image = global::HoneyOS.Properties.Resources.Pause;
             this.button2.Location = new System.Drawing.Point(485, 1);
             this.button2.Margin = new System.Windows.Forms.Padding(1);
@@ -239,13 +252,14 @@
             this.button2.Text = "Pause";
             this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             this.button2.MouseEnter += new System.EventHandler(this.button2_MouseEnter);
             this.button2.MouseLeave += new System.EventHandler(this.button2_MouseLeave);
             // 
             // button3
             // 
             this.button3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button3.Font = new System.Drawing.Font("Poppins", 5F);
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F);
             this.button3.Image = global::HoneyOS.Properties.Resources.Stop;
             this.button3.Location = new System.Drawing.Point(525, 1);
             this.button3.Margin = new System.Windows.Forms.Padding(1);
@@ -255,13 +269,14 @@
             this.button3.Text = "Stop";
             this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             this.button3.MouseEnter += new System.EventHandler(this.button3_MouseEnter);
             this.button3.MouseLeave += new System.EventHandler(this.button3_MouseLeave);
             // 
             // button4
             // 
             this.button4.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button4.Font = new System.Drawing.Font("Poppins", 5F);
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F);
             this.button4.Image = global::HoneyOS.Properties.Resources.Next;
             this.button4.Location = new System.Drawing.Point(565, 1);
             this.button4.Margin = new System.Windows.Forms.Padding(1);
@@ -271,19 +286,7 @@
             this.button4.Text = "Next";
             this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button4.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Poppins", 7F);
-            this.label4.Location = new System.Drawing.Point(108, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 20);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Round Robin";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form6
             // 
