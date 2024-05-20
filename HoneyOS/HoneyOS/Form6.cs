@@ -5,7 +5,6 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Schema;
 using Win32Interop.Enums;
@@ -16,7 +15,7 @@ namespace HoneyOS
     {
         private Desktop desktopInstance; // Reference to an instance of Desktop form
         private TaskManager taskManager;
-        private algo schedulingAlgo; 
+        public algo schedulingAlgo; 
 
         // Constructor
         public Form6(Desktop desktopInstance)
@@ -67,18 +66,33 @@ namespace HoneyOS
         // When play is clicked 
         private void button1_Click(object sender, EventArgs e)
         {
+            taskManager.taskStatus = taskStatus.PLAY;
+
+            while (taskManager.taskStatus == taskStatus.PLAY & taskManager.processes.Count > 0)
+            {
+                taskManager.Execute();
+                UpdateProcessList();
+                taskManager.processes[0].PrintPCB();
+
+                if (taskManager.processes.Count < 1)
+                {
+                    taskManager.taskStatus = taskStatus.STOP;
+                }
+
+            }
 
         }
 
         // When pause is clicked
         private void button2_Click(object sender, EventArgs e)
         {
-
+            taskManager.taskStatus = taskStatus.PAUSE;
         }
 
         // When stop is clicked
         private void button3_Click(object sender, EventArgs e)
         {
+            taskManager.taskStatus = taskStatus.STOP;
             taskManager.currentTime = 0;
             listView1.Items.Clear();
         }
@@ -86,7 +100,7 @@ namespace HoneyOS
         // When next is clicked 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            taskManager.currentTime += 1;
         }
 
         private void label5_Click(object sender, EventArgs e)
