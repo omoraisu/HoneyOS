@@ -39,38 +39,24 @@ namespace HoneyOS
         {
 
         }
-        public void Run()
+        public ProcessControlBlock Run(ProcessControlBlock process)
         {
-            // Simulate the passage of time
-            int currentTime = 0;
 
-            foreach (ProcessControlBlock process in pcb_list)
+            // Process starts running
+            process.state = status.RUNNING;
+
+            // Simulate process execution by advancing the current time
+            process.burstTime--;
+
+            // Process terminates after its burst time
+            if (process.burstTime < 1)
             {
-                // Wait until the process's arrival time
-                if (currentTime < process.arrivalTime)
-                {
-                    currentTime = process.arrivalTime;
-                }
-
-                // Process starts running
-                process.state = status.RUNNING;
-                process.PrintPCB();
-
-                // Simulate process execution by advancing the current time
-                currentTime += process.burstTime;
-
-                // Process terminates after its burst time
                 process.state = status.TERMINATED;
-                process.PrintPCB();
             }
 
-            // Clear the list after processing all PCBs
-            pcb_list.Clear();
-
+            return process; 
         }
-    
     }
-
 
     public class SJF : Scheduler
     {
