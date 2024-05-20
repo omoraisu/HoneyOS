@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Animation;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace HoneyOS
 {
@@ -40,17 +41,36 @@ namespace HoneyOS
         }
         public void Run()
         {
+            // Simulate the passage of time
+            int currentTime = 0;
 
-            List<ProcessControlBlock> sortedProcess = pcb_list.OrderBy(prcs => prcs.arrivalTime)
-                                                              .ThenBy(prcs => prcs.pID)
-                                                              .ToList();
-
-            foreach(ProcessControlBlock process in sortedProcess)
+            foreach (ProcessControlBlock process in pcb_list)
             {
-                pcb_list.RemoveAt(pcb_list.IndexOf(process));
+                // Wait until the process's arrival time
+                if (currentTime < process.arrivalTime)
+                {
+                    currentTime = process.arrivalTime;
+                }
+
+                // Process starts running
+                process.state = status.RUNNING;
+                process.PrintPCB();
+
+                // Simulate process execution by advancing the current time
+                currentTime += process.burstTime;
+
+                // Process terminates after its burst time
+                process.state = status.TERMINATED;
+                process.PrintPCB();
             }
+
+            // Clear the list after processing all PCBs
+            pcb_list.Clear();
+
         }
+    
     }
+
 
     public class SJF : Scheduler
     {
@@ -163,3 +183,4 @@ namespace HoneyOS
         }
     }
 }
+s
