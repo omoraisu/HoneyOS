@@ -182,5 +182,11 @@ namespace HoneyOS
             }
         }
     }
+    public enum algo
+    {
+        FIFO,
+        SJF,
+        PRIO,
+        RRR
+    }
 }
-s
