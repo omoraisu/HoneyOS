@@ -37,9 +37,10 @@ namespace HoneyOS
 
             // Set the boolean properties
             taskManager.FIFO = this.FIFO;
+            taskManager.SJF = this.SJF;
             taskManager.PRIO = this.PRIO;
             taskManager.RRR = this.RRR;
-            taskManager.SJF = this.SJF;
+            
 
             taskManager.Show();
             this.Close();

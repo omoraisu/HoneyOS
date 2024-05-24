@@ -18,6 +18,7 @@ namespace HoneyOS
         public TaskManager() { 
             processes = new List<ProcessControlBlock>();
             currentTime = 0;
+            taskStatus = taskStatus.PAUSE;
         }
 
         public void GenerateProcesses(int numProcesses)
@@ -33,8 +34,8 @@ namespace HoneyOS
         {
             return new ProcessControlBlock(
                 pID,
-                random.Next(0, 10), // Arrival Time
                 random.Next(1, 10), // Burst Time
+                random.Next(0, 10), // Arrival Time
                 random.Next(0, 10), // Priority Level
                 status.READY // Set initial state to Ready
             );
@@ -43,19 +44,41 @@ namespace HoneyOS
         // this is still bootleg version for testing purposes 
         public void Execute()
         {
+            int index;
+            SimulateTimePassage();
             switch (schedulingAlgorithm)
             {
                 case algo.FIFO: 
                     FIFO fifo = new FIFO();
-                    if (processes.Count > 0)
-                    {
-                        SimulateTimePassage();
-                        // ProcessControlBlock current_pcb = processes[0];
-                        processes[0] = fifo.Run(processes[0]);
-
-                        if (processes[0].state == status.TERMINATED & processes.Count > 0)
+                    // ProcessControlBlock current_pcb = processes[0];
+                    index = fifo.GetEarliest(processes, currentTime);
+                    if (index != -1) {
+                        processes[index] = fifo.Run(processes[index]);
+                        if (processes[index].state == status.TERMINATED)
                         {
-                            processes.RemoveAt(0);
+                            processes.RemoveAt(index);
+                        }
+                    }
+                    break;
+                case algo.SJF:
+                    SJF sjf = new SJF();
+                    index = sjf.GetShortest(processes, currentTime);
+                    if (index != -1)
+                    {
+                        ProcessControlBlock currentProcess = processes[index];
+
+                        //processes[index] = sjf.Run(processes[index]);
+
+                        processes[index] = sjf.Run(currentProcess);
+
+                        if (processes[index].state == status.WAITING)
+                        {
+                            return;
+                        }
+
+                        if (processes[index].state == status.TERMINATED)
+                        {
+                            processes.RemoveAt(index);
                         }
                     }
                     break;
@@ -63,8 +86,7 @@ namespace HoneyOS
         }
         public void SimulateTimePassage()
         {
-            currentTime += 1; // Simulate 5-second delay
-            Thread.Sleep(2000);
+            currentTime += 1;
             // scheduler.Run(currentTime); // Run the scheduler with current time
         }
     }
@@ -75,4 +97,5 @@ namespace HoneyOS
         PAUSE, 
         STOP
     }
+
 }

@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Schema;
 using Win32Interop.Enums;
+using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 
 namespace HoneyOS
 {
@@ -16,6 +19,7 @@ namespace HoneyOS
         private Desktop desktopInstance; // Reference to an instance of Desktop form
         private TaskManager taskManager;
         public algo schedulingAlgo;
+
 
         // Public properties to hold the boolean values
         public bool FIFO { get; set; }
@@ -28,6 +32,12 @@ namespace HoneyOS
         {
             InitializeComponent();
             InitializeTaskManager();
+
+
+            Timer updateTimer = new Timer();
+            updateTimer.Interval = 2000; // 1000 milliseconds = 1 second
+            updateTimer.Tick += (s, ev) => Form6Update(); // Lambda expression to call the Update function
+            updateTimer.Start();
         }
         private void Form6_Load(object sender, EventArgs e)
         {
@@ -54,6 +64,38 @@ namespace HoneyOS
             }
         }
 
+        public void Form6Update()
+        {
+            if(taskManager.taskStatus == taskStatus.PLAY)
+            {
+                playOnce();
+            }
+        }
+
+        public void playOnce()
+        {
+            taskManager.Execute();
+
+            if (isAllProcessesTerminated(taskManager.processes))
+            {
+                taskManager.taskStatus = taskStatus.STOP;
+                taskManager.currentTime = 0;
+            }
+            UpdateProcessList();
+        }
+
+        public bool isAllProcessesTerminated(List<ProcessControlBlock> processes)
+        {
+            foreach (ProcessControlBlock process in taskManager.processes)
+            {
+                if (process.state != HoneyOS.status.TERMINATED)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         // Initializes new task manager to be used for this instance 
         private void InitializeTaskManager()
         {
@@ -67,6 +109,10 @@ namespace HoneyOS
                 int numProcesses = random.Next(1, 10);
                 taskManager.GenerateProcesses(numProcesses);
                 UpdateProcessList();
+                foreach(ProcessControlBlock process in taskManager.processes)
+                {
+                    process.PrintPCB();
+                }
             }
             else
             {
@@ -82,10 +128,11 @@ namespace HoneyOS
 
             foreach (ProcessControlBlock process in taskManager.processes)
             {
-                string[] processInfo = { process.pID.ToString(), process.arrivalTime.ToString(), process.burstTime.ToString(), process.priority.ToString(), process.state.ToString() };
+                string[] processInfo = { process.pID.ToString(), process.burstTime.ToString(), process.arrivalTime.ToString(), process.priority.ToString(), process.state.ToString() };
                 ListViewItem newItem = new ListViewItem(processInfo);
                 listView1.Items.Add(newItem);
             }
+            label6.Text = taskManager.currentTime.ToString();
         }
 
         public void UpdateSchedulingAlgo(algo al)
@@ -97,20 +144,6 @@ namespace HoneyOS
         private void button1_Click(object sender, EventArgs e)
         {
             taskManager.taskStatus = taskStatus.PLAY;
-
-            while (taskManager.taskStatus == taskStatus.PLAY & taskManager.processes.Count > 0)
-            {
-                taskManager.Execute();
-                UpdateProcessList();
-                taskManager.processes[0].PrintPCB();
-
-                if (taskManager.processes.Count < 1)
-                {
-                    taskManager.taskStatus = taskStatus.STOP;
-                }
-
-            }
-
         }
 
         // When pause is clicked
@@ -130,7 +163,7 @@ namespace HoneyOS
         // When next is clicked 
         private void button4_Click(object sender, EventArgs e)
         {
-            taskManager.currentTime += 1;
+            playOnce();
         }
 
         private void label5_Click(object sender, EventArgs e)

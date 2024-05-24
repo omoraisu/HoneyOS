@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing.Printing;
 using System.Linq;
+using System.Speech.Synthesis.TtsEngine;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Animation;
@@ -30,6 +33,22 @@ namespace HoneyOS
         {
             this.pcb_list.Remove(pcb);
         }
+
+        public ProcessControlBlock Run(ProcessControlBlock process)
+        {
+             process.state = status.RUNNING;
+             process.burstTime--;
+             if (process.burstTime < 1)
+             {
+                 process.state = status.TERMINATED;
+                 process.PrintPCB();
+             }
+
+             return process;
+            
+
+        }
+        
     }
 
     // child classes for scheduling algorithms 
@@ -39,62 +58,65 @@ namespace HoneyOS
         {
 
         }
-        public ProcessControlBlock Run(ProcessControlBlock process)
+
+        public int GetEarliest(List<ProcessControlBlock> processes, int currentTime)
         {
+            int index = -1;
 
-            // Process starts running
-            process.state = status.RUNNING;
-
-            // Simulate process execution by advancing the current time
-            process.burstTime--;
-
-            // Process terminates after its burst time
-            if (process.burstTime < 1)
+            for (int i = 0; i < processes.Count; i++)
             {
-                process.state = status.TERMINATED;
+                if (processes[i].arrivalTime <= currentTime)
+                {
+                    if (index == -1)
+                    {
+                        index = i;
+                    }
+                    else
+                    {
+                        if (processes[i].arrivalTime < processes[index].arrivalTime)
+                        {
+                            index = i;
+                        }
+                    }
+                }
             }
-
-            return process; 
+            return index;
         }
     }
 
     public class SJF : Scheduler
-    {
-        public SJF() : base() // Calls superclass constructor
-        {
+     {
+         public SJF() : base() // Calls superclass constructor
+         {
 
-        }
-        public void Run()
-        {
-            int interval = 1; // this is according to the usual examples
-            int currentTime = 0;
+         }
 
-            while (pcb_list.Count > 0)
-            {
-                ProcessControlBlock min_pcb = pcb_list[0];
-                foreach(ProcessControlBlock process in pcb_list)
-                {
-                    if(process.arrivalTime <= currentTime && min_pcb.burstTime > process.burstTime)
-                    {
-                        min_pcb = process;
-                    }
-                }
+         public int GetShortest(List<ProcessControlBlock> processes, int currentTime)
+         {
+             int index = -1;
 
-                min_pcb.state = status.RUNNING;
-                min_pcb.burstTime -= interval;
+             for (int i = 0; i < processes.Count; i++)
+             {
+                 if (processes[i].arrivalTime <= currentTime)
+                 {
+                     if (index == -1)
+                     {
+                         index = i;
+                     }
+                     else
+                     {
+                         if (processes[i].burstTime < processes[index].burstTime)
+                         {
+                             index = i;
+                         }
+                     }
+                 }
+             }
+             return index;
+         }
+     }
 
-                if (min_pcb.burstTime <= 0)
-                {
-                    min_pcb.burstTime = 0;
-                    pcb_list.RemoveAt(pcb_list.IndexOf(min_pcb));
-                    min_pcb.state = status.TERMINATED;
-                }
 
-                currentTime++;
-                // send process to task manager 
-            }
-        }
-    }
 
     public class PRIO : Scheduler
     {

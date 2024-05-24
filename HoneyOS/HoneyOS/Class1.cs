@@ -35,6 +35,6 @@ namespace HoneyOS
         READY,
         WAITING,
         RUNNING,
-        TERMINATED
+        TERMINATED,
     }
 }
