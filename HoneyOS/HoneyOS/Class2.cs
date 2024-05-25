@@ -63,6 +63,8 @@ namespace HoneyOS
         {
             int index = -1;
 
+            Debug.WriteLine("using fifo");
+
             for (int i = 0; i < processes.Count; i++)
             {
                 if (processes[i].arrivalTime <= currentTime)
@@ -192,8 +194,8 @@ namespace HoneyOS
     }
     public enum algo
     {
-        FIFO,
         SJF,
+        FIFO,
         PRIO,
         RRR
     }

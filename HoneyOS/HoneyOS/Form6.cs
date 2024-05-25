@@ -26,6 +26,7 @@ namespace HoneyOS
         public bool PRIO { get; set; }
         public bool RRR { get; set; }
         public bool SJF { get; set; }
+        public algo schedulingAlgorithm { get; set; }
 
         // Constructor
         public Form6(Desktop desktopInstance)
@@ -35,7 +36,7 @@ namespace HoneyOS
 
 
             Timer updateTimer = new Timer();
-            updateTimer.Interval = 2000; // 1000 milliseconds = 1 second
+            updateTimer.Interval = 1000; // 1000 milliseconds = 1 second
             updateTimer.Tick += (s, ev) => Form6Update(); // Lambda expression to call the Update function
             updateTimer.Start();
         }
@@ -109,10 +110,6 @@ namespace HoneyOS
                 int numProcesses = random.Next(1, 10);
                 taskManager.GenerateProcesses(numProcesses);
                 UpdateProcessList();
-                foreach(ProcessControlBlock process in taskManager.processes)
-                {
-                    process.PrintPCB();
-                }
             }
             else
             {
@@ -138,6 +135,8 @@ namespace HoneyOS
         public void UpdateSchedulingAlgo(algo al)
         {
             schedulingAlgo = al;
+            taskManager.schedulingAlgorithm = schedulingAlgo;
+            Debug.WriteLine(al);
         }
 
         // When play is clicked 

@@ -12,7 +12,7 @@ namespace HoneyOS
         private static int nextPID = 0; // keeps track of the next available pID 
         public List<ProcessControlBlock> processes;
         public taskStatus taskStatus;
-        public algo schedulingAlgorithm;
+        public algo schedulingAlgorithm { get; set; }
         public int currentTime; 
 
         public TaskManager() { 
@@ -45,7 +45,7 @@ namespace HoneyOS
         public void Execute()
         {
             int index;
-            SimulateTimePassage();
+            currentTime++;
             switch (schedulingAlgorithm)
             {
                 case algo.FIFO: 
@@ -83,11 +83,6 @@ namespace HoneyOS
                     }
                     break;
             }
-        }
-        public void SimulateTimePassage()
-        {
-            currentTime += 1;
-            // scheduler.Run(currentTime); // Run the scheduler with current time
         }
     }
 
