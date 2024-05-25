@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -27,10 +28,11 @@ namespace HoneyOS
         public bool RRR { get; set; }
         public bool SJF { get; set; }
 
-        private bool isPriorityHidden = false; // Flag to track "Priority" column visibility
-        private HashSet<Color> usedColors = new HashSet<Color>(); // Stores used colors to prevent duplicates
-        private Dictionary<int, Color> itemColors = new Dictionary<int, Color>(); // Stores item index and its assigned color
+        // Store the shuffled list of unique colors
+        private List<Color> uniqueColors = new List<Color>();
 
+        // Current index of the color in the shuffled list
+        private int colorIndex = 0;
 
 
         public algo schedulingAlgorithm { get; set; }
@@ -40,13 +42,15 @@ namespace HoneyOS
         {
             InitializeComponent();
             InitializeTaskManager();
-
+            // Initialize the list of unique colors
+            InitializeUniqueColors();
 
             Timer updateTimer = new Timer();
             updateTimer.Interval = 1000; // 1000 milliseconds = 1 second
             updateTimer.Tick += (s, ev) => Form6Update(); // Lambda expression to call the Update function
             updateTimer.Start();
         }
+
         private void Form6_Load(object sender, EventArgs e)
         {
             // Access boolean properties and update label4
@@ -178,11 +182,23 @@ namespace HoneyOS
         // Initial memory value (in MB)
         private int remainingMemory = 440;
 
+        // Store the last used color index to ensure uniqueness
+        private int lastColorIndex = -1;
+
         // When the "Next" button is clicked
         private void button4_Click(object sender, EventArgs e)
         {
             playOnce();
-            AddPanelToFlowLayout();
+
+            // Check if there is enough remaining memory
+            if (remainingMemory >= 20) // Assuming the minimum height of a panel is 20 pixels
+            {
+                AddPanelToFlowLayout();
+            }
+            else
+            {
+                MessageBox.Show("Not enough memory.", "Insufficient Memory", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void AddPanelToFlowLayout()
@@ -192,16 +208,20 @@ namespace HoneyOS
 
             // Set properties for the panel
             Random random = new Random();
-            int randomHeight = random.Next(5, 70); // Generate a random height between 1 and 20
+            int randomHeight = random.Next(1, Math.Min(21, remainingMemory + 1)); // Generate a random height between 1 and remaining memory or 20, whichever is smaller
 
             dynamicPanel.Location = new Point(0, 0); // Not necessary for FlowLayoutPanel placement
             dynamicPanel.Name = "Panel" + flowLayoutPanel1.Controls.Count;
             dynamicPanel.Size = new Size(194, randomHeight); // Use the random height
-            dynamicPanel.BackColor = GetRandomColor();
+
+            // Generate a unique random color for the panel
+            Color panelColor = GetNextUniqueColor(random);
+            dynamicPanel.BackColor = panelColor;
+
             dynamicPanel.Margin = new Padding(0); // Remove margin
 
             // Create and add a label to the panel
-            CreateLabelInPanel(dynamicPanel, "Panel " + flowLayoutPanel1.Controls.Count);
+            CreateLabelInPanel(dynamicPanel, "Panel " + flowLayoutPanel1.Controls.Count, randomHeight);
 
             // Add the panel to the FlowLayoutPanel
             flowLayoutPanel1.Controls.Add(dynamicPanel);
@@ -210,18 +230,33 @@ namespace HoneyOS
             UpdateRemainingMemory(randomHeight);
         }
 
-        private void CreateLabelInPanel(Panel panel, string labelText)
+        private void CreateLabelInPanel(Panel panel, string labelText, int panelHeight)
         {
             Label label = new Label();
             label.Text = labelText;
             label.AutoSize = true;
             label.Margin = new Padding(0); // Remove margin
 
+            // Set the font to Poppins, 8pt
+            label.Font = new Font("Poppins", 8);
+
+            // Set the label's back color to transparent
+            label.BackColor = Color.Transparent;
+
+            // Measure the label's size after setting its text and font
+            label.Size = TextRenderer.MeasureText(label.Text, label.Font);
+
             // Center the label in the panel
             label.Location = new Point(
                 (panel.Width - label.Width) / 2,
                 (panel.Height - label.Height) / 2
             );
+
+            // Check if panel height exceeds remaining memory
+            if (panelHeight > remainingMemory)
+            {
+                label.Text = "Not enough";
+            }
 
             panel.Controls.Add(label);
         }
@@ -241,17 +276,56 @@ namespace HoneyOS
             }
         }
 
-        private Color GetRandomColor()
+        private Color GetNextUniqueColor(Random random)
         {
-            // Use Random class to generate random ARGB values for a color
+            // Ensure there are enough unique colors in the list
+            if (uniqueColors.Count == 0)
+            {
+                // Regenerate more unique colors if the list is empty
+                GenerateUniqueColors(1000);
+            }
+
+            // Get the first color from the list
+            Color color = uniqueColors[0];
+            // Remove the color from the list
+            uniqueColors.RemoveAt(0);
+
+            return color;
+        }
+        private void InitializeUniqueColors()
+        {
+            // Generate a large number of unique colors
+            GenerateUniqueColors(1000);
+        }
+
+        private void GenerateUniqueColors(int count)
+        {
+            // Ensure count is positive
+            if (count <= 0)
+                return;
+
+            // Clear existing unique colors
+            uniqueColors.Clear();
+
+            // Generate and add unique colors
             Random random = new Random();
+            for (int i = 0; i < count; i++)
+            {
+                Color color = GenerateRandomColor(random);
+                uniqueColors.Add(color);
+            }
+        }
+
+        private Color GenerateRandomColor(Random random)
+        {
+            // Generate random ARGB values
             int alpha = random.Next(0, 256); // Alpha (transparency) between 0 and 255
             int red = random.Next(0, 256); // Red value between 0 and 255
             int green = random.Next(0, 256); // Green value between 0 and 255
             int blue = random.Next(0, 256); // Blue value between 0 and 255
+
             return Color.FromArgb(alpha, red, green, blue);
         }
-
 
         private void button1_MouseEnter(object sender, EventArgs e)
         {
