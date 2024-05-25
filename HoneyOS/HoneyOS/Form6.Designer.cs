@@ -31,6 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.listView1 = new System.Windows.Forms.ListView();
             this.pr_ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.prio = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.br_Time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ar_Time = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.memory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,11 +48,10 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.prio = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.memoryList = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.memoryMax = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -70,8 +70,8 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label5, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.memoryList, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 3, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -107,6 +107,12 @@
             // 
             this.pr_ID.Text = "Process ID";
             this.pr_ID.Width = 100;
+            // 
+            // prio
+            // 
+            this.prio.Text = "Priority";
+            this.prio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.prio.Width = 100;
             // 
             // br_Time
             // 
@@ -313,27 +319,12 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Memory";
             // 
-            // prio
-            // 
-            this.prio.Text = "Priority";
-            this.prio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.prio.Width = 100;
-            // 
-            // memoryList
-            // 
-            this.memoryList.FormattingEnabled = true;
-            this.memoryList.Location = new System.Drawing.Point(657, 45);
-            this.memoryList.Name = "memoryList";
-            this.memoryList.SelectionMode = System.Windows.Forms.SelectionMode.None;
-            this.memoryList.Size = new System.Drawing.Size(192, 433);
-            this.memoryList.TabIndex = 7;
-            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.label8, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.memoryMax, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.label7, 0, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(657, 491);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -341,6 +332,18 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(194, 14);
             this.tableLayoutPanel4.TabIndex = 8;
+            // 
+            // memoryMax
+            // 
+            this.memoryMax.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.memoryMax.AutoSize = true;
+            this.memoryMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.memoryMax.Location = new System.Drawing.Point(100, 0);
+            this.memoryMax.Name = "memoryMax";
+            this.memoryMax.Size = new System.Drawing.Size(39, 14);
+            this.memoryMax.TabIndex = 7;
+            this.memoryMax.Text = "430mb";
             // 
             // label7
             // 
@@ -354,17 +357,12 @@
             this.label7.TabIndex = 6;
             this.label7.Text = "Available Memory:";
             // 
-            // label8
+            // flowLayoutPanel1
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.label8.Location = new System.Drawing.Point(100, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(39, 14);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "430mb";
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(657, 45);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(194, 440);
+            this.flowLayoutPanel1.TabIndex = 9;
             // 
             // Form6
             // 
@@ -411,9 +409,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ColumnHeader prio;
-        private System.Windows.Forms.ListBox memoryList;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label memoryMax;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

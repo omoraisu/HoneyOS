@@ -28,6 +28,10 @@ namespace HoneyOS
         public bool SJF { get; set; }
 
         private bool isPriorityHidden = false; // Flag to track "Priority" column visibility
+        private HashSet<Color> usedColors = new HashSet<Color>(); // Stores used colors to prevent duplicates
+        private Dictionary<int, Color> itemColors = new Dictionary<int, Color>(); // Stores item index and its assigned color
+
+
 
         public algo schedulingAlgorithm { get; set; }
 
@@ -57,9 +61,9 @@ namespace HoneyOS
             else if (PRIO)
             {
                 label4.Text = "Priority";
-                listView1.Columns[1].Width = 100; // Set width to default value (visible)
+                listView1.Columns[1].Width = 100;
                 listView1.Width = 608;
-                PRIO = false; // Set PRIO to false after showing the column
+                PRIO = false;
             }
             else if (RRR)
             {
@@ -171,63 +175,83 @@ namespace HoneyOS
             listView1.Items.Clear();
         }
 
-        // When next is clicked 
+        // Initial memory value (in MB)
+        private int remainingMemory = 440;
+
+        // When the "Next" button is clicked
         private void button4_Click(object sender, EventArgs e)
         {
             playOnce();
-
-            memoryList.Items.Add("I");
-            memoryList.Items.Add("Love");
-            memoryList.Items.Add("Seventeen");
-            memoryList.Items.Add("Right");
-            memoryList.Items.Add("Here");
-            memoryList.Items.Add("Carat");
-            memoryList.Items.Add("SVT");
-
-            // Set DrawMode and subscribe to DrawItem event
-            memoryList.DrawMode = DrawMode.OwnerDrawVariable;
-            memoryList.DrawItem += new DrawItemEventHandler(listBox1_DrawItem);
+            AddPanelToFlowLayout();
         }
 
-        private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
+        private void AddPanelToFlowLayout()
         {
-            if (e.Index != -1)
+            // Create a new Panel control
+            Panel dynamicPanel = new Panel();
+
+            // Set properties for the panel
+            Random random = new Random();
+            int randomHeight = random.Next(5, 70); // Generate a random height between 1 and 20
+
+            dynamicPanel.Location = new Point(0, 0); // Not necessary for FlowLayoutPanel placement
+            dynamicPanel.Name = "Panel" + flowLayoutPanel1.Controls.Count;
+            dynamicPanel.Size = new Size(194, randomHeight); // Use the random height
+            dynamicPanel.BackColor = GetRandomColor();
+            dynamicPanel.Margin = new Padding(0); // Remove margin
+
+            // Create and add a label to the panel
+            CreateLabelInPanel(dynamicPanel, "Panel " + flowLayoutPanel1.Controls.Count);
+
+            // Add the panel to the FlowLayoutPanel
+            flowLayoutPanel1.Controls.Add(dynamicPanel);
+
+            // Decrease remaining memory and update the label
+            UpdateRemainingMemory(randomHeight);
+        }
+
+        private void CreateLabelInPanel(Panel panel, string labelText)
+        {
+            Label label = new Label();
+            label.Text = labelText;
+            label.AutoSize = true;
+            label.Margin = new Padding(0); // Remove margin
+
+            // Center the label in the panel
+            label.Location = new Point(
+                (panel.Width - label.Width) / 2,
+                (panel.Height - label.Height) / 2
+            );
+
+            panel.Controls.Add(label);
+        }
+
+        private void UpdateRemainingMemory(int panelHeight)
+        {
+            // Convert panel height to memory units (assuming 1 pixel height = 1 MB for simplicity)
+            remainingMemory -= panelHeight;
+
+            // Update the memoryMax label
+            memoryMax.Text = remainingMemory + " MB";
+
+            // Ensure memory doesn't go below zero
+            if (remainingMemory < 0)
             {
-                string value = memoryList.Items[e.Index].ToString();
-
-                // Get a random color
-                Color randomColor = GetRandomColor();
-
-                // Custom-draw the background with the random color
-                using (var backgroundBrush = new SolidBrush(randomColor))
-                {
-                    e.Graphics.FillRectangle(backgroundBrush, e.Bounds);
-                }
-
-                // Draw the text with default foreground color
-                using (var textBrush = new SolidBrush(memoryList.ForeColor))
-                {
-                    e.Graphics.DrawString(value, memoryList.Font, textBrush, e.Bounds);
-                }
+                memoryMax.Text = "0 MB";
             }
         }
 
         private Color GetRandomColor()
         {
-            // Use Random class to generate random color values
+            // Use Random class to generate random ARGB values for a color
             Random random = new Random();
-            int red = random.Next(0, 256);
-            int green = random.Next(0, 256);
-            int blue = random.Next(0, 256);
-
-            return Color.FromArgb(red, green, blue);
+            int alpha = random.Next(0, 256); // Alpha (transparency) between 0 and 255
+            int red = random.Next(0, 256); // Red value between 0 and 255
+            int green = random.Next(0, 256); // Green value between 0 and 255
+            int blue = random.Next(0, 256); // Blue value between 0 and 255
+            return Color.FromArgb(alpha, red, green, blue);
         }
 
-        public class ItemInfo
-        {
-            public string Text { get; set; }
-            public Color Color { get; set; }
-        }
 
         private void button1_MouseEnter(object sender, EventArgs e)
         {
@@ -260,6 +284,11 @@ namespace HoneyOS
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
         {
 
         }
