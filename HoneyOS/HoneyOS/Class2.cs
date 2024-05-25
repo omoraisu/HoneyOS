@@ -63,8 +63,6 @@ namespace HoneyOS
         {
             int index = -1;
 
-            Debug.WriteLine("using fifo");
-
             for (int i = 0; i < processes.Count; i++)
             {
                 if (processes[i].arrivalTime <= currentTime)
@@ -126,35 +124,28 @@ namespace HoneyOS
         {
 
         }
-        public void Run()
+        public int PrioritizeProcess(List<ProcessControlBlock> processes, int currentTime)
         {
-            int interval = 1; // this is according to the usual examples
-            int currentTime = 0;
+            int index = -1;
 
-            while (pcb_list.Count > 0)
+            for (int i = 0; i < processes.Count; i++)
             {
-                ProcessControlBlock highprio_pcb = pcb_list[0];
-                foreach (ProcessControlBlock process in pcb_list)
+                if (processes[i].arrivalTime <= currentTime)
                 {
-                    if (process.arrivalTime <= currentTime && highprio_pcb.priority > process.priority)
+                    if (index == -1)
                     {
-                        highprio_pcb = process;
+                        index = i;
+                    }
+                    else
+                    {
+                        if (processes[i].priority > processes[index].priority)
+                        {
+                            index = i;
+                        }
                     }
                 }
-
-                highprio_pcb.state = status.RUNNING;
-                highprio_pcb.burstTime -= interval;
-
-                if (highprio_pcb.burstTime <= 0)
-                {
-                    highprio_pcb.burstTime = 0;
-                    pcb_list.RemoveAt(pcb_list.IndexOf(highprio_pcb));
-                    highprio_pcb.state = status.TERMINATED;
-                }
-
-                currentTime++;
-                // send process to task manager 
             }
+            return index;
         }
     }
 
@@ -168,28 +159,33 @@ namespace HoneyOS
             this.timeSlice = timeSlice;
         }
 
-        public void Run()
+        public bool ifTimeToQuantum(int currentTime)
         {
-            while (pcb_list.Count > 0)
+            return currentTime != 0 && currentTime % timeSlice == 0;
+        }
+
+        public int GetEarliest(List<ProcessControlBlock> processes, int currentTime)
+        {
+            int index = -1;
+
+            for (int i = 0; i < processes.Count; i++)
             {
-                ProcessControlBlock current_pcb = pcb_list[0];
-                pcb_list.RemoveAt(0);
-                current_pcb.state = status.RUNNING;
-
-                if (current_pcb.burstTime > timeSlice)
+                if (processes[i].arrivalTime <= currentTime)
                 {
-                    current_pcb.burstTime -= timeSlice;
-                    pcb_list.Add(current_pcb);
-                    current_pcb.state = status.WAITING;
+                    if (index == -1)
+                    {
+                        index = i;
+                    }
+                    else
+                    {
+                        if (processes[i].arrivalTime < processes[index].arrivalTime)
+                        {
+                            index = i;
+                        }
+                    }
                 }
-                else
-                {
-                    current_pcb.burstTime = 0;
-                    current_pcb.state = status.TERMINATED;
-                }
-
-                // send process to task manager 
             }
+            return index;
         }
     }
     public enum algo

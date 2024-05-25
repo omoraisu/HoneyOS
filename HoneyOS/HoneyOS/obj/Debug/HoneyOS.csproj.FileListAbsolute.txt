@@ -330,3 +330,5 @@ C:\Users\Zayne Peladas\OneDrive\Desktop\HoneyOS\HoneyOS\HoneyOS\HoneyOS\obj\Debu
 C:\Users\Zayne Peladas\OneDrive\Desktop\HoneyOS\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Form8.resources
 E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Form6.resources
 E:\Documents\BBfolder\3rdYear\CMSC 125\Github\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Form8.resources
+C:\Users\Nitro-5\OneDrive\Documents\Acads\3Y2S\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Form6.resources
+C:\Users\Nitro-5\OneDrive\Documents\Acads\3Y2S\HoneyOS\HoneyOS\HoneyOS\obj\Debug\HoneyOS.Form8.resources

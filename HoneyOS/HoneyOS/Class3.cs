@@ -52,8 +52,11 @@ namespace HoneyOS
                     FIFO fifo = new FIFO();
                     // ProcessControlBlock current_pcb = processes[0];
                     index = fifo.GetEarliest(processes, currentTime);
-                    if (index != -1) {
-                        processes[index] = fifo.Run(processes[index]);
+                    if (index != -1) 
+                    {
+                        ProcessControlBlock currentProcess = processes[index];
+
+                        processes[index] = fifo.Run(currentProcess);
                         if (processes[index].state == status.TERMINATED)
                         {
                             processes.RemoveAt(index);
@@ -67,14 +70,51 @@ namespace HoneyOS
                     {
                         ProcessControlBlock currentProcess = processes[index];
 
-                        //processes[index] = sjf.Run(processes[index]);
-
                         processes[index] = sjf.Run(currentProcess);
-
-                        if (processes[index].state == status.WAITING)
+                        if (processes[index].state == status.TERMINATED)
                         {
-                            return;
+                            processes.RemoveAt(index);
                         }
+                    }
+                    break;
+                case algo.PRIO:
+                    PRIO PRIO = new PRIO();
+                    index = PRIO.PrioritizeProcess(processes, currentTime);
+                    if (index != -1)
+                    {
+                        ProcessControlBlock currentProcess = processes[index];
+
+                        processes[index] = PRIO.Run(currentProcess);
+                        if (processes[index].state == status.TERMINATED)
+                        {
+                            processes.RemoveAt(index);
+                        }
+                    }
+
+                    break;
+                case algo.RRR:
+                    RRR rr = new RRR(4);
+
+                    if (rr.ifTimeToQuantum(currentTime))
+                    {
+                        index = rr.GetEarliest(processes, currentTime);
+                        ProcessControlBlock process = new ProcessControlBlock(
+                            processes[index].pID,
+                            processes[index].burstTime, // Burst Time
+                            currentTime, // Arrival Time
+                            processes[index].priority, // Priority Level
+                            status.READY // Set initial state to Ready
+                        );
+
+                        processes.Add(process);
+                        processes.RemoveAt(index);
+                    }
+
+                    index = rr.GetEarliest(processes, currentTime);
+                    if (index != -1)
+                    {
+                        ProcessControlBlock currentProcess = processes[index];
+                        processes[index] = rr.Run(currentProcess);
 
                         if (processes[index].state == status.TERMINATED)
                         {
