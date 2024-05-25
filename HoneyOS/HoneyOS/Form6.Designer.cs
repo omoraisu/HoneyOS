@@ -322,8 +322,8 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.60825F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.39175F));
             this.tableLayoutPanel4.Controls.Add(this.memoryMax, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.label7, 0, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(657, 491);
@@ -339,7 +339,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.memoryMax.AutoSize = true;
             this.memoryMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.memoryMax.Location = new System.Drawing.Point(100, 0);
+            this.memoryMax.Location = new System.Drawing.Point(107, 0);
             this.memoryMax.Name = "memoryMax";
             this.memoryMax.Size = new System.Drawing.Size(39, 14);
             this.memoryMax.TabIndex = 7;
@@ -353,7 +353,7 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
             this.label7.Location = new System.Drawing.Point(3, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 14);
+            this.label7.Size = new System.Drawing.Size(93, 14);
             this.label7.TabIndex = 6;
             this.label7.Text = "Available Memory:";
             // 
