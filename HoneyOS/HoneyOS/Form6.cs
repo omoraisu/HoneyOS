@@ -26,6 +26,9 @@ namespace HoneyOS
         public bool PRIO { get; set; }
         public bool RRR { get; set; }
         public bool SJF { get; set; }
+
+        private bool isPriorityHidden = false; // Flag to track "Priority" column visibility
+
         public algo schedulingAlgorithm { get; set; }
 
         // Constructor
@@ -46,21 +49,30 @@ namespace HoneyOS
             if (FIFO)
             {
                 label4.Text = "First Come First Serve";
+                listView1.Columns[1].Width = 0;
+                listView1.Width = 508;
                 FIFO = false;
+
             }
             else if (PRIO)
             {
                 label4.Text = "Priority";
-                PRIO = false;
+                listView1.Columns[1].Width = 100; // Set width to default value (visible)
+                listView1.Width = 608;
+                PRIO = false; // Set PRIO to false after showing the column
             }
             else if (RRR)
             {
                 label4.Text = "Round Robin";
+                listView1.Columns[1].Width = 0;
+                listView1.Width = 508;
                 RRR = false;
             }
             else if (SJF)
             {
                 label4.Text = "Shortest Job First";
+                listView1.Columns[1].Width = 0;
+                listView1.Width = 508;
                 SJF = false;
             }
         }
@@ -163,16 +175,58 @@ namespace HoneyOS
         private void button4_Click(object sender, EventArgs e)
         {
             playOnce();
+
+            memoryList.Items.Add("I");
+            memoryList.Items.Add("Love");
+            memoryList.Items.Add("Seventeen");
+            memoryList.Items.Add("Right");
+            memoryList.Items.Add("Here");
+            memoryList.Items.Add("Carat");
+            memoryList.Items.Add("SVT");
+
+            // Set DrawMode and subscribe to DrawItem event
+            memoryList.DrawMode = DrawMode.OwnerDrawVariable;
+            memoryList.DrawItem += new DrawItemEventHandler(listBox1_DrawItem);
         }
 
-        private void label5_Click(object sender, EventArgs e)
+        private void listBox1_DrawItem(object sender, DrawItemEventArgs e)
         {
+            if (e.Index != -1)
+            {
+                string value = memoryList.Items[e.Index].ToString();
 
+                // Get a random color
+                Color randomColor = GetRandomColor();
+
+                // Custom-draw the background with the random color
+                using (var backgroundBrush = new SolidBrush(randomColor))
+                {
+                    e.Graphics.FillRectangle(backgroundBrush, e.Bounds);
+                }
+
+                // Draw the text with default foreground color
+                using (var textBrush = new SolidBrush(memoryList.ForeColor))
+                {
+                    e.Graphics.DrawString(value, memoryList.Font, textBrush, e.Bounds);
+                }
+            }
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private Color GetRandomColor()
         {
+            // Use Random class to generate random color values
+            Random random = new Random();
+            int red = random.Next(0, 256);
+            int green = random.Next(0, 256);
+            int blue = random.Next(0, 256);
 
+            return Color.FromArgb(red, green, blue);
+        }
+
+        public class ItemInfo
+        {
+            public string Text { get; set; }
+            public Color Color { get; set; }
         }
 
         private void button1_MouseEnter(object sender, EventArgs e)
@@ -199,31 +253,13 @@ namespace HoneyOS
         {
             button3.BackColor = Color.FromArgb(255, 255, 255);
         }
-        private void button4_MouseEnter(object sender, EventArgs e)
-        {
-            button4.BackColor = Color.FromArgb(215, 242, 243);
-        }
-        private void button4_MouseLeave(object sender, EventArgs e)
-        {
-            button4.BackColor = Color.FromArgb(255, 255, 255);
-        } 
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
 
         private void label4_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void label6_Click(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
