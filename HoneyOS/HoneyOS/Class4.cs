@@ -9,7 +9,7 @@ namespace HoneyOS
 {
     public class MemoryManager
     {
-        protected const int TotalMemory = 64;
+        protected const int TotalMemory = 8;
         protected int availableMemory;
         public List<MemorySegment> freeSegments;
 
