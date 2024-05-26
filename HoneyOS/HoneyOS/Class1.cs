@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static HoneyOS.MemoryManager;
 
 namespace HoneyOS
 {
@@ -13,14 +14,17 @@ namespace HoneyOS
         public int burstTime;
         public int arrivalTime;
         public int priority;
+        public int memorySize;
+        public MemorySegment Segment { get; set; }
         public status state;
 
-        public ProcessControlBlock(int pID, int burstTime, int arrivalTime, int priority, status state)
+        public ProcessControlBlock(int pID, int burstTime, int arrivalTime, int priority, int memorySize, status state)
         {
             this.pID = pID;
             this.burstTime = burstTime; 
             this.arrivalTime = arrivalTime;
             this.priority = priority;
+            this.memorySize = memorySize;
             this.state = (status)state;
         }
 
