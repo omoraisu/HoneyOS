@@ -145,7 +145,7 @@ namespace HoneyOS
 
             foreach (ProcessControlBlock process in taskManager.processes)
             {
-                string[] processInfo = { process.pID.ToString(), process.burstTime.ToString(), process.arrivalTime.ToString(), process.priority.ToString(), process.state.ToString() };
+                string[] processInfo = { process.pID.ToString(), process.priority.ToString(), process.burstTime.ToString(), process.arrivalTime.ToString(), process.state.ToString() };
                 ListViewItem newItem = new ListViewItem(processInfo);
                 listView1.Items.Add(newItem);
             }
@@ -363,6 +363,11 @@ namespace HoneyOS
         }
 
         private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
         {
 
         }
