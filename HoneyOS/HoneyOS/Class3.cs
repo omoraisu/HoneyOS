@@ -11,14 +11,19 @@ namespace HoneyOS
     {
         private static int nextPID = 0; // keeps track of the next available pID 
         public List<ProcessControlBlock> processes;
+        public List<ProcessControlBlock> jobQueue;
         public taskStatus taskStatus;
         public algo schedulingAlgorithm { get; set; }
-        public int currentTime; 
+        public int currentTime;
+
+        public MemoryManager memoryManager;
 
         public TaskManager() { 
             processes = new List<ProcessControlBlock>();
+            jobQueue = new List<ProcessControlBlock>();
             currentTime = 0;
             taskStatus = taskStatus.PAUSE;
+            memoryManager = new MemoryManager();
         }
 
         public void GenerateProcesses(int numProcesses)
@@ -26,7 +31,18 @@ namespace HoneyOS
             Random random = new Random();
             for (int i = 0; i < numProcesses; i++)
             {
-                processes.Add(CreateProcess(nextPID++, random));
+                ProcessControlBlock pcb = CreateProcess(nextPID++, random);
+                if (memoryManager.AllocateMemory(pcb.memorySize, out MemorySegment segment))
+                {
+                    pcb.Segment = segment;
+                    pcb.state = status.READY; // Set status to READY
+                    processes.Add(pcb);
+                }
+                else
+                {
+                    pcb.state = status.WAITING; // Set status to WAITING
+                    jobQueue.Add(pcb);
+                }
             }
         }
 
@@ -37,11 +53,28 @@ namespace HoneyOS
                 random.Next(1, 10), // Burst Time
                 random.Next(0, 10), // Arrival Time
                 random.Next(0, 10), // Priority Level
-                status.READY // Set initial state to Ready
+                random.Next(1, 10), // Memory Size 
+                status.NEW // Set initial state to NEW
             );
         }
 
-        // this is still bootleg version for testing purposes 
+        private void AdmitJobQueue()
+        {
+            foreach(var pcb in jobQueue.ToList())
+            {
+                if(memoryManager.AllocateMemory(pcb.memorySize, out MemorySegment segment))
+                {
+                    pcb.Segment = segment;
+                    processes.Add(pcb);
+                    jobQueue.Remove(pcb);
+                }
+                else
+                {
+                    break; 
+                }
+            }
+        }
+
         public void Execute()
         {
             int index;
@@ -59,7 +92,9 @@ namespace HoneyOS
                         processes[index] = fifo.Run(currentProcess);
                         if (processes[index].state == status.TERMINATED)
                         {
+                            memoryManager.DeallocateMemory(processes[index].Segment);
                             processes.RemoveAt(index);
+                            AdmitJobQueue();
                         }
                     }
                     break;
@@ -73,7 +108,9 @@ namespace HoneyOS
                         processes[index] = sjf.Run(currentProcess);
                         if (processes[index].state == status.TERMINATED)
                         {
+                            memoryManager.DeallocateMemory(processes[index].Segment);
                             processes.RemoveAt(index);
+                            AdmitJobQueue();
                         }
                     }
                     break;
@@ -87,7 +124,9 @@ namespace HoneyOS
                         processes[index] = PRIO.Run(currentProcess);
                         if (processes[index].state == status.TERMINATED)
                         {
+                            memoryManager.DeallocateMemory(processes[index].Segment);
                             processes.RemoveAt(index);
+                            AdmitJobQueue();
                         }
                     }
 
@@ -103,6 +142,7 @@ namespace HoneyOS
                             processes[index].burstTime, // Burst Time
                             currentTime, // Arrival Time
                             processes[index].priority, // Priority Level
+                            processes[index].memorySize, 
                             status.READY // Set initial state to Ready
                         );
 
@@ -118,7 +158,9 @@ namespace HoneyOS
 
                         if (processes[index].state == status.TERMINATED)
                         {
+                            memoryManager.DeallocateMemory(processes[index].Segment);
                             processes.RemoveAt(index);
+                            AdmitJobQueue();
                         }
                     }
                     break;
