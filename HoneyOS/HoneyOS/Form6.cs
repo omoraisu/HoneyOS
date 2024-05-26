@@ -84,6 +84,7 @@ namespace HoneyOS
                 listView1.Width = 508;
                 SJF = false;
             }
+
         }
 
         public void Form6Update()
@@ -122,7 +123,7 @@ namespace HoneyOS
                 taskManager.currentTime = 0;
             }
 
-            
+            UpdateMemoryPanel(taskManager.readyQueue, taskManager.memoryManager.freeSegments);
             UpdateProcessList();
         }
 
@@ -163,13 +164,22 @@ namespace HoneyOS
         private void UpdateProcessList()
         {
             listView1.Items.Clear(); // Clear existing items
+            listView2.Items.Clear();
 
             foreach (ProcessControlBlock process in taskManager.readyQueue)
             {
-                string[] processInfo = { process.pID.ToString(), process.burstTime.ToString(), process.arrivalTime.ToString(), process.priority.ToString(), process.memorySize.ToString(), process.state.ToString() };
+                string[] processInfo = { process.pID.ToString(), process.priority.ToString(), process.burstTime.ToString(), process.arrivalTime.ToString(), process.memorySize.ToString(), process.state.ToString() };
                 ListViewItem newItem = new ListViewItem(processInfo);
                 listView1.Items.Add(newItem);
             }
+
+            foreach (ProcessControlBlock process in taskManager.jobQueue)
+            {
+                string[] processInfo = { process.pID.ToString(), process.priority.ToString(), process.burstTime.ToString(), process.arrivalTime.ToString(), process.memorySize.ToString(), process.state.ToString() };
+                ListViewItem newItem = new ListViewItem(processInfo);
+                listView2.Items.Add(newItem);
+            }
+
             label6.Text = taskManager.currentTime.ToString();
         }
 
@@ -210,22 +220,14 @@ namespace HoneyOS
         private void button4_Click(object sender, EventArgs e)
         {
             playOnce();
-
-            // Check if there is enough remaining memory
-            if (remainingMemory >= 20) // Assuming the minimum height of a panel is 20 pixels
-            {
-                AddPanelToFlowLayout();
-            }
-            else
-            {
-                MessageBox.Show("Not enough memory.", "Insufficient Memory", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
         private void AddPanelToFlowLayout()
         {
             // Create a new Panel control
             Panel dynamicPanel = new Panel();
+
+            // height of segment panel = flowlayoutheight/32 * segment.size
 
             // Set properties for the panel
             Random random = new Random();
@@ -249,6 +251,97 @@ namespace HoneyOS
 
             // Decrease remaining memory and update the label
             UpdateRemainingMemory(randomHeight);
+        }
+
+        private void UpdateMemoryPanel(List<ProcessControlBlock> l, List<MemorySegment> f)
+        {
+            
+            flowLayoutPanel1.Controls.Clear();
+
+            var loaded = l.OrderBy(pcb => pcb.Segment.Start).ToList();
+            var free = f.OrderBy(segment => segment.Start).ToList();
+
+            while (loaded.Count != 0 && free.Count != 0)
+            {
+                if (loaded[0].Segment.Start <= free[0].Start) // means it is occupied
+                {
+                    ProcessControlBlock pcb = loaded[0];
+                    MemorySegment segment = pcb.Segment;
+                    //Color panelColor = GetNextUniqueColor(new Random()); // Assuming you have a method to get unique colors
+                    Color panelColor = Color.FromArgb(255, 255, 223, 0);
+
+                    // Calculate the height of the segment panel
+                    int panelHeight = (int)Math.Round((double)(flowLayoutPanel1.Height / 32) * segment.Size);
+
+                    Panel segmentPanel = new Panel();
+                    segmentPanel.Size = new Size(194, panelHeight);
+                    segmentPanel.BackColor = panelColor;
+                    segmentPanel.Margin = new Padding(1);
+
+                    segmentPanel.Name = "Process " + pcb.pID.ToString();
+                    CreateLabelInPanel(segmentPanel, segmentPanel.Name, panelHeight);
+
+                    flowLayoutPanel1.Controls.Add(segmentPanel);
+                    loaded.RemoveAt(0);
+                }
+                else
+                {
+                    MemorySegment segment = free[0];
+                    // Calculate the height of the segment panel
+                    int panelHeight = (int)Math.Round((double)(flowLayoutPanel1.Height / 32) * segment.Size);
+
+                    Panel segmentPanel = new Panel();
+                    segmentPanel.Size = new Size(194, panelHeight);
+                    segmentPanel.Margin = new Padding(1);
+
+                    Color panelColor = Color.FromArgb(255, 0, 0, 0);
+                    segmentPanel.BackColor = panelColor;
+
+                    flowLayoutPanel1.Controls.Add(segmentPanel);
+                    free.RemoveAt(0);
+                }
+            }
+
+            while(loaded.Count != 0)
+            {
+                ProcessControlBlock pcb = loaded[0];
+                MemorySegment segment = pcb.Segment;
+                //Color panelColor = GetNextUniqueColor(new Random()); // Assuming you have a method to get unique colors
+                Color panelColor = Color.FromArgb(255, 255, 223, 0);
+
+                // Calculate the height of the segment panel
+                int panelHeight = (int)Math.Round((double)(flowLayoutPanel1.Height / 32) * segment.Size);
+
+                Panel segmentPanel = new Panel();
+                segmentPanel.Size = new Size(194, panelHeight);
+                segmentPanel.BackColor = panelColor;
+                segmentPanel.Margin = new Padding(1);
+
+                segmentPanel.Name = "Process " + pcb.pID.ToString();
+                CreateLabelInPanel(segmentPanel, segmentPanel.Name, panelHeight);
+
+                flowLayoutPanel1.Controls.Add(segmentPanel);
+                loaded.RemoveAt(0);
+            }
+            while(free.Count != 0)
+            {
+                MemorySegment segment = free[0];
+
+                // Calculate the height of the segment panel
+                int panelHeight = (int)Math.Round((double)(flowLayoutPanel1.Height / 32) * segment.Size);
+
+                Panel segmentPanel = new Panel();
+                segmentPanel.Size = new Size(194, panelHeight);
+                segmentPanel.Margin = new Padding(1);
+
+                Color panelColor = Color.FromArgb(255, 0, 0, 0);
+                segmentPanel.BackColor = panelColor;
+
+                flowLayoutPanel1.Controls.Add(segmentPanel);
+                free.RemoveAt(0);
+            }
+
+            UpdateRemainingMemory(taskManager.memoryManager.GetAvailableMemory());
         }
 
         private void CreateLabelInPanel(Panel panel, string labelText, int panelHeight)
@@ -282,13 +375,13 @@ namespace HoneyOS
             panel.Controls.Add(label);
         }
 
-        private void UpdateRemainingMemory(int panelHeight)
+        private void UpdateRemainingMemory(int memory)
         {
             // Convert panel height to memory units (assuming 1 pixel height = 1 MB for simplicity)
-            remainingMemory -= panelHeight;
+            // remainingMemory -= panelHeight;
 
             // Update the memoryMax label
-            memoryMax.Text = remainingMemory + " MB";
+            memoryMax.Text = memory + " MB";
 
             // Ensure memory doesn't go below zero
             if (remainingMemory < 0)

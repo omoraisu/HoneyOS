@@ -168,6 +168,26 @@ namespace HoneyOS
             }
             return index;
         }
+
+        public ProcessControlBlock Run(int index, ref List<ProcessControlBlock> q)
+        {
+            for (int i = 0; i < q.Count; i++)
+            {
+                if (q[i].state == status.RUNNING && q[i].pID != q[index].pID)
+                {
+                    q[i].state = status.READY;
+                }
+            }
+
+            q[index].state = status.RUNNING;
+            q[index].burstTime--;
+            if (q[index].burstTime < 1)
+            {
+                q[index].state = status.TERMINATED;
+                q[index].PrintPCB();
+            }
+            return q[index];
+        }
     }
 
     public class RRR : Scheduler

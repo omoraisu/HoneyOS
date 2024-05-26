@@ -43,7 +43,7 @@ namespace HoneyOS
                 random.Next(1, 10), // Burst Time
                 random.Next(1, 10), // Arrival Time
                 random.Next(1, 10), // Priority Level
-                random.Next(1, 3), // Memory Size 
+                random.Next(2, 8), // Memory Size
                 status.NEW // Set initial state to NEW
             );
         }
@@ -111,13 +111,12 @@ namespace HoneyOS
                     }
                     break;
                 case algo.PRIO:
-                    PRIO PRIO = new PRIO();
-                    index = PRIO.PrioritizeProcess(readyQueue, currentTime);
+                    PRIO prio = new PRIO();
+                    index = prio.PrioritizeProcess(readyQueue, currentTime);
                     if (index != -1)
                     {
-                        ProcessControlBlock currentProcess = readyQueue[index];
+                        readyQueue[index] = prio.Run(index, ref readyQueue);
 
-                        readyQueue[index] = PRIO.Run(currentProcess);
                         if (readyQueue[index].state == status.TERMINATED)
                         {
                             memoryManager.DeallocateMemory(readyQueue[index].Segment);
@@ -141,8 +140,15 @@ namespace HoneyOS
                             status.READY // Set initial state to Ready
                         );
 
-                        readyQueue.Add(process);
+                        // transfer katong segment data from readyqueue[index] to process
+                        memoryManager.DeallocateMemory(readyQueue[index].Segment);
                         readyQueue.RemoveAt(index);
+
+                        if(memoryManager.AllocateMemory(process.memorySize, out MemorySegment segment))
+                        {
+                            process.Segment = segment;
+                        }
+                        readyQueue.Add(process);
                     }
 
                     index = rr.GetEarliest(readyQueue, currentTime);
