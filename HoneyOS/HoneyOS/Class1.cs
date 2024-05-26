@@ -30,12 +30,13 @@ namespace HoneyOS
 
         public void PrintPCB()
         {
-            Console.WriteLine($"Process ID: {pID}, BT: {burstTime}, AT: {arrivalTime}, Priority: {priority}, State: {state}");
+            Console.WriteLine($"Process ID: {pID}, BT: {burstTime}, AT: {arrivalTime}, Priority: {priority}, Memory Size: {memorySize}, State: {state}");
         }
     }
 
     public enum status
     {
+        NEW,
         READY,
         WAITING,
         RUNNING,
