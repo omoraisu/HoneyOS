@@ -9,26 +9,14 @@ namespace HoneyOS
 {
     public class MemoryManager
     {
-        private const int TotalMemory = 1024;
-        private int availableMemory;
-        private List<MemorySegment> freeSegments;
-
-        public class MemorySegment
-        {
-            public int Start { get; set; }
-            public int Size { get; set; }
-
-            public MemorySegment(int start, int size)
-            {
-                Start = start;
-                Size = size;
-            }
-        }
+        protected const int TotalMemory = 64;
+        protected int availableMemory;
+        public List<MemorySegment> freeSegments;
 
         public MemoryManager()
         {
             availableMemory = TotalMemory;
-            freeSegments = new List<MemorySegment> { new MemorySegment(0, TotalMemory) }
+            freeSegments = new List<MemorySegment> { new MemorySegment(0, TotalMemory) };
         }
 
         public bool AllocateMemory(int memorySize, out MemorySegment allocatedSegment)
@@ -91,6 +79,22 @@ namespace HoneyOS
                 }
             }
             return mergedSegments;
+        }
+    }
+    public class MemorySegment
+    {
+        public int Start { get; set; }
+        public int Size { get; set; }
+
+        public MemorySegment(int start, int size)
+        {
+            Start = start;
+            Size = size;
+        }
+
+        public void printSegment()
+        {
+            Console.WriteLine($"Start: {Start}, Size: {Size}");
         }
     }
 }
