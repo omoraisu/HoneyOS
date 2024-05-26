@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Runtime;
 using System.Speech.Synthesis.TtsEngine;
 using System.Text;
 using System.Threading.Tasks;
@@ -114,7 +115,27 @@ namespace HoneyOS
              }
              return index;
          }
-     }
+
+        public ProcessControlBlock Run(int index, ref List<ProcessControlBlock> q)
+        {
+            for (int i = 0; i < q.Count; i++)
+            {
+                if (q[i].state == status.RUNNING && q[i].pID != q[index].pID)
+                {
+                    q[i].state = status.READY;
+                }
+            }
+
+            q[index].state = status.RUNNING;
+            q[index].burstTime--;
+            if (q[index].burstTime < 1)
+            {
+                q[index].state = status.TERMINATED;
+                q[index].PrintPCB();
+            }
+            return q[index];
+        }
+    }
 
 
 
