@@ -37,6 +37,7 @@ namespace HoneyOS
 
         public algo schedulingAlgorithm { get; set; }
 
+
         // Constructor
         public Form6(Desktop desktopInstance)
         {
@@ -93,21 +94,41 @@ namespace HoneyOS
             }
         }
 
+        public void PrintQueues()
+        {
+            Console.WriteLine("Ready");
+            foreach(ProcessControlBlock pcb in taskManager.readyQueue)
+            {
+                pcb.PrintPCB();
+            }
+
+            Console.WriteLine("Job");
+            foreach (ProcessControlBlock pcb in taskManager.jobQueue)
+            {
+                pcb.PrintPCB();
+            }
+
+            Console.WriteLine("----------------------------------------------------");
+        }
+
         public void playOnce()
         {
             taskManager.Execute();
+            PrintQueues();
 
-            if (isAllProcessesTerminated(taskManager.processes))
+            if (isAllProcessesTerminated(taskManager.readyQueue) && isAllProcessesTerminated(taskManager.jobQueue))
             {
                 taskManager.taskStatus = taskStatus.STOP;
                 taskManager.currentTime = 0;
             }
+
+            
             UpdateProcessList();
         }
 
-        public bool isAllProcessesTerminated(List<ProcessControlBlock> processes)
+        public bool isAllProcessesTerminated(List<ProcessControlBlock> Queue)
         {
-            foreach (ProcessControlBlock process in taskManager.processes)
+            foreach (ProcessControlBlock process in Queue)
             {
                 if (process.state != HoneyOS.status.TERMINATED)
                 {
@@ -127,8 +148,8 @@ namespace HoneyOS
             {
                 // Update the process list based on the TaskManager instance
                 Random random = new Random();
-                int numProcesses = random.Next(1, 10);
-                taskManager.GenerateProcesses(numProcesses);
+                // int numProcesses = random.Next(1,10);
+                taskManager.GenerateProcesses(10);
                 UpdateProcessList();
             }
             else
@@ -143,9 +164,9 @@ namespace HoneyOS
         {
             listView1.Items.Clear(); // Clear existing items
 
-            foreach (ProcessControlBlock process in taskManager.processes)
+            foreach (ProcessControlBlock process in taskManager.readyQueue)
             {
-                string[] processInfo = { process.pID.ToString(), process.priority.ToString(), process.burstTime.ToString(), process.arrivalTime.ToString(), process.state.ToString() };
+                string[] processInfo = { process.pID.ToString(), process.burstTime.ToString(), process.arrivalTime.ToString(), process.priority.ToString(), process.memorySize.ToString(), process.state.ToString() };
                 ListViewItem newItem = new ListViewItem(processInfo);
                 listView1.Items.Add(newItem);
             }
@@ -367,7 +388,13 @@ namespace HoneyOS
 
         }
 
+
         private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
