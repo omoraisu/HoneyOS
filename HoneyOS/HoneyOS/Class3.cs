@@ -10,7 +10,7 @@ namespace HoneyOS
     public class TaskManager
     {
         private static int nextPID = 0; // keeps track of the next available pID 
-        public List<ProcessControlBlock> processes;
+        public List<ProcessControlBlock> readyQueue;
         public List<ProcessControlBlock> jobQueue;
         public taskStatus taskStatus;
         public algo schedulingAlgorithm { get; set; }
@@ -19,7 +19,7 @@ namespace HoneyOS
         public MemoryManager memoryManager;
 
         public TaskManager() { 
-            processes = new List<ProcessControlBlock>();
+            readyQueue = new List<ProcessControlBlock>();
             jobQueue = new List<ProcessControlBlock>();
             currentTime = 0;
             taskStatus = taskStatus.PAUSE;
@@ -32,17 +32,7 @@ namespace HoneyOS
             for (int i = 0; i < numProcesses; i++)
             {
                 ProcessControlBlock pcb = CreateProcess(nextPID++, random);
-                if (memoryManager.AllocateMemory(pcb.memorySize, out MemorySegment segment))
-                {
-                    pcb.Segment = segment;
-                    pcb.state = status.READY; // Set status to READY
-                    processes.Add(pcb);
-                }
-                else
-                {
-                    pcb.state = status.WAITING; // Set status to WAITING
-                    jobQueue.Add(pcb);
-                }
+                jobQueue.Add(pcb);
             }
         }
 
@@ -51,21 +41,25 @@ namespace HoneyOS
             return new ProcessControlBlock(
                 pID,
                 random.Next(1, 10), // Burst Time
-                random.Next(0, 10), // Arrival Time
-                random.Next(0, 10), // Priority Level
-                random.Next(1, 10), // Memory Size 
+                random.Next(1, 10), // Arrival Time
+                random.Next(1, 10), // Priority Level
+                random.Next(1, 3), // Memory Size 
                 status.NEW // Set initial state to NEW
             );
         }
 
         private void AdmitJobQueue()
         {
-            foreach(var pcb in jobQueue.ToList())
+
+            jobQueue.Sort((pcb1, pcb2) => pcb1.arrivalTime.CompareTo(pcb2.arrivalTime));
+
+            foreach (var pcb in jobQueue.ToList())
             {
-                if(memoryManager.AllocateMemory(pcb.memorySize, out MemorySegment segment))
+                if(pcb.arrivalTime <= currentTime && memoryManager.AllocateMemory(pcb.memorySize, out MemorySegment segment))
                 {
                     pcb.Segment = segment;
-                    processes.Add(pcb);
+                    pcb.state = status.READY;
+                    readyQueue.Add(pcb);
                     jobQueue.Remove(pcb);
                 }
                 else
@@ -79,54 +73,55 @@ namespace HoneyOS
         {
             int index;
             currentTime++;
+
+            AdmitJobQueue();
+
             switch (schedulingAlgorithm)
             {
                 case algo.FIFO: 
                     FIFO fifo = new FIFO();
-                    // ProcessControlBlock current_pcb = processes[0];
-                    index = fifo.GetEarliest(processes, currentTime);
+                    // ProcessControlBlock current_pcb = readyQueue[0];
+                    index = fifo.GetEarliest(readyQueue, currentTime);
                     if (index != -1) 
                     {
-                        ProcessControlBlock currentProcess = processes[index];
+                        ProcessControlBlock currentProcess = readyQueue[index];
 
-                        processes[index] = fifo.Run(currentProcess);
-                        if (processes[index].state == status.TERMINATED)
+                        readyQueue[index] = fifo.Run(currentProcess);
+                        if (readyQueue[index].state == status.TERMINATED)
                         {
-                            memoryManager.DeallocateMemory(processes[index].Segment);
-                            processes.RemoveAt(index);
-                            AdmitJobQueue();
+                            memoryManager.DeallocateMemory(readyQueue[index].Segment);
+                            readyQueue.RemoveAt(index);
                         }
                     }
                     break;
                 case algo.SJF:
                     SJF sjf = new SJF();
-                    index = sjf.GetShortest(processes, currentTime);
+                    index = sjf.GetShortest(readyQueue, currentTime);
                     if (index != -1)
                     {
-                        ProcessControlBlock currentProcess = processes[index];
+                        // ProcessControlBlock currentProcess = readyQueue[index];
 
-                        processes[index] = sjf.Run(currentProcess);
-                        if (processes[index].state == status.TERMINATED)
+                        readyQueue[index] = sjf.Run(index, ref readyQueue);
+
+                        if (readyQueue[index].state == status.TERMINATED)
                         {
-                            memoryManager.DeallocateMemory(processes[index].Segment);
-                            processes.RemoveAt(index);
-                            AdmitJobQueue();
+                            memoryManager.DeallocateMemory(readyQueue[index].Segment);
+                            readyQueue.RemoveAt(index);
                         }
                     }
                     break;
                 case algo.PRIO:
                     PRIO PRIO = new PRIO();
-                    index = PRIO.PrioritizeProcess(processes, currentTime);
+                    index = PRIO.PrioritizeProcess(readyQueue, currentTime);
                     if (index != -1)
                     {
-                        ProcessControlBlock currentProcess = processes[index];
+                        ProcessControlBlock currentProcess = readyQueue[index];
 
-                        processes[index] = PRIO.Run(currentProcess);
-                        if (processes[index].state == status.TERMINATED)
+                        readyQueue[index] = PRIO.Run(currentProcess);
+                        if (readyQueue[index].state == status.TERMINATED)
                         {
-                            memoryManager.DeallocateMemory(processes[index].Segment);
-                            processes.RemoveAt(index);
-                            AdmitJobQueue();
+                            memoryManager.DeallocateMemory(readyQueue[index].Segment);
+                            readyQueue.RemoveAt(index);
                         }
                     }
 
@@ -136,31 +131,30 @@ namespace HoneyOS
 
                     if (rr.ifTimeToQuantum(currentTime))
                     {
-                        index = rr.GetEarliest(processes, currentTime);
+                        index = rr.GetEarliest(readyQueue, currentTime);
                         ProcessControlBlock process = new ProcessControlBlock(
-                            processes[index].pID,
-                            processes[index].burstTime, // Burst Time
+                            readyQueue[index].pID,
+                            readyQueue[index].burstTime, // Burst Time
                             currentTime, // Arrival Time
-                            processes[index].priority, // Priority Level
-                            processes[index].memorySize, 
+                            readyQueue[index].priority, // Priority Level
+                            readyQueue[index].memorySize, 
                             status.READY // Set initial state to Ready
                         );
 
-                        processes.Add(process);
-                        processes.RemoveAt(index);
+                        readyQueue.Add(process);
+                        readyQueue.RemoveAt(index);
                     }
 
-                    index = rr.GetEarliest(processes, currentTime);
+                    index = rr.GetEarliest(readyQueue, currentTime);
                     if (index != -1)
                     {
-                        ProcessControlBlock currentProcess = processes[index];
-                        processes[index] = rr.Run(currentProcess);
+                        ProcessControlBlock currentProcess = readyQueue[index];
+                        readyQueue[index] = rr.Run(currentProcess);
 
-                        if (processes[index].state == status.TERMINATED)
+                        if (readyQueue[index].state == status.TERMINATED)
                         {
-                            memoryManager.DeallocateMemory(processes[index].Segment);
-                            processes.RemoveAt(index);
-                            AdmitJobQueue();
+                            memoryManager.DeallocateMemory(readyQueue[index].Segment);
+                            readyQueue.RemoveAt(index);
                         }
                     }
                     break;
