@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace HoneyOS
 {
+    // Desktop Form
     public partial class Desktop : Form
     {
         List<string> phrases = new List<string>
@@ -28,18 +29,23 @@ namespace HoneyOS
         List<Form6> task_manager = new List<Form6>();
         List<Form8> menu = new List<Form8>();       //delete this after
 
+        // Get the power status of the device
         PowerStatus ps = SystemInformation.PowerStatus;
 
         public Desktop()
         {
+            // Initializes the form components
             InitializeComponent();
             isListeningForAction = false;
             isListening = false;
         }
         private void Desktop_Load(object sender, EventArgs e)
         {
+            // Disable the visibility of the notepad and filemanager icon on the taskbar
             notepadToolStripMenuItem.Visible = false;
             fileManagerToolStripMenuItem.Visible = false;
+
+            
             BatteryTimer.Start();
 
             // Start a timer to call the update function periodically
@@ -170,6 +176,7 @@ namespace HoneyOS
             }
 
         }
+        // Function that opens the Notepad
         private void OpenNotepadFunction()
         {
             notepadToolStripMenuItem.Visible = true;
@@ -178,6 +185,8 @@ namespace HoneyOS
             notepads.Add(form7);
             form7.Show();
         }
+
+        // Function that opens the File Manager
         private void OpenFileManagerFunction()
         {
             fileManagerToolStripMenuItem.Visible = true;
@@ -186,6 +195,8 @@ namespace HoneyOS
             file_managers.Add(form5);
             form5.Show();
         }
+
+        // Function that closes the Notepad
         private void CloseNotepadFunction()
         {
             foreach(Form7 notepad in notepads)
@@ -198,6 +209,8 @@ namespace HoneyOS
             }
             notepads.Clear();
         }
+
+        // Function that closes the File Manager
         private void CloseFileManagerFunction()
         {
             foreach (Form5 fm in file_managers)
@@ -210,6 +223,7 @@ namespace HoneyOS
             }
             file_managers.Clear();
         }
+        // Function that when the Shutdown is clicked
         private void ShutdownFunction()
         {
             recognizer.Dispose();
@@ -219,60 +233,51 @@ namespace HoneyOS
 
 
         /* Click / MouseEnter / MouseLeave Functions */
+        // Event handler when the Notepad Button is clicked
         private void button1_Click(object sender, EventArgs e)
         {
             OpenNotepadFunction();
         }
 
-        // Handle the MouseEnter event to change the ToolStripMenuItem's image when hovered over
-        private void startToolStripMenuItem_MouseEnter(object sender, EventArgs e)
-        {
-        }
-
-        // Handle the MouseLeave event to change the ToolStripMenuItem's image when the mouse leaves
-        private void startToolStripMenuItem_MouseLeave(object sender, EventArgs e)
-        {
-        }
-
-        // Handle the Click event to change the ToolStripMenuItem's image when clicked
-        private void startToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
+        // Event handler when the Notepad button in the taskbar is clicked
         private void notepadToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             OpenNotepadFunction();
         }
 
+        // Event handler when the Shutdown button is clicked
         private void shutdownToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShutdownFunction();
         }
+
+        // Function that hides the notepad on the taskbar
         public void HideNotepadToolStripMenuItem()
         {
             notepadToolStripMenuItem.Visible = false;
         }
+
+        // Function that hides the file manager on the taskbar
         public void HideFileManagerToolStripMenuItem()
         {
             fileManagerToolStripMenuItem.Visible = false;
         }
 
+        // Event handler when the File Manager is clicked
         private void button2_Click(object sender, EventArgs e)
         {
             OpenFileManagerFunction();
         }
 
+        // Event handler when the Task Manager is clicked
         private void button3_Click(object sender, EventArgs e)
         {
             Form6 form6 = new Form6(this);
             task_manager.Add(form6);
             form6.Show();
         }
-
+        
+        // Event handler when the Menu for Task Manager is clicked
         private void button4_Click(object sender, EventArgs e)
         {
             Form8 form8 = new Form8(this);
@@ -280,14 +285,10 @@ namespace HoneyOS
             form8.Show();
         }
 
+        // Event handle that sets how much the battery life of the device
         private void BatteryTimer_Tick(object sender, EventArgs e)
         {
             BatteryLife.Value = (int)(ps.BatteryLifePercent * 100);
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

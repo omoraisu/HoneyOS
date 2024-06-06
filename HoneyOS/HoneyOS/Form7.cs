@@ -14,6 +14,7 @@ using System.Speech.Recognition;
 
 namespace HoneyOS
 {
+    // Notepad Form
     public partial class Form7 : Form
     {
         string filePath = ""; //used to store file location 
@@ -47,6 +48,7 @@ namespace HoneyOS
 
         public Form7(Desktop desktopInstance)
         {
+            // Initilize the form components
             InitializeComponent();
             this.desktopInstance = desktopInstance; // Assign the reference to the instance of Desktop form
             isListeningForAction = false;
@@ -171,12 +173,15 @@ namespace HoneyOS
             }
 
         }
+        // Function that opens the file manager
         private void OpenFileFunction()
         {
             Form5 fileManager = new Form5(desktopInstance);
             fileManager.Show();
             this.Close();
         }
+
+        // Function that saves a file
         private void SaveFileFunction()
         {
             string CFilePath = Path.Combine(currentPath, currentFile);
@@ -233,58 +238,6 @@ namespace HoneyOS
             }
         }
 
-        //Buttons Hover and Clicked
-        /*
-        private void save_Click(object sender, EventArgs e)
-        {
-            save.BackColor = Color.FromArgb(255, 234, 177);
-            if (string.IsNullOrEmpty(filePath))
-            {
-                using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "TextDocument |* .txt", ValidateNames = true })
-                {
-                    if (sfd.ShowDialog() == DialogResult.OK)
-                    {
-                        using (StreamWriter sw = new StreamWriter(sfd.FileName))
-                        {
-                            sw.WriteLineAsync(richTextBox1.Text);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                using (StreamWriter sw = new StreamWriter(filePath))
-                {
-                    sw.WriteLineAsync(richTextBox1.Text);
-                }
-            }
-
-        }
-        */
-
-        /*
-        private void save_Click(object sender, EventArgs e)
-        {
-            save.BackColor = Color.FromArgb(255, 234, 177);
-            Form5 fileManager = new Form5(desktopInstance);
-            fileManager.Show();
-            fileManager.ShowSaveFilePanel();
-
-            if (fileManager.ShowSaveFilePanel == false)
-            {
-                fileManager.Close();
-            }
-
-        }
-        */
-
-
-        private void save_Click(object sender, EventArgs e)
-        {
-            save.BackColor = Color.FromArgb(255, 234, 177);
-            SaveFileFunction();
-        }
-
         private void FileManager_SaveCompleted(object sender, EventArgs e)
         {
             if (sender is Form5 fileManager)
@@ -296,6 +249,13 @@ namespace HoneyOS
                 fileManager.Visible = false;
             }
         }
+        /* Save Button: Click / MouseEnter / MouseLeave Functions */
+        /* Changes the backcolor of the button */
+        private void save_Click(object sender, EventArgs e)
+        {
+            save.BackColor = Color.FromArgb(255, 234, 177);
+            SaveFileFunction();
+        }
         private void save_MouseLeave(object sender, EventArgs e)
         {
             save.BackColor = Color.White;
@@ -304,6 +264,9 @@ namespace HoneyOS
         {
             save.BackColor = Color.FromArgb(255, 243, 222);
         }
+
+        /* Save As Button: Click / MouseEnter / MouseLeave Functions */
+        /* Changes the backcolor of the button */
         private void saveAs_Click(object sender, EventArgs e)
         {
             saveAs.BackColor = Color.FromArgb(255, 234, 177);
@@ -317,6 +280,9 @@ namespace HoneyOS
         {
             saveAs.BackColor = Color.FromArgb(255, 243, 222);
         }
+
+        /* Open Button: Click / MouseEnter / MouseLeave Functions */
+        /* Changes the backcolor of the button */
         private void open_Click(object sender, EventArgs e)
         {
             open.BackColor = Color.FromArgb(255, 234, 177);
@@ -330,6 +296,9 @@ namespace HoneyOS
         {
             open.BackColor = Color.FromArgb(255, 243, 222);
         }
+
+        /* Cut Button: Click / MouseEnter / MouseLeave Functions */
+        /* Changes the backcolor of the button */
         private void cut_Click(object sender, EventArgs e)
         {
             cut.BackColor = Color.FromArgb(255, 234, 177);
@@ -343,6 +312,9 @@ namespace HoneyOS
         {
             cut.BackColor = Color.FromArgb(255, 243, 222);
         }
+
+        /* Copy Button: Click / MouseEnter / MouseLeave Functions */
+        /* Changes the backcolor of the button */
         private void copy_Click(object sender, EventArgs e)
         {
 
@@ -357,6 +329,9 @@ namespace HoneyOS
         {
             copy.BackColor = Color.FromArgb(255, 243, 222);
         }
+
+        /* Paste Button: Click / MouseEnter / MouseLeave Functions */
+        /* Changes the backcolor of the button */
         private void paste_Click(object sender, EventArgs e)
         {
             paste.BackColor = Color.FromArgb(255, 234, 177);
@@ -370,6 +345,7 @@ namespace HoneyOS
         {
             paste.BackColor = Color.FromArgb(255, 243, 222);
         }
+
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
             if (richTextBox1.Text != oldText)
@@ -392,13 +368,15 @@ namespace HoneyOS
                 save.Enabled = false;
             }
         }
-
+        // Event handler when the Form7 (Notepad) is closed
         private void Form7_FormClosed(object sender, FormClosedEventArgs e)
         {
             recognizer.Dispose();
             desktopInstance?.HideNotepadToolStripMenuItem(); // Call the method to hide notepadToolStripMenuItem on Desktop form
         }
 
+        /* New Window Button: Click / MouseEnter / MouseLeave Functions */
+        /* Changes the backcolor of the button */
         private void newWindow_Click(object sender, EventArgs e)
         {
             newWindow.BackColor = Color.FromArgb(255, 234, 177);
@@ -449,7 +427,6 @@ namespace HoneyOS
         {
             newWindow.BackColor = Color.FromArgb(255, 243, 222);
         }
-
         private void newWindow_MouseLeave(object sender, EventArgs e)
         {
             newWindow.BackColor = Color.White;
@@ -470,52 +447,5 @@ namespace HoneyOS
         {
             CloseWindowFunction(sender,e);
         }
-        /*
-        private void set_FilePath(string filePath)
-        {
-            this.filePath = filePath;
-
-            // Assuming you have a RichTextBox or TextBox control for displaying text
-            if (filePath.EndsWith(".txt", StringComparison.OrdinalIgnoreCase))
-            {
-                try
-                {
-                    // Read the text file content
-                    string fileContent = File.ReadAllText(filePath);
-
-                    // Update the text box content with the file content
-                    yourTextBoxControl.Text = fileContent;
-                }
-                catch (Exception ex)
-                {
-                    // Handle exceptions like file not found or permission issues
-                    MessageBox.Show("Error opening file: " + ex.Message);
-                }
-            }
-            else
-            {
-                // Handle non-text files (optional: display message or disable editing)
-                MessageBox.Show("This file type is not supported.");
-            }
-        }
-        private void open_Click(object sender, EventArgs e)
-        {
-    
-            //Code for open a txt file 
-            using (OpenFileDialog ofd = new OpenFileDialog() { Filter = "TextDocument |* .txt", ValidateNames = true, Multiselect = false })
-            {
-                if (ofd.ShowDialog() == DialogResult.OK)
-                {
-                    using (StreamReader sr = new StreamReader(ofd.FileName))
-                    {
-                filePath = ofd.FileName;
-                Task<string> text = sr.ReadToEndAsync();
-                richTextBox1.Text = text.Result;
-            }
-        }
-    }
-}
-*/
-
     }
 }

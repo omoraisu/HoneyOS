@@ -68,14 +68,12 @@
             this.startToolStripMenuItem,
             this.notepadToolStripMenuItem,
             this.fileManagerToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 674);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 672);
             this.menuStrip1.Margin = new System.Windows.Forms.Padding(0, 6, 0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1280, 46);
+            this.menuStrip1.Size = new System.Drawing.Size(1280, 48);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // startToolStripMenuItem
             // 
@@ -87,26 +85,23 @@
             this.startToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
             this.startToolStripMenuItem.Size = new System.Drawing.Size(100, 42);
-            this.startToolStripMenuItem.Click += new System.EventHandler(this.startToolStripMenuItem_Click);
-            this.startToolStripMenuItem.MouseEnter += new System.EventHandler(this.startToolStripMenuItem_MouseEnter);
-            this.startToolStripMenuItem.MouseLeave += new System.EventHandler(this.startToolStripMenuItem_MouseLeave);
             // 
             // notepadToolStripMenuItem1
             // 
             this.notepadToolStripMenuItem1.Name = "notepadToolStripMenuItem1";
-            this.notepadToolStripMenuItem1.Size = new System.Drawing.Size(195, 34);
+            this.notepadToolStripMenuItem1.Size = new System.Drawing.Size(270, 34);
             this.notepadToolStripMenuItem1.Text = "Notepad";
             this.notepadToolStripMenuItem1.Click += new System.EventHandler(this.notepadToolStripMenuItem1_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(192, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(267, 6);
             // 
             // shutdownToolStripMenuItem
             // 
             this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(195, 34);
+            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
             this.shutdownToolStripMenuItem.Text = "Shutdown";
             this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.shutdownToolStripMenuItem_Click);
             // 
@@ -116,7 +111,7 @@
             this.notepadToolStripMenuItem.Image = global::HoneyOS.Properties.Resources.Notepad_Minimize;
             this.notepadToolStripMenuItem.Name = "notepadToolStripMenuItem";
             this.notepadToolStripMenuItem.Padding = new System.Windows.Forms.Padding(30, 0, 4, 0);
-            this.notepadToolStripMenuItem.Size = new System.Drawing.Size(165, 42);
+            this.notepadToolStripMenuItem.Size = new System.Drawing.Size(165, 44);
             this.notepadToolStripMenuItem.Text = "  Notepad";
             // 
             // fileManagerToolStripMenuItem
@@ -124,7 +119,7 @@
             this.fileManagerToolStripMenuItem.Font = new System.Drawing.Font("Poppins", 9F);
             this.fileManagerToolStripMenuItem.Image = global::HoneyOS.Properties.Resources.Folder__1_;
             this.fileManagerToolStripMenuItem.Name = "fileManagerToolStripMenuItem";
-            this.fileManagerToolStripMenuItem.Size = new System.Drawing.Size(174, 42);
+            this.fileManagerToolStripMenuItem.Size = new System.Drawing.Size(174, 44);
             this.fileManagerToolStripMenuItem.Text = " File Manager";
             // 
             // toolStripComboBox1
@@ -158,7 +153,6 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "11/04/2024";
             this.label2.TextAlign = System.Drawing.ContentAlignment.BottomRight;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // BatteryTimer
             // 

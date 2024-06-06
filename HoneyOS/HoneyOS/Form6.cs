@@ -15,6 +15,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace HoneyOS
 {
+    // Task Manager Form
     public partial class Form6 : Form
     {
         private Desktop desktopInstance; // Reference to an instance of Desktop form
@@ -41,7 +42,9 @@ namespace HoneyOS
         // Constructor
         public Form6(Desktop desktopInstance)
         {
+            // Initializes the form components
             InitializeComponent();
+            // Initializes the Task Manager components
             InitializeTaskManager();
             // Initialize the list of unique colors
             InitializeUniqueColors();
@@ -54,7 +57,7 @@ namespace HoneyOS
 
         private void Form6_Load(object sender, EventArgs e)
         {
-            // Access boolean properties and update label4
+            // Access boolean properties and update label4 (What Scheduling Policy)
             if (FIFO)
             {
                 label4.Text = "First Come First Serve";
@@ -343,7 +346,7 @@ namespace HoneyOS
 
             UpdateRemainingMemory(taskManager.memoryManager.GetAvailableMemory());
         }
-
+        // Creates a process number label on each segment in the memory
         private void CreateLabelInPanel(Panel panel, string labelText, int panelHeight)
         {
             Label label = new Label();
@@ -441,6 +444,7 @@ namespace HoneyOS
             return Color.FromArgb(alpha, red, green, blue);
         }
 
+        /* Play Button: MouseEnter / MouseLeave Functions */
         private void button1_MouseEnter(object sender, EventArgs e)
         {
             button1.BackColor = Color.FromArgb(193, 225, 193);
@@ -449,6 +453,8 @@ namespace HoneyOS
         {
             button1.BackColor = Color.FromArgb(255, 255, 255);
         }
+
+        /* Pause Button: MouseEnter / MouseLeave Functions */
         private void button2_MouseEnter(object sender, EventArgs e)
         {
             button2.BackColor = Color.FromArgb(255, 225, 191);
@@ -457,6 +463,8 @@ namespace HoneyOS
         {
             button2.BackColor = Color.FromArgb(255, 255, 255);
         }
+
+        /* Stop Button: MouseEnter / MouseLeave Functions */
         private void button3_MouseEnter(object sender, EventArgs e)
         {
             button3.BackColor = Color.FromArgb(255, 204, 203);
@@ -464,32 +472,6 @@ namespace HoneyOS
         private void button3_MouseLeave(object sender, EventArgs e)
         {
             button3.BackColor = Color.FromArgb(255, 255, 255);
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

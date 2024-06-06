@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace HoneyOS
 {
+    // Task Manager Menu Form
     public partial class Form8 : Form
     {
         private Desktop desktopInstance; // Reference to an instance of Desktop form
@@ -23,16 +24,11 @@ namespace HoneyOS
         public bool SJF { get; set; }
         public Form8(Desktop desktopInstance)
         {
+            // Initializes the form components
             InitializeComponent();
             this.desktopInstance = desktopInstance; // Assign the reference to the instance of Desktop form
         }
-
-        private void Form8_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
+        // Function that opens the Task Manager form
         private void OpenFileFunction()
         {
             Form6 taskManager = new Form6(desktopInstance);
@@ -44,11 +40,12 @@ namespace HoneyOS
             taskManager.PRIO = this.PRIO;
             taskManager.RRR = this.RRR;
             
-
             taskManager.Show();
             this.Close();
         }
+
         //First Come First Served
+        /* Click / MouseEnter / MouseLeave Functions */
         private void button1_Click(object sender, EventArgs e)
         {
             button1.BackColor = Color.FromArgb(255, 234, 177);
@@ -57,17 +54,17 @@ namespace HoneyOS
             OpenFileFunction();
             
         }
-
         private void button1_MouseEnter(object sender, EventArgs e)
         {
             button1.BackColor = Color.FromArgb(255, 234, 177);
         }
-
         private void button1_MouseLeave(object sender, EventArgs e)
         {
             button1.BackColor = Color.FromArgb(250, 240, 230);
         }
+
         //Shortest Job First
+        /* Click / MouseEnter / MouseLeave Functions */
         private void button2_Click(object sender, EventArgs e)
         {
             button2.BackColor = Color.FromArgb(255, 234, 177);
@@ -75,22 +72,21 @@ namespace HoneyOS
             SJF = true;
             OpenFileFunction();
         }
-
         private void button2_MouseEnter(object sender, EventArgs e)
         {
             button2.BackColor = Color.FromArgb(255, 234, 177);
         }
-
         private void button2_MouseLeave(object sender, EventArgs e)
         {
             button2.BackColor = Color.FromArgb(250, 240, 230);
         }
+
         //Priority
+        /* Click / MouseEnter / MouseLeave Functions */
         private void button3_MouseEnter(object sender, EventArgs e)
         {
             button3.BackColor = Color.FromArgb(255, 234, 177);
         }
-
         private void button3_MouseLeave(object sender, EventArgs e)
         {
             button3.BackColor = Color.FromArgb(250, 240, 230);
@@ -102,12 +98,13 @@ namespace HoneyOS
             PRIO = true;
             OpenFileFunction();
         }
+
         // Round Robin
+        /* Click / MouseEnter / MouseLeave Functions */
         private void button4_MouseEnter(object sender, EventArgs e)
         {
             button4.BackColor = Color.FromArgb(255, 234, 177);
         }
-
         private void button4_MouseLeave(object sender, EventArgs e)
         {
             button4.BackColor = Color.FromArgb(250, 240, 230);
@@ -118,24 +115,6 @@ namespace HoneyOS
             chosenAlgo = algo.RRR;
             RRR = true;
             OpenFileFunction();
-        }
-/*        private void button5_MouseEnter(object sender, EventArgs e)
-        {
-            button5.BackColor = Color.FromArgb(242, 190, 66);
-        }
-
-        private void button5_MouseLeave(object sender, EventArgs e)
-        {
-            button5.BackColor = Color.FromArgb(255, 255, 255);
-        }
-        private void button5_Click(object sender, EventArgs e)
-        {
-            button5.BackColor = Color.FromArgb(255, 234, 177);
-        }*/
-
-        private void button1_MouseClick(object sender, MouseEventArgs e)
-        {
-            button1.BackColor = Color.FromArgb(242, 190, 66);
         }
     }
 }
