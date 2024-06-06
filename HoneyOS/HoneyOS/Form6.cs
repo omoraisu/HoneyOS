@@ -90,15 +90,17 @@ namespace HoneyOS
 
         }
 
+        // this is called every clock tick of updateTimer
         public void Form6Update()
         {
-            if(taskManager.taskStatus == taskStatus.PLAY)
+            if(taskManager.taskStatus == taskStatus.PLAY) // if the Task Manager is current playing
             {
                 playOnce();
             }
         }
 
-        public void PrintQueues()
+        // function used for debugging, prints in the console the ready and job processes and their details
+        public void PrintQueues() 
         {
             Console.WriteLine("Ready");
             foreach(ProcessControlBlock pcb in taskManager.readyQueue)
@@ -115,21 +117,24 @@ namespace HoneyOS
             Console.WriteLine("----------------------------------------------------");
         }
 
+        // executes 1 tick of the taskmanager and updates the display
         public void playOnce()
         {
             taskManager.Execute();
-            PrintQueues();
+            PrintQueues(); // print function for debugging
 
+            // if no more processes in ready and job queue
             if (isAllProcessesTerminated(taskManager.readyQueue) && isAllProcessesTerminated(taskManager.jobQueue))
             {
-                taskManager.taskStatus = taskStatus.STOP;
-                taskManager.currentTime = 0;
+                taskManager.taskStatus = taskStatus.STOP; // stops the task manager
+                taskManager.currentTime = 0; // reset runtime
             }
 
-            UpdateMemoryPanel(taskManager.readyQueue, taskManager.memoryManager.freeSegments);
-            UpdateProcessList();
+            UpdateMemoryPanel(taskManager.readyQueue, taskManager.memoryManager.freeSegments); // update Memory Panel display
+            UpdateProcessList(); // update Processes Panels display
         }
 
+        // function to check if all processes within the list all have a terminated status
         public bool isAllProcessesTerminated(List<ProcessControlBlock> Queue)
         {
             foreach (ProcessControlBlock process in Queue)
@@ -163,12 +168,14 @@ namespace HoneyOS
             }
         }
 
-        // Updates the list based on the current list in task manager 
+        // Updates the ready and job queue based on the lists in task manager 
         private void UpdateProcessList()
         {
-            listView1.Items.Clear(); // Clear existing items
+            // Clear existing items of both Ready and Job queue display
+            listView1.Items.Clear(); 
             listView2.Items.Clear();
 
+            // Display all items in ready queue
             foreach (ProcessControlBlock process in taskManager.readyQueue)
             {
                 string[] processInfo = { process.pID.ToString(), process.priority.ToString(), process.burstTime.ToString(), process.arrivalTime.ToString(), process.memorySize.ToString(), process.state.ToString() };
@@ -176,6 +183,7 @@ namespace HoneyOS
                 listView1.Items.Add(newItem);
             }
 
+            // Display all items in job queue
             foreach (ProcessControlBlock process in taskManager.jobQueue)
             {
                 string[] processInfo = { process.pID.ToString(), process.priority.ToString(), process.burstTime.ToString(), process.arrivalTime.ToString(), process.memorySize.ToString(), process.state.ToString() };
@@ -183,9 +191,11 @@ namespace HoneyOS
                 listView2.Items.Add(newItem);
             }
 
+            // update current time display
             label6.Text = taskManager.currentTime.ToString();
         }
 
+        // updates the algorithm of the task manager depending on the user's selected algorithm
         public void UpdateSchedulingAlgo(algo al)
         {
             schedulingAlgo = al;
@@ -225,6 +235,7 @@ namespace HoneyOS
             playOnce();
         }
 
+        // (not used) previous function used in for the Memory Panel
         private void AddPanelToFlowLayout()
         {
             // Create a new Panel control
@@ -256,96 +267,107 @@ namespace HoneyOS
             UpdateRemainingMemory(randomHeight);
         }
 
+        // function to update the Memory Panel Display
         private void UpdateMemoryPanel(List<ProcessControlBlock> l, List<MemorySegment> f)
         {
-            
+
+            // Clear existing items of the Memory Panel display
             flowLayoutPanel1.Controls.Clear();
 
-            var loaded = l.OrderBy(pcb => pcb.Segment.Start).ToList();
-            var free = f.OrderBy(segment => segment.Start).ToList();
+            var loaded = l.OrderBy(pcb => pcb.Segment.Start).ToList(); // list for all used memory segments, sorted ascending
+            var free = f.OrderBy(segment => segment.Start).ToList(); // list for all free memory segments, sorted ascending
 
+            // while there are still items of both loaded and free lists, compare and get the item with the earliest Start 
             while (loaded.Count != 0 && free.Count != 0)
             {
-                if (loaded[0].Segment.Start <= free[0].Start) // means it is occupied
+                // if the loaded is the earliest, then the segment is occupied
+                if (loaded[0].Segment.Start <= free[0].Start)
                 {
+                    
                     ProcessControlBlock pcb = loaded[0];
                     MemorySegment segment = pcb.Segment;
-                    //Color panelColor = GetNextUniqueColor(new Random()); // Assuming you have a method to get unique colors
+                    
+                    // set Memory Panel's segment details
                     Color panelColor = Color.FromArgb(255, 255, 223, 0);
-
-                    // Calculate the height of the segment panel
                     int panelHeight = (int)Math.Round((double)(flowLayoutPanel1.Height / 32) * segment.Size);
-
                     Panel segmentPanel = new Panel();
                     segmentPanel.Size = new Size(194, panelHeight);
                     segmentPanel.BackColor = panelColor;
                     segmentPanel.Margin = new Padding(1);
-
                     segmentPanel.Name = "Process " + pcb.pID.ToString();
-                    CreateLabelInPanel(segmentPanel, segmentPanel.Name, panelHeight);
 
+                    // add panel to Memory Panel display
+                    CreateLabelInPanel(segmentPanel, segmentPanel.Name, panelHeight);
                     flowLayoutPanel1.Controls.Add(segmentPanel);
+
+                    // remove item from the loaded list
                     loaded.RemoveAt(0);
                 }
+                // if the free is the earliest, then the segment is not occupied
                 else
                 {
                     MemorySegment segment = free[0];
-                    // Calculate the height of the segment panel
-                    int panelHeight = (int)Math.Round((double)(flowLayoutPanel1.Height / 32) * segment.Size);
 
+                    // set Memory Panel's segment details
+                    int panelHeight = (int)Math.Round((double)(flowLayoutPanel1.Height / 32) * segment.Size);
                     Panel segmentPanel = new Panel();
                     segmentPanel.Size = new Size(194, panelHeight);
                     segmentPanel.Margin = new Padding(1);
-
                     Color panelColor = Color.FromArgb(255, 0, 0, 0);
                     segmentPanel.BackColor = panelColor;
 
+                    // add panel to Memory Panel display
                     flowLayoutPanel1.Controls.Add(segmentPanel);
+
+                    // remove item from the free list
                     free.RemoveAt(0);
                 }
             }
-
+            // executes until the loaded list is empty
             while(loaded.Count != 0)
             {
                 ProcessControlBlock pcb = loaded[0];
                 MemorySegment segment = pcb.Segment;
-                //Color panelColor = GetNextUniqueColor(new Random()); // Assuming you have a method to get unique colors
+
+                // set Memory Panel's segment details
                 Color panelColor = Color.FromArgb(255, 255, 223, 0);
-
-                // Calculate the height of the segment panel
                 int panelHeight = (int)Math.Round((double)(flowLayoutPanel1.Height / 32) * segment.Size);
-
                 Panel segmentPanel = new Panel();
                 segmentPanel.Size = new Size(194, panelHeight);
                 segmentPanel.BackColor = panelColor;
                 segmentPanel.Margin = new Padding(1);
-
                 segmentPanel.Name = "Process " + pcb.pID.ToString();
-                CreateLabelInPanel(segmentPanel, segmentPanel.Name, panelHeight);
 
+                // add panel to Memory Panel display
+                CreateLabelInPanel(segmentPanel, segmentPanel.Name, panelHeight);
                 flowLayoutPanel1.Controls.Add(segmentPanel);
+
+                // remove item from the loaded list
                 loaded.RemoveAt(0);
             }
             while(free.Count != 0)
             {
                 MemorySegment segment = free[0];
 
-                // Calculate the height of the segment panel
+                // set Memory Panel's segment details
                 int panelHeight = (int)Math.Round((double)(flowLayoutPanel1.Height / 32) * segment.Size);
-
                 Panel segmentPanel = new Panel();
                 segmentPanel.Size = new Size(194, panelHeight);
                 segmentPanel.Margin = new Padding(1);
-
                 Color panelColor = Color.FromArgb(255, 0, 0, 0);
                 segmentPanel.BackColor = panelColor;
 
+                // add panel to Memory Panel display
                 flowLayoutPanel1.Controls.Add(segmentPanel);
+
+                // remove item from the free list
                 free.RemoveAt(0);
             }
 
+            // Update the remaining memory display
             UpdateRemainingMemory(taskManager.memoryManager.GetAvailableMemory());
         }
+
         // Creates a process number label on each segment in the memory
         private void CreateLabelInPanel(Panel panel, string labelText, int panelHeight)
         {

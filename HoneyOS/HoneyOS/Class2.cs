@@ -35,12 +35,14 @@ namespace HoneyOS
             this.pcb_list.Remove(pcb);
         }
 
+        // execute the target process
         public ProcessControlBlock Run(ProcessControlBlock process)
         {
              process.state = status.RUNNING;
              process.burstTime--;
              if (process.burstTime < 1)
              {
+                // if the burst time is 0, terminate the process
                  process.state = status.TERMINATED;
                  process.PrintPCB();
              }
@@ -60,6 +62,7 @@ namespace HoneyOS
 
         }
 
+        // function to get the index of the oldest process in the list
         public int GetEarliest(List<ProcessControlBlock> processes, int currentTime)
         {
             int index = -1;
@@ -92,6 +95,7 @@ namespace HoneyOS
 
          }
 
+         // function to get the index of the process with the shortest burst time in the list
          public int GetShortest(List<ProcessControlBlock> processes, int currentTime)
          {
              int index = -1;
@@ -116,6 +120,7 @@ namespace HoneyOS
              return index;
          }
 
+        // checks any previous executed process and return it to ready state, then execute the target process
         public ProcessControlBlock Run(int index, ref List<ProcessControlBlock> q)
         {
             for (int i = 0; i < q.Count; i++)
@@ -145,6 +150,8 @@ namespace HoneyOS
         {
 
         }
+
+        // function to get the index of the process with the highest priority in the list
         public int PrioritizeProcess(List<ProcessControlBlock> processes, int currentTime)
         {
             int index = -1;
@@ -169,6 +176,7 @@ namespace HoneyOS
             return index;
         }
 
+        // checks any previous executed process and return it to ready state, then execute the target process
         public ProcessControlBlock Run(int index, ref List<ProcessControlBlock> q)
         {
             for (int i = 0; i < q.Count; i++)
@@ -193,18 +201,18 @@ namespace HoneyOS
     public class RRR : Scheduler
     {
         private int timeSlice;
-
-        // constructor for round robin
         public RRR(int timeSlice) : base() // Calls superclass constructor
         {
-            this.timeSlice = timeSlice;
+            this.timeSlice = timeSlice; // quantum time
         }
 
+        // function to check if the end of the quantum time has been reached
         public bool ifTimeToQuantum(int currentTime)
         {
             return currentTime != 0 && currentTime % timeSlice == 0;
         }
 
+        // function to get the index of the oldest process in the list
         public int GetEarliest(List<ProcessControlBlock> processes, int currentTime)
         {
             int index = -1;
@@ -231,9 +239,9 @@ namespace HoneyOS
     }
     public enum algo
     {
-        SJF,
-        FIFO,
-        PRIO,
-        RRR
+        SJF,    // Shortest Job First
+        FIFO,   // First In, First  Out
+        PRIO,   // Priority
+        RRR     // Round Robin
     }
 }

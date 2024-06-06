@@ -21,7 +21,9 @@ namespace HoneyOS
             "goodbye",                // close the notepad
         };
 
-        bool isListeningForAction, topmost, isListening;
+        bool isListeningForAction;          // if true, that means "honey" is already heard and the speech engine is now listening for a command
+        bool topmost;                       // if true, that means this slide is currently interacted
+        bool isListening;                   // if true, the speech engine is active
         SpeechRecognitionEngine recognizer;
 
         List<Form7> notepads = new List<Form7>();
@@ -131,12 +133,13 @@ namespace HoneyOS
         {
             if (e.Result.Confidence < 0.7)
             {
+                //indicate to UI that Beebot has heard something that is included in the grammar, but is not confident enough
                 MessageBox.Show("I'm sorry honey, I'm not sure I heard you clearly", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             if (e.Result.Text.ToLower() == "honey" && !isListeningForAction)
             {
-                //indicate to UI that Beebot is listening
+                // indicate to UI that Beebot is listening
                 MessageBox.Show("Hello dear, what can I do for you?", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 isListeningForAction = true;
             }

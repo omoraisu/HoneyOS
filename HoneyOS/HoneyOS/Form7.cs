@@ -42,7 +42,9 @@ namespace HoneyOS
             "paste this please",            // paste cut/copied text
         };
 
-        bool isListeningForAction, topmost, isListening;
+        bool isListeningForAction;          // if true, that means "honey" is already heard and the speech engine is now listening for a command
+        bool topmost;                       // if true, that means this slide is currently interacted
+        bool isListening;                   // if true, the speech engine is active
         SpeechRecognitionEngine recognizer;
 
 
@@ -133,6 +135,7 @@ namespace HoneyOS
         {
             if (e.Result.Confidence < 0.7)
             {
+                //indicate to UI that Beebot has heard something that is included in the grammar, but is not confident enough
                 MessageBox.Show("I'm sorry honey, I'm not sure I heard you clearly", "HoneyOS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }

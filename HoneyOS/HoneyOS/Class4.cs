@@ -19,6 +19,9 @@ namespace HoneyOS
             freeSegments = new List<MemorySegment> { new MemorySegment(0, TotalMemory) };
         }
 
+        // function to determine if memory can be allocated for the process
+        // returns true if memory can be allocated, and if true, memory is automatically allocated
+        // returns false otherwise
         public bool AllocateMemory(int memorySize, out MemorySegment allocatedSegment)
         {
             allocatedSegment = null;
@@ -43,19 +46,21 @@ namespace HoneyOS
             return false; 
         }
 
+        // function to deallocate memory segment allocated for a process
         public void DeallocateMemory(MemorySegment segment)
         {
             availableMemory += segment.Size;
             freeSegments.Add(segment);
-            // Merge adjacent free segments 
-            freeSegments = MergeAdjacentSegments(freeSegments);
+            freeSegments = MergeAdjacentSegments(freeSegments); // Merge adjacent free segments
         }
 
+        // function to get the current total free memory in the memory manager
         public int GetAvailableMemory()
         {
             return availableMemory;
         }
 
+        // function to merge any adjacent free segments
         private List<MemorySegment> MergeAdjacentSegments(List<MemorySegment> segments)
         {
             var mergedSegments = new List<MemorySegment>();
@@ -92,6 +97,7 @@ namespace HoneyOS
             Size = size;
         }
 
+        // debug function, prints to console the details of a segment
         public void printSegment()
         {
             Console.WriteLine($"Start: {Start}, Size: {Size}");

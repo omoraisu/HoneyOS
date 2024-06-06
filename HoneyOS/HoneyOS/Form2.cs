@@ -84,7 +84,7 @@ namespace HoneyOS
                 try
                 {
                     isListening = false;
-                    recognizer.RecognizeAsyncStop();
+                    recognizer.RecognizeAsyncStop(); // Stop recognition
                     Debug.WriteLine("currentlynotListening");
                 }
                 catch (ObjectDisposedException)

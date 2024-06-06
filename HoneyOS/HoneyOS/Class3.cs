@@ -4,18 +4,21 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HoneyOS
 {
     public class TaskManager
     {
-        private static int nextPID = 0; // keeps track of the next available pID 
+        // Lists for the Job and Ready Queues
         public List<ProcessControlBlock> readyQueue;
         public List<ProcessControlBlock> jobQueue;
-        public taskStatus taskStatus;
-        public algo schedulingAlgorithm { get; set; }
-        public int currentTime;
 
+        // keeps track of following:
+        public taskStatus taskStatus;   // the status of the task manager
+        private static int nextPID = 0; // the next avaliable(unused) pID
+        public int currentTime;         // the task manager's runtime's current time
+        public algo schedulingAlgorithm { get; set; }
         public MemoryManager memoryManager;
 
         public TaskManager() { 
@@ -26,6 +29,7 @@ namespace HoneyOS
             memoryManager = new MemoryManager();
         }
 
+        // function to generate {numProcesses} number of processes and add it to the Job Queue
         public void GenerateProcesses(int numProcesses)
         {
             Random random = new Random();
@@ -36,6 +40,7 @@ namespace HoneyOS
             }
         }
 
+        // function to generate a process with random burst time, arrival time, priority, and memory requirement
         private ProcessControlBlock CreateProcess(int pID, Random random)
         {
             return new ProcessControlBlock(
@@ -48,15 +53,19 @@ namespace HoneyOS
             );
         }
 
+        // function to add processes from the job queue into the ready queue until no more processes can be added
         private void AdmitJobQueue()
         {
 
+            // sort the job queue, according to arrival time
             jobQueue.Sort((pcb1, pcb2) => pcb1.arrivalTime.CompareTo(pcb2.arrivalTime));
 
             foreach (var pcb in jobQueue.ToList())
             {
-                if(pcb.arrivalTime <= currentTime && memoryManager.AllocateMemory(pcb.memorySize, out MemorySegment segment))
+                // if the process has already arrived, and process' memory requirement can be provided by the memory manager
+                if (pcb.arrivalTime <= currentTime && memoryManager.AllocateMemory(pcb.memorySize, out MemorySegment segment))
                 {
+                    // add the process to the ready queue and remove the process from the job queue
                     pcb.Segment = segment;
                     pcb.state = status.READY;
                     readyQueue.Add(pcb);
@@ -69,58 +78,65 @@ namespace HoneyOS
             }
         }
 
+        // function executed by the task manager for each clock's tick
         public void Execute()
         {
             int index;
-            currentTime++;
 
-            AdmitJobQueue();
+            currentTime++;      // increase current time
+            AdmitJobQueue();    // add available processes in job queue to ready queue is possible
 
             switch (schedulingAlgorithm)
             {
-                case algo.FIFO: 
+                case algo.FIFO: // selected algorithm is First In, First Out
                     FIFO fifo = new FIFO();
-                    // ProcessControlBlock current_pcb = readyQueue[0];
-                    index = fifo.GetEarliest(readyQueue, currentTime);
-                    if (index != -1) 
+                    index = fifo.GetEarliest(readyQueue, currentTime);          // get index of the target process
+
+                    if (index != -1) // if a target process is found
                     {
                         ProcessControlBlock currentProcess = readyQueue[index];
 
-                        readyQueue[index] = fifo.Run(currentProcess);
+                        readyQueue[index] = fifo.Run(currentProcess);           // execute the process
+
+                        // if the process is terminated
                         if (readyQueue[index].state == status.TERMINATED)
                         {
-                            memoryManager.DeallocateMemory(readyQueue[index].Segment);
-                            readyQueue.RemoveAt(index);
+                            memoryManager.DeallocateMemory(readyQueue[index].Segment);  // deallocate its allocated memory
+                            readyQueue.RemoveAt(index);                                 // remove the process from the ready queue
                         }
                     }
+
                     break;
-                case algo.SJF:
+                case algo.SJF:  // selected algorithm is Shortest Job First
                     SJF sjf = new SJF();
-                    index = sjf.GetShortest(readyQueue, currentTime);
-                    if (index != -1)
+                    index = sjf.GetShortest(readyQueue, currentTime);           // get index of the target process
+                    
+                    if (index != -1) // if a target process is found
                     {
-                        // ProcessControlBlock currentProcess = readyQueue[index];
+                        readyQueue[index] = sjf.Run(index, ref readyQueue);     // execute the process
 
-                        readyQueue[index] = sjf.Run(index, ref readyQueue);
-
+                        // if the process is terminated
                         if (readyQueue[index].state == status.TERMINATED)
                         {
-                            memoryManager.DeallocateMemory(readyQueue[index].Segment);
-                            readyQueue.RemoveAt(index);
+                            memoryManager.DeallocateMemory(readyQueue[index].Segment);  // deallocate its allocated memory
+                            readyQueue.RemoveAt(index);                                 // remove the process from the ready queue
                         }
                     }
-                    break;
-                case algo.PRIO:
-                    PRIO prio = new PRIO();
-                    index = prio.PrioritizeProcess(readyQueue, currentTime);
-                    if (index != -1)
-                    {
-                        readyQueue[index] = prio.Run(index, ref readyQueue);
 
+                    break;
+                case algo.PRIO:   // selected algorithm is Priority
+                    PRIO prio = new PRIO();
+                    index = prio.PrioritizeProcess(readyQueue, currentTime);    // get index of the target process
+
+                    if (index != -1) // if a target process is found
+                    {
+                        readyQueue[index] = prio.Run(index, ref readyQueue);    // execute the process
+
+                        // if the process is terminated
                         if (readyQueue[index].state == status.TERMINATED)
                         {
-                            memoryManager.DeallocateMemory(readyQueue[index].Segment);
-                            readyQueue.RemoveAt(index);
+                            memoryManager.DeallocateMemory(readyQueue[index].Segment);  // deallocate its allocated memory
+                            readyQueue.RemoveAt(index);                                 // remove the process from the ready queue
                         }
                     }
 
@@ -128,22 +144,25 @@ namespace HoneyOS
                 case algo.RRR:
                     RRR rr = new RRR(4);
 
+                    // if end of quantum time is reached
                     if (rr.ifTimeToQuantum(currentTime))
                     {
+                        // get index of the target process
                         index = rr.GetEarliest(readyQueue, currentTime);
+
+                        // regenerate target process
                         ProcessControlBlock process = new ProcessControlBlock(
                             readyQueue[index].pID,
-                            readyQueue[index].burstTime, // Burst Time
-                            currentTime, // Arrival Time
-                            readyQueue[index].priority, // Priority Level
+                            readyQueue[index].burstTime,
+                            currentTime,
+                            readyQueue[index].priority,
                             readyQueue[index].memorySize, 
-                            status.READY // Set initial state to Ready
+                            status.READY
                         );
 
-                        // transfer katong segment data from readyqueue[index] to process
+                        // put the target process to the end of the ready queue
                         memoryManager.DeallocateMemory(readyQueue[index].Segment);
                         readyQueue.RemoveAt(index);
-
                         if(memoryManager.AllocateMemory(process.memorySize, out MemorySegment segment))
                         {
                             process.Segment = segment;
@@ -151,16 +170,16 @@ namespace HoneyOS
                         readyQueue.Add(process);
                     }
 
-                    index = rr.GetEarliest(readyQueue, currentTime);
-                    if (index != -1)
+                    index = rr.GetEarliest(readyQueue, currentTime);                    // get index of the new target process
+                    if (index != -1) // if a target process is found
                     {
                         ProcessControlBlock currentProcess = readyQueue[index];
                         readyQueue[index] = rr.Run(currentProcess);
 
-                        if (readyQueue[index].state == status.TERMINATED)
+                        if (readyQueue[index].state == status.TERMINATED)               // execute the process
                         {
-                            memoryManager.DeallocateMemory(readyQueue[index].Segment);
-                            readyQueue.RemoveAt(index);
+                            memoryManager.DeallocateMemory(readyQueue[index].Segment);  // deallocate its allocated memory
+                            readyQueue.RemoveAt(index);                                 // remove the process from the ready queue
                         }
                     }
                     break;
@@ -170,9 +189,9 @@ namespace HoneyOS
 
     public enum taskStatus
     {
-        PLAY, 
-        PAUSE, 
-        STOP
+        PLAY,           // task manager is currently being played
+        PAUSE,          // task manager is currently paused
+        STOP            // task manager is currently not running
     }
 
 }
